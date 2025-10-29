@@ -14,5 +14,6 @@ namespace BlaisePascal.SmartHouse.Domain
 
 
         public int Id { get; set; }
+        ciao
     }
 }
