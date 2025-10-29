@@ -6,16 +6,24 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    internal class Lamp
+    public class Lamp
     {
-        public Lamp() { }
-        //push di prova
-        //pushhh
+        public Boolean _isOn = false;
 
+        public void TurnOnOff()
+        {
+            if (_isOn == false)
+            {
+                _isOn = true;
+            } else
+            {
+                _isOn = false;
+            }
+        }
 
-        public int Id { get; set; }
-        
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public Boolean IsOn()
+        {
+            return _isOn;
+        }
     }
 }
