@@ -8,7 +8,12 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class Lamp
     {
-        public Boolean _isOn = false;
+        public bool _isOn  = false;
+
+        public Lamp()
+        {
+
+        }
 
         public void TurnOnOff()
         {
@@ -21,7 +26,7 @@ namespace BlaisePascal.SmartHouse.Domain
             }
         }
 
-        public Boolean IsOn()
+        public bool IsOn()
         {
             return _isOn;
         }
