@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    internal class SmartHouse
+    internal class Lamp
     {
-        public SmartHouse() { }
+        public Lamp() { }
         //push di prova
         //pushhh
 
 
         public int Id { get; set; }
-        ciao
+        
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }
