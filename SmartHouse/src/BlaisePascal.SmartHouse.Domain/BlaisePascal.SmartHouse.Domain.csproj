@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ImageProcessor" Version="2.9.0" />
+  </ItemGroup>
+
 </Project>

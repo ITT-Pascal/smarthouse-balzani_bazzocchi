@@ -44,5 +44,20 @@ namespace TestProject1
             Assert.False(newLamp.IsOn());
 
         }
+
+        [Fact]
+        public void Lamp_ChangeBrightness_WhenBrightnessIsLowerThan0_BrightnessIs0()
+        {
+            //Arrange
+            Lamp newLamp = new Lamp();
+
+            //Act
+            newLamp.ChangeBrightness(-1);
+
+            //
+            Assert.Equal()
+
+
+        }
     }
 }

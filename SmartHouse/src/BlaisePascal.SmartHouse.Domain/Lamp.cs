@@ -8,9 +8,15 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class Lamp
     {
-        public bool _isOn  = false;
+        private bool _isOn  = false;
+        public int Brightness { get; private set; }
 
-        public Lamp()
+        public Lamp(int _brightness)
+        {
+            Brightness = _brightness;
+        }
+
+        public Lamp()               //overload del costruttore
         {
 
         }
@@ -24,6 +30,23 @@ namespace BlaisePascal.SmartHouse.Domain
             {
                 _isOn = false;
             }
+        }
+
+        public void ChangeBrightness(int brightness)
+        {
+            if (brightness < 0)
+            {
+                Brightness = 0;
+            }
+            else if (_isOn == false)
+            {
+                Brightness = 0;
+            }
+            else
+            {
+                Brightness = brightness;
+            }
+            
         }
 
         public bool IsOn()
