@@ -11,7 +11,7 @@ namespace TestProject1
             Lamp newLamp = new Lamp();
 
             //Assert
-            Assert.False(newLamp.IsOn());
+            Assert.False(newLamp.IsLampOn());
 
         }
 
@@ -25,10 +25,10 @@ namespace TestProject1
             newLamp.TurnOnOff();
 
             //Assert
-            Assert.True(newLamp.IsOn());
+            Assert.True(newLamp.IsLampOn());
 
         }
-
+             
         [Fact]
         public void LampTurnOnOff_WhenTheLampIsOnTurnOff()
         {
@@ -41,23 +41,72 @@ namespace TestProject1
 
 
             //Assert
-            Assert.False(newLamp.IsOn());
+            Assert.False(newLamp.IsLampOn());
 
         }
 
         [Fact]
-        public void Lamp_ChangeBrightness_WhenBrightnessIsLowerThan0_BrightnessIs0()
+        public void Lamp_ChangeBrightness_WhenBrightnessIsNegative_ThrowArgumentOutOfRangeException()
         {
             //Arrange
             Lamp newLamp = new Lamp();
 
             //Act
-            newLamp.ChangeBrightness(-1);
+            newLamp.TurnOnOff();
+            
 
-            //
-            Assert.Equal()
+            //Assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.ChangeBrightness(-1));
 
 
         }
+
+        [Fact]
+        public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan0_BrightnessGetUpdated()
+        {
+            //Arrange
+            Lamp newLamp = new Lamp(8);
+
+            //Act
+            newLamp.TurnOnOff();
+            newLamp.ChangeBrightness(10);
+
+            //Assert
+            Assert.Equal(10, newLamp.Brightness);
+
+
+        }
+
+        [Fact]
+        public void Lamp_ChangeBrightness_WhenBrightnessIs0_BrightnessTurn0()
+        {
+            //Arrange
+            Lamp newLamp = new Lamp(8);
+
+            //Act
+            newLamp.TurnOnOff();
+            newLamp.ChangeBrightness(0);
+
+            //Assert
+            Assert.Equal(0, newLamp.Brightness);
+
+
+        }
+
+        [Fact]
+        public void Lamp_ChangeBrightness_WhenTheLampIsOff_BrightnessIs0()
+        {
+            //Arrange
+            Lamp newLamp = new Lamp(8);
+
+            //Act
+            newLamp.ChangeBrightness(0);
+
+            //Assert
+            Assert.Equal(0, newLamp.Brightness);
+
+
+        }
+
     }
 }

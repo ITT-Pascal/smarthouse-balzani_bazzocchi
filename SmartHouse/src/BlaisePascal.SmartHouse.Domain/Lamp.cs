@@ -8,7 +8,8 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class Lamp
     {
-        private bool _isOn  = false;
+        public const int MaxBrightness = 100 ;
+        public bool IsOn {  get; private set; }
         public int Brightness { get; private set; }
 
         public Lamp(int _brightness)
@@ -23,35 +24,30 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public void TurnOnOff()
         {
-            if (_isOn == false)
+            if (IsOn == false)
             {
-                _isOn = true;
+                IsOn = true;
+                Brightness = MaxBrightness;
             } else
             {
-                _isOn = false;
+                IsOn = false;
             }
         }
 
         public void ChangeBrightness(int brightness)
         {
-            if (brightness < 0)
+            if (brightness > MaxBrightness || brightness < 0)
             {
-                Brightness = 0;
+                throw new ArgumentOutOfRangeException("Brightness must be in the range");
             }
-            else if (_isOn == false)
-            {
-                Brightness = 0;
-            }
-            else
-            {
-                Brightness = brightness;
-            }
-            
+            Brightness = brightness;
         }
 
-        public bool IsOn()
+        public bool IsLampOn()
         {
-            return _isOn;
+            return IsOn;
         }
+
+
     }
 }
