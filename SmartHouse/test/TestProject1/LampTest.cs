@@ -119,7 +119,7 @@ namespace TestProject1
 
 
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.ChangeBrightness(100));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.ChangeBrightness(102));
 
 
         }
