@@ -9,32 +9,38 @@ namespace BlaisePascal.SmartHouse.Domain
     public class EcoLamp
     {
         public const int MaxBrightness = 100;
-        private bool _isOn = false;
-        public int Brightness { get; private set; }
-        public DateTime LampOn { get; private set; }
 
-        public EcoLamp(int _brightness)
+        public bool IsOn { get; private set; }
+        public int Brightness { get; private set; }
+        public DateTime TimeLampOn { get; private set; }
+
+        public EcoLamp(DateTime _timeLampOn)
         {
-            Brightness = _brightness;
+            
+            TimeLampOn = _timeLampOn.ToUniversalTime();
+            IsOn = true;
+            Brightness = 0;
         }
+       
 
         public EcoLamp()               //overload del costruttore
         {
-
+            IsOn = false;
+            Brightness = 0;
         }
 
         public void TurnOnOff()
         {
-            if (_isOn == false)
+            if (IsOn == false)
             {
-                _isOn = true;
-                LampOn = DateTime.UtcNow;
+                IsOn = true;
+                TimeLampOn = DateTime.UtcNow;
                 Brightness = MaxBrightness;
 
             }
             else
             {
-                _isOn = false;
+                IsOn = false;
                 Brightness = 0;
             }
         }
@@ -50,25 +56,35 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public bool IsLampOn()
         {
-            return _isOn;
+            return IsOn;
         }
 
-        public void autoTurnOff()
+        public void AutoTurnOff()
         {
-            DateTime _now = DateTime.UtcNow;
-
-            if (_now - LampOn > TimeSpan.FromMinutes(60))
+            if (!IsOn)
             {
-                Brightness = Brightness / 2;
+                throw new InvalidOperationException("Cannot call AutoTurnOff method if the lamp is off");
             }
 
-            if (_now - LampOn > TimeSpan.FromMinutes(120))
+            if (IsOn == true)
             {
-                _isOn = false;
-                Brightness = 0;
+                DateTime _now = DateTime.UtcNow;
+                
+                
+
+                if (_now - TimeLampOn > TimeSpan.FromMinutes(60))
+                {
+                    Brightness = Brightness / 2;
+                }
+
+                if (_now - TimeLampOn > TimeSpan.FromMinutes(120))
+                {
+                    IsOn = false;
+                    Brightness = 0;
+                }
             }
+
+
         }
-
-        
     }
 }
