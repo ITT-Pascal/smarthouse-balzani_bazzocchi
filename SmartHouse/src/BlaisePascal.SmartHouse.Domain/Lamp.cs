@@ -31,6 +31,7 @@ namespace BlaisePascal.SmartHouse.Domain
             } else
             {
                 IsOn = false;
+                Brightness = 0;
             }
         }
 

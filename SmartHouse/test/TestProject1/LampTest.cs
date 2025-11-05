@@ -108,5 +108,21 @@ namespace TestProject1
 
         }
 
+        [Fact]
+        public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()
+        {
+            //Arrange
+            Lamp newLamp = new Lamp();
+
+            //Act
+            newLamp.TurnOnOff();
+
+
+            //Assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.ChangeBrightness(100));
+
+
+        }
+
     }
 }
