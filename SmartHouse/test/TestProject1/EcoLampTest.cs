@@ -128,19 +128,19 @@ namespace TestProject1
         }
 
         [Fact]
-        public void EcoLamp_ChangeBrightness_WhenTheEcoLampIsOff_BrightnessIs0()
+        public void EcoLamp_ChangeBrightness_WhenTheEcoLampIsOff_ThrowInvalidOperationException()
         {
             //Arrange
             EcoLamp newEcoLamp = new EcoLamp();
 
-            //Act
-            newEcoLamp.ChangeBrightness(0);
+            
 
             //Assert
-            Assert.Equal(0, newEcoLamp.Brightness);
+            Assert.Throws<InvalidOperationException>(() => newEcoLamp.ChangeBrightness(3)); 
 
 
         }
+
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()
