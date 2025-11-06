@@ -61,20 +61,20 @@ namespace BlaisePascal.SmartHouse.Domain
             return EcoLamp.IsEcoLampOn();
         }
 
-        public void ChangeLampBrightness(int NewLampBrightness)
+        public void ChangeLampBrightness(int newLampBrightness)
         {
-            Lamp.ChangeBrightness(NewLampBrightness);
+            Lamp.ChangeBrightness(newLampBrightness);
         }
 
-        public void ChangeEcoLampBrightness(int NewEcoLampBrightness)
+        public void ChangeEcoLampBrightness(int newEcoLampBrightness)
         {
-            EcoLamp.ChangeBrightness(NewEcoLampBrightness);
+            EcoLamp.ChangeBrightness(newEcoLampBrightness);
         }
 
-        public void ChangeEcoLampAndLampBrightness(int NewBrightness)
+        public void ChangeEcoLampAndLampBrightness(int newBrightness)
         {
-            Lamp.ChangeBrightness(NewBrightness);
-            EcoLamp.ChangeBrightness(NewBrightness);
+            Lamp.ChangeBrightness(newBrightness);
+            EcoLamp.ChangeBrightness(newBrightness);
         }
     }
 }

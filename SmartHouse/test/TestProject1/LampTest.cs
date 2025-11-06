@@ -121,21 +121,23 @@ namespace TestProject1
 
 
         }
-
         [Fact]
-        public void Lamp_ChangeBrightness_WhenTheLampIsOff_BrightnessIs0()
+        public void Lamp_ChangeBrightness_WhenTheLampIsOff_ThrowInvalidOperationException()
         {
             //Arrange
-            Lamp newLamp = new Lamp(8);
+            Lamp newLamp = new Lamp();
 
-            //Act
-            newLamp.ChangeBrightness(0);
+
 
             //Assert
-            Assert.Equal(0, newLamp.Brightness);
+            Assert.Throws<InvalidOperationException>(() => newLamp.ChangeBrightness(3));
 
 
         }
+
+
+
+        
 
         [Fact]
         public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()

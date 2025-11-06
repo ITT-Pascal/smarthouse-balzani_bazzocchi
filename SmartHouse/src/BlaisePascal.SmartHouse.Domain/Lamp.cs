@@ -37,6 +37,11 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public void ChangeBrightness(int brightness)
         {
+            if (!IsOn)
+            {
+                throw new InvalidOperationException("Cannot change brightness if the ecolamp is off");
+            }
+
             if (brightness > MaxBrightness || brightness < 0)
             {
                 throw new ArgumentOutOfRangeException("Brightness must be in the range");

@@ -106,29 +106,81 @@ public class TwoDeviceLampTest // prova
     }
 
     [Fact]
-    public void ChangeEcoLampBrightness_IfYouChangeTheEcoLampBrightnessTo17ThenTheEcoLampBrightnessIsAt17()
+    public void ChangeEcoLampBrightness_WhenChangeTheEcoLampBrightnessTo17_ThenTheEcoLampBrightnessIs17()
     {
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
 
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.ChangeEcoLampBrightness(17);
 
-        Assert.Equal(17, newTwoDeviceLamp._ecoLamp.Brightness);
+        Assert.Equal(17, newTwoDeviceLamp.EcoLamp.Brightness);
     }
 
     [Fact]
-    public void ChangeLampBrightness_IfYouChangeTheLampBrightnessTo3ThenTheLampBrightnessIsAt3()
+    public void ChangeLampBrightness_WhenEcoLampBrightnessIsOver100_ThrowArgumentOutOfRangeException()
+    {
+        //Arrange
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+
+        //Act
+        newTwoDeviceLamp.TurnOnOffEcoLamp();
+        newTwoDeviceLamp.TurnOnOffLamp();
+        //Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.EcoLamp.ChangeBrightness(102));
+    }
+
+    [Fact]
+    public void ChangeLampBrightness_WhenEcoLampIsOff_ThrowInvalidOperationException()
+    {
+        //Arrange
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+
+        //Act
+        newTwoDeviceLamp.TurnOnOffLamp();
+
+        //Assert
+        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.EcoLamp.ChangeBrightness(4));
+    }
+
+    [Fact]
+    public void ChangeLampBrightness_WhenLampBrightnessIsOver100_ThrowArgumentOutOfRangeException()
+    {
+        //Arrange
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+
+        //Act
+        newTwoDeviceLamp.TurnOnOffEcoLamp();
+        newTwoDeviceLamp.TurnOnOffLamp();
+        //Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.Lamp.ChangeBrightness(102));
+    }
+
+    [Fact]
+    public void ChangeLampBrightness_WhenChangeTheLampBrightnessTo3_ThenTheLampBrightnessIs3()
     {
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
 
         newTwoDeviceLamp.TurnOnOffLamp();
         newTwoDeviceLamp.ChangeLampBrightness(3);
 
-        Assert.Equal(3, newTwoDeviceLamp._lamp.Brightness);
+        Assert.Equal(3, newTwoDeviceLamp.Lamp.Brightness);
     }
 
     [Fact]
-    public void ChangeEcoLampAndLampBrightness_IfYouChangeEcoLampAndLampBrightnessTo20ThenEcoLampAndLampBrightnessIsAt20()
+    public void ChangeLampBrightness_WhenLampIsOff_ThrowInvalidOperationException()
+    {
+        //Arrange
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+
+        //Act
+        newTwoDeviceLamp.TurnOnOffEcoLamp();
+
+        //Assert
+        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.Lamp.ChangeBrightness(4));
+    }
+
+    [Fact]
+    public void ChangeEcoLampAndLampBrightness_WhenChangeEcoLamp_AndLampBrightnessTo20_EcoLampAndLampBrightnessIs20()
     {
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
 
@@ -136,9 +188,12 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.ChangeEcoLampAndLampBrightness(20);
 
-        Assert.Equal(20, newTwoDeviceLamp._lamp.Brightness);
-        Assert.Equal(20, newTwoDeviceLamp._ecoLamp.Brightness);
+        Assert.Equal(20, newTwoDeviceLamp.Lamp.Brightness);
+        Assert.Equal(20, newTwoDeviceLamp.EcoLamp.Brightness);
     }
+
+    
+  
 
 
 
