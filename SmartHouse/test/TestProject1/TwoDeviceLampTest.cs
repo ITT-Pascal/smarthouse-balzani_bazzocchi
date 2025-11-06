@@ -1,7 +1,7 @@
 using BlaisePascal.SmartHouse.Domain;
 
 namespace TestProject1;
-public class TwoDeviceLampTest 
+public class TwoDeviceLampTest // prova
 {
     [Fact]
     public void TurnOnOffLamp_WhenLampIsOffTurnOn()
