@@ -15,66 +15,66 @@ namespace BlaisePascal.SmartHouse.Domain
         public const int MaxBrightness = 100;
         public bool IsOn { get; private set; }
         public int Brightness { get; private set; }
-        public Lamp _lamp { get; private set; }
-        public EcoLamp _ecoLamp { get; private set; }
+        public Lamp Lamp { get; private set; }
+        public EcoLamp EcoLamp { get; private set; }
 
         public TwoDeviceLamp(int brightness, Lamp lamp, EcoLamp ecoLamp)
         {
             Brightness = brightness;
-            this._lamp = lamp ?? new Lamp();
-            this._ecoLamp = ecoLamp ?? new EcoLamp();
+            Lamp =  lamp;
+            EcoLamp = ecoLamp;
             IsOn = false;
         }
 
         public TwoDeviceLamp()
         {
             Brightness = 0;
-            _lamp = new Lamp();
-            _ecoLamp = new EcoLamp();
+            Lamp = new Lamp();
+            EcoLamp = new EcoLamp();
             IsOn = false;
         }
 
 
         public void TurnOnOffLamp()
         {
-            _lamp.TurnOnOff();
+            Lamp.TurnOnOff();
         }
 
         public void TurnOnOffEcoLamp()
         {
-            _ecoLamp.TurnOnOff();
+            EcoLamp.TurnOnOff();
         }
 
         public void TurnOnOffBoth()
         {
-            _ecoLamp.TurnOnOff();
-            _lamp.TurnOnOff();
+            EcoLamp.TurnOnOff();
+            Lamp.TurnOnOff();
         }
 
         public bool IsLampOn()
         {
-            return _lamp.IsLampOn();
+            return Lamp.IsLampOn();
         }
 
         public bool IsEcoLampOn()
         {
-            return _ecoLamp.IsEcoLampOn();
+            return EcoLamp.IsEcoLampOn();
         }
 
         public void ChangeLampBrightness(int NewLampBrightness)
         {
-            _lamp.ChangeBrightness(NewLampBrightness);
+            Lamp.ChangeBrightness(NewLampBrightness);
         }
 
         public void ChangeEcoLampBrightness(int NewEcoLampBrightness)
         {
-            _ecoLamp.ChangeBrightness(NewEcoLampBrightness);
+            EcoLamp.ChangeBrightness(NewEcoLampBrightness);
         }
 
         public void ChangeEcoLampAndLampBrightness(int NewBrightness)
         {
-            _lamp.ChangeBrightness(NewBrightness);
-            _ecoLamp.ChangeBrightness(NewBrightness);
+            Lamp.ChangeBrightness(NewBrightness);
+            EcoLamp.ChangeBrightness(NewBrightness);
         }
     }
 }
