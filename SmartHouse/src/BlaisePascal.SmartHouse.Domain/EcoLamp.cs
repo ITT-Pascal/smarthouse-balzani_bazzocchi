@@ -79,8 +79,7 @@ namespace BlaisePascal.SmartHouse.Domain
 
                 if (_now - TimeLampOn > TimeSpan.FromMinutes(120))
                 {
-                    IsOn = false;
-                    Brightness = 0;
+                    TurnOnOff();
                 }
             }
 

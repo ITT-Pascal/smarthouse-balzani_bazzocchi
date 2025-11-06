@@ -16,6 +16,35 @@ namespace TestProject1
         }
 
         [Fact]
+        public void EcoLamp_IsLampOn_WhenLampIsOn_ReturnTrue()
+        {
+            //Arrange
+            Lamp newLamp = new Lamp();
+
+            //Act
+            newLamp.TurnOnOff();
+
+            //Assert
+            Assert.True(newLamp.IsOn);
+
+        }
+
+        [Fact]
+        public void EcoLamp_IsLampOn_WhenLampIsOff_ReturnFalse()
+        {
+            //Arrange
+            Lamp newLamp = new Lamp();
+
+            //Act
+            newLamp.TurnOnOff();
+            newLamp.TurnOnOff();
+
+            //Assert
+            Assert.False(newLamp.IsOn);
+
+        }
+
+        [Fact]
         public void LampTurnOnOff_WhenTheLampIsOffTurnOn()
         {
             //Arrange
