@@ -16,7 +16,7 @@ namespace TestProject1
             EcoLamp newEcoLamp = new EcoLamp();
 
             //Assert
-            Assert.False(newEcoLamp.IsLampOn());
+            Assert.False(newEcoLamp.IsEcoLampOn());
 
         }
 
@@ -30,7 +30,7 @@ namespace TestProject1
             newEcoLamp.TurnOnOff();
 
             //Assert
-            Assert.True(newEcoLamp.IsLampOn());
+            Assert.True(newEcoLamp.IsEcoLampOn());
 
         }
 
@@ -46,7 +46,7 @@ namespace TestProject1
 
 
             //Assert
-            Assert.False(newEcoLamp.IsLampOn());
+            Assert.False(newEcoLamp.IsEcoLampOn());
 
         }
 
