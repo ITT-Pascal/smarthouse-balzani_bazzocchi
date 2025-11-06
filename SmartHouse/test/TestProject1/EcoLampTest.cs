@@ -21,6 +21,35 @@ namespace TestProject1
         }
 
         [Fact]
+        public void EcoLamp_IsLampOn_WhenLampIsOn_ReturnTrue()
+        {
+            //Arrange
+            EcoLamp newEcoLamp = new EcoLamp();
+
+            //Act
+            newEcoLamp.TurnOnOff();
+
+            //Assert
+            Assert.True(newEcoLamp.IsOn);
+
+        }
+
+        [Fact]
+        public void EcoLamp_IsLampOn_WhenLampIsOff_ReturnFalse()
+        {
+            //Arrange
+            EcoLamp newEcoLamp = new EcoLamp();
+
+            //Act
+            newEcoLamp.TurnOnOff();
+            newEcoLamp.TurnOnOff();
+
+            //Assert
+            Assert.False(newEcoLamp.IsOn);
+
+        }
+
+        [Fact]
         public void EcoLampTurnOnOff_WhenTheEcoLampIsOffTurnOn()
         {
             //Arrange
@@ -156,6 +185,25 @@ namespace TestProject1
             //Assert
             Assert.Equal(15, newEcoLamp.Brightness);
             
+        }
+
+        [Fact]
+        public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan120Minutes_TurnLampOff()
+        {
+            //Arrange
+
+            DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-121);
+            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn);
+
+
+            //Act
+            newEcoLamp.ChangeBrightness(30);
+            newEcoLamp.AutoTurnOff();
+
+            //Assert
+            Assert.Equal(0, newEcoLamp.Brightness);
+            Assert.False(newEcoLamp.IsOn);
+
         }
     }
 }
