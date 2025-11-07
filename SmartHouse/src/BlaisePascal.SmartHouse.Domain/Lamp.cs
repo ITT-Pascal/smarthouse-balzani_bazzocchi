@@ -13,18 +13,20 @@ namespace BlaisePascal.SmartHouse.Domain
         public bool IsOn {  get; private set; }
         public int Brightness { get; private set; }
         private Random Random { get; set; }
-        public int Guid { get; private set; } = 0;
+        public Guid Id { get; private set; }
 
-        public Lamp(int _brightness, Random random)
+        public Lamp(int _brightness, Random random, Guid guid)
         {
             Brightness = _brightness;
             Random = random;
+            Id = guid;
         }
 
         public Lamp()               //overload del costruttore
         {
             Brightness = 0;
             IsOn = false;
+            Id = new Guid();
         }
 
         public void TurnOnOff()
@@ -57,16 +59,6 @@ namespace BlaisePascal.SmartHouse.Domain
         public bool IsLampOn()
         {
             return IsOn;
-        }
-
-        public void GenerateGUID(Random random)
-        {
-            if (Guid != 0)
-            {
-                throw new InvalidOperationException("GUID already generated");
-            }
-            Guid = (Random.Next(10000, 100000));
-           
         }
 
 
