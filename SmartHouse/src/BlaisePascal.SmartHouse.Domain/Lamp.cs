@@ -65,7 +65,7 @@ namespace BlaisePascal.SmartHouse.Domain
             {
                 throw new InvalidOperationException("GUID already generated");
             }
-            Guid = (Random.Next(10000, 99999));
+            Guid = (Random.Next(10000, 100000));
            
         }
 
