@@ -17,7 +17,7 @@ namespace BlaisePascal.SmartHouse.Domain
         private Random Random { get; set; }
         public Guid Id { get; private set; }
 
-        public EcoLamp(DateTime _timeLampOn, Random random, Guid guid)
+        public EcoLamp(DateTime _timeLampOn, Random random, Guid guid) // foca
         {
             Random = random;
             TimeLampOn = _timeLampOn.ToUniversalTime();
