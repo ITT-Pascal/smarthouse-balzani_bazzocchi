@@ -57,7 +57,7 @@ namespace BlaisePascal.SmartHouse.Domain
             Brightness = brightness;
         }
 
-        public bool IsLampOn()
+        public bool IsLampOn() // prova
         {
             return IsOn;
         }
