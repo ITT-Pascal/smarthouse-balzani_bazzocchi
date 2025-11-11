@@ -26,7 +26,7 @@ namespace BlaisePascal.SmartHouse.Domain
             Id = guid;
         }
 
-       
+
 
         public EcoLamp()               //overload del costruttore
         {
@@ -35,21 +35,21 @@ namespace BlaisePascal.SmartHouse.Domain
             Id = new Guid();
         }
 
-                public void TurnOnOff()
-                {
-                    if (IsOn == false)
-                    {
-                        IsOn = true;
-                        TimeLampOn = DateTime.UtcNow;
-                        Brightness = MaxBrightness;
+        public void TurnOnOff()
+        {
+            if (IsOn == false)
+            {
+                IsOn = true;
+                TimeLampOn = DateTime.UtcNow;
+                Brightness = MaxBrightness;
 
-                    }
-                    else
-                    {
-                        IsOn = false;
-                        Brightness = 0;
-                    }
-                }
+            }
+            else
+            {
+                IsOn = false;
+                Brightness = 0;
+            }
+        }
 
         public void ChangeBrightness(int brightness)
         {
@@ -80,8 +80,8 @@ namespace BlaisePascal.SmartHouse.Domain
             if (IsOn == true)
             {
                 DateTime _now = DateTime.UtcNow;
-                
-                
+
+
 
                 if (_now - TimeLampOn > TimeSpan.FromMinutes(60))
                 {

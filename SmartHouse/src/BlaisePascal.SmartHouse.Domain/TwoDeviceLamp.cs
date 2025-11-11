@@ -21,12 +21,12 @@ namespace BlaisePascal.SmartHouse.Domain
         public TwoDeviceLamp(int brightness, Lamp lamp, EcoLamp ecoLamp)
         {
             Brightness = brightness;
-            Lamp =  lamp;
+            Lamp =  lamp; //?
             EcoLamp = ecoLamp;
             IsOn = false;
         }
 
-        public TwoDeviceLamp()
+        public TwoDeviceLamp() 
         {
             Brightness = 0;
             Lamp = new Lamp();
