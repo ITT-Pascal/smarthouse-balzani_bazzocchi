@@ -6,30 +6,93 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    public class LampsRow: LampDesign
+    public class LampsRow
     {
         public const int MaxBrightness = 100;
-       
-       
-        public Lamp Lamp { get; private set; }
-        public EcoLamp EcoLamp { get; private set; }
-        List <object> RowLamps;
 
-        public LampsRow(int brightness, Lamp lamp, EcoLamp ecoLamp)
+        public List<LampDesign> LampList { get; private set; }
+
+
+        public LampsRow(int numLamp)
         {
-            Brightness = brightness;
-            Lamp = lamp;
-            EcoLamp = ecoLamp;
-            IsOn = false;
+            LampList = new List<LampDesign>();
+          
+            for (int i = 0; i < numLamp; i++)
+            {
+
+                LampList.Add(new Lamp());
+            }
         }
 
-        public LampsRow()
+        public void AddLamp(LampDesign lamp)
         {
-            Brightness = 0;
-            Lamp = new Lamp();
-            EcoLamp = new EcoLamp();
-            IsOn = false;
+            LampList.Add(lamp);
+        }   
+
+
+        public void AddEcoLamp(LampDesign ecoLamp)
+        {
+            LampList.Add(ecoLamp);
         }
+
+        public void TurnOnOffAllLamps()
+        {
+            for (int i = 0; i < LampList.Count; i++)
+            {
+                if (LampList[i] is Lamp)
+                    LampList[i].TurnOnOff();
+            }
+        }
+
+        public void TurnOnOffAllEcoLamps()
+        {
+            for (int i = 0; i < LampList.Count; i++)
+            {
+                if (LampList[i] is EcoLamp)
+                    LampList[i].TurnOnOff();
+            }
+        }
+
+        public void TurnOnOffAllDevices()
+        {
+            for (int i = 0; i < LampList.Count; i++)
+            {
+                LampList[i].TurnOnOff();
+            }
+        }
+
+        public void TurnOneLampOnOff(Guid id)
+        {
+            for (int i = 0; i < LampList.Count; i++)
+            {
+                if (LampList[i].Id == id)
+                {
+                    LampList[i].TurnOnOff();
+                }
+            }
+        }
+
+        public void ChangeBrightnessAllDevices(int brightness)
+        {
+            for (int i = 0; i < LampList.Count; i++)
+            {
+                LampList[i].ChangeBrightness(brightness);
+            }
+        }
+
+        public void ChangeBrightnessOneDevice(Guid id, int brightness)
+        {
+            for (int i = 0; i < LampList.Count; i++)
+            {
+                if (LampList[i].Id == id)
+                {
+                    LampList[i].ChangeBrightness(brightness);
+                }
+            }
+        }
+
+
+
 
     }
 }
