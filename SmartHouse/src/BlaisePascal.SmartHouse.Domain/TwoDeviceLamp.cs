@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    public class TwoDeviceLamp  // prova
+    public class TwoDeviceLamp
 
     {
         public const int MaxBrightness = 100;
