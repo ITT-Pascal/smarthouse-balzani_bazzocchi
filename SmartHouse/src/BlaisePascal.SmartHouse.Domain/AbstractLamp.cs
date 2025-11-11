@@ -9,7 +9,7 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public abstract class AbstractLamp
     {
-        public const int MaxBrightness = 100; //foca
+        public const int MaxBrightness = 100; 
         public bool IsOn { get; private set; }
         public int Brightness { get; private set; }
         private Random Random { get; set; }
