@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    public class Lamp
+    public class Lamp: LampDesign
     {
-        public const int MaxBrightness = 100;
-        public bool IsOn { get; private set; }
-        public int Brightness { get; private set; }
-        private Random Random { get; set; }
-        public Guid Id { get; private set; }
-
+        public const int MaxBrightness = 100 ;
+         private Random Random { get; set; }
+       
         public Lamp(int _brightness, Random random, Guid guid)
         {
             Brightness = _brightness;
@@ -25,26 +22,26 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public Lamp()               //overload del costruttore
         {
+            Random random = new Random();
             Brightness = 0;
             IsOn = false;
             Id = new Guid();
         }
 
-        public void TurnOnOff()
+        public override void TurnOnOff()
         {
             if (IsOn == false)
             {
                 IsOn = true;
                 Brightness = MaxBrightness;
-            }
-            else
+            } else
             {
                 IsOn = false;
                 Brightness = 0;
             }
         }
 
-        public void ChangeBrightness(int brightness)
+        public override void ChangeBrightness(int brightness)
         {
             if (!IsOn)
             {
@@ -58,7 +55,7 @@ namespace BlaisePascal.SmartHouse.Domain
             Brightness = brightness;
         }
 
-        public bool IsLampOn() // prova
+        public bool IsLampOn() 
         {
             return IsOn;
         }
