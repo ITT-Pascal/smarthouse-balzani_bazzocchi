@@ -6,18 +6,15 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    public class EcoLamp
+    public class EcoLamp: LampDesign
     {
         public const int MaxBrightness = 100;
 
-
-        public bool IsOn { get; private set; }
-        public int Brightness { get; private set; }
         public DateTime TimeLampOn { get; private set; }
         private Random Random { get; set; }
-        public Guid Id { get; private set; }
+        
 
-        public EcoLamp(DateTime _timeLampOn, Random random, Guid guid) // foca
+        public EcoLamp(DateTime _timeLampOn, Random random, Guid guid) 
         {
             Random = random;
             TimeLampOn = _timeLampOn.ToUniversalTime();
@@ -30,28 +27,29 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public EcoLamp()               //overload del costruttore
         {
+            Random random = new Random();   
             IsOn = false;
             Brightness = 0;
             Id = new Guid();
         }
 
-                public void TurnOnOff()
-                {
-                    if (IsOn == false)
-                    {
-                        IsOn = true;
-                        TimeLampOn = DateTime.UtcNow;
-                        Brightness = MaxBrightness;
+        public override void TurnOnOff()
+        {
+            if (IsOn == false)
+            {
+                IsOn = true;
+                TimeLampOn = DateTime.UtcNow;
+                Brightness = MaxBrightness;
 
-                    }
-                    else
-                    {
-                        IsOn = false;
-                        Brightness = 0;
-                    }
-                }
+            }
+            else
+            {
+               IsOn = false;
+               Brightness = 0;
+            }
+        }
 
-        public void ChangeBrightness(int brightness)
+        public override void ChangeBrightness(int brightness)
         {
             if (!IsOn)
             {
