@@ -16,7 +16,7 @@ namespace TestProject1
             EcoLamp newEcoLamp = new EcoLamp();
 
             //Assert
-            Assert.False(newEcoLamp.IsEcoLampOn());
+            Assert.False(newEcoLamp.IsLampOn());
 
         }
 
@@ -59,7 +59,7 @@ namespace TestProject1
             newEcoLamp.TurnOnOff();
 
             //Assert
-            Assert.True(newEcoLamp.IsEcoLampOn());
+            Assert.True(newEcoLamp.IsLampOn());
 
         }
 
@@ -75,7 +75,7 @@ namespace TestProject1
 
 
             //Assert
-            Assert.False(newEcoLamp.IsEcoLampOn());
+            Assert.False(newEcoLamp.IsLampOn());
 
         }
 
@@ -175,7 +175,9 @@ namespace TestProject1
             //Arrange
             
             DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-61);
-            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn);
+            Random random = new Random();
+            Guid guid = Guid.NewGuid();
+            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, guid);
 
 
             //Act
@@ -193,7 +195,9 @@ namespace TestProject1
             //Arrange
 
             DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-121);
-            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn);
+            Random random = new Random();
+            Guid guid = Guid.NewGuid();
+            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, guid);
 
 
             //Act

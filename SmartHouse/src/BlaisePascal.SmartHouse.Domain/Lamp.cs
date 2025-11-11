@@ -11,18 +11,16 @@ namespace BlaisePascal.SmartHouse.Domain
     public class Lamp: LampDesign
     {
         public const int MaxBrightness = 100 ;
-         private Random Random { get; set; }
        
-        public Lamp(int _brightness, Random random, Guid guid)
+        public Lamp(int _brightness, Guid guid)
         {
             Brightness = _brightness;
-            Random = random;
             Id = guid;
         }
 
         public Lamp()               //overload del costruttore
         {
-            Random random = new Random();
+
             Brightness = 0;
             IsOn = false;
             Id = new Guid();
@@ -55,7 +53,7 @@ namespace BlaisePascal.SmartHouse.Domain
             Brightness = brightness;
         }
 
-        public bool IsLampOn() 
+        public override bool IsLampOn() 
         {
             return IsOn;
         }

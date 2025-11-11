@@ -58,7 +58,7 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public bool IsEcoLampOn()
         {
-            return EcoLamp.IsEcoLampOn();
+            return EcoLamp.IsLampOn();
         }
 
         public void ChangeLampBrightness(int newLampBrightness)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageProcessor.Processors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,28 @@ namespace BlaisePascal.SmartHouse.Domain
         public const int MaxBrightness = 100;
 
         public List<LampDesign> LampList { get; private set; }
+        public Lamp Lamp { get; set; }
+        public EcoLamp EcoLamp { get; set; }
 
 
-        public LampsRow(int numLamp)
+        public LampsRow(int numLamp) // costruttore
         {
             LampList = new List<LampDesign>();
-          
+            Lamp = new Lamp();
+            EcoLamp = new EcoLamp();
+
             for (int i = 0; i < numLamp; i++)
             {
 
                 LampList.Add(new Lamp());
             }
+        }
+
+        public LampsRow()
+        {
+            LampList = new List<LampDesign>();
+            Lamp = new Lamp();
+            EcoLamp = new EcoLamp();
         }
 
         public void AddLamp(LampDesign lamp)
@@ -89,6 +101,18 @@ namespace BlaisePascal.SmartHouse.Domain
                     LampList[i].ChangeBrightness(brightness);
                 }
             }
+        }
+
+        public bool IsLampOn(Guid id)
+        {
+            for (int i = 0; i < LampList.Count; i++)
+            {
+                if (LampList[i].Id == id)
+                {
+                    return LampList[i].IsOn;
+                }
+            }
+            return false;
         }
 
 

@@ -11,12 +11,10 @@ namespace BlaisePascal.SmartHouse.Domain
         public const int MaxBrightness = 100;
 
         public DateTime TimeLampOn { get; private set; }
-        private Random Random { get; set; }
         
 
-        public EcoLamp(DateTime _timeLampOn, Random random, Guid guid) 
+        public EcoLamp(DateTime _timeLampOn, Guid guid) 
         {
-            Random = random;
             TimeLampOn = _timeLampOn.ToUniversalTime();
             IsOn = true;
             Brightness = 0;
@@ -24,7 +22,6 @@ namespace BlaisePascal.SmartHouse.Domain
         }
 
        
-
         public EcoLamp()               //overload del costruttore
         {
             Random random = new Random();   
@@ -63,7 +60,7 @@ namespace BlaisePascal.SmartHouse.Domain
             Brightness = brightness;
         }
 
-        public bool IsEcoLampOn()
+        public override bool IsLampOn()
         {
             return IsOn;
         }

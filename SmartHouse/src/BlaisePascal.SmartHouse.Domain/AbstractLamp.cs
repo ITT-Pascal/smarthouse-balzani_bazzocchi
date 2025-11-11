@@ -22,7 +22,7 @@ namespace BlaisePascal.SmartHouse.Domain
             Id = guid;
         }
 
-        protected AbstractLamp()               // protected: accessibile solo alla classe e alle deri
+        protected AbstractLamp()               // protected: accessibile solo alla classe e alle derivate.
         {
             Brightness = 0;
             IsOn = false;

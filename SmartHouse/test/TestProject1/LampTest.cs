@@ -1,4 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain;
+using ImageProcessor.Processors;
+using System;
 
 namespace TestProject1
 {
@@ -94,7 +96,7 @@ namespace TestProject1
         public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan0_BrightnessGetUpdated()
         {
             //Arrange
-            Lamp newLamp = new Lamp(8);
+            Lamp newLamp = new Lamp();
 
             //Act
             newLamp.TurnOnOff();
@@ -110,7 +112,7 @@ namespace TestProject1
         public void Lamp_ChangeBrightness_WhenBrightnessIs0_BrightnessTurn0()
         {
             //Arrange
-            Lamp newLamp = new Lamp(8);
+            Lamp newLamp = new Lamp();
 
             //Act
             newLamp.TurnOnOff();
