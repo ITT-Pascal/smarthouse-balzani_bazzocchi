@@ -10,24 +10,9 @@ namespace BlaisePascal.SmartHouse.Domain
     public abstract class AbstractLamp
     {
         public const int MaxBrightness = 100; 
-        public bool IsOn { get; private set; }
-        public int Brightness { get; private set; }
-        private Random Random { get; set; }
-        public Guid Id { get; private set; }
-
-        protected AbstractLamp(Random random, Guid guid, int brightness)
-        {
-            Brightness = brightness;
-            Random = random;
-            Id = guid;
-        }
-
-        protected AbstractLamp()               // protected: accessibile solo alla classe e alle derivate.
-        {
-            Brightness = 0;
-            IsOn = false;
-            Id = new Guid();
-        }
+        public bool IsOn { get; protected set; }
+        public int Brightness { get; protected set; }
+        public Guid Id { get; protected set; }
 
         public void ChangeBrightness(int brightness)
         {
