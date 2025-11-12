@@ -41,15 +41,15 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public override void ChangeBrightness(int brightness)
         {
-            if (!IsOn)
-            {
+            if (!IsOn)  
+                
                 throw new InvalidOperationException("Cannot change brightness if the lamp is off");
-            }
+            
 
             if (brightness > MaxBrightness || brightness < 0)
-            {
-                throw new ArgumentOutOfRangeException("Brightness must be in the range");
-            }
+
+                      throw new ArgumentOutOfRangeException("Brightness must be in the range");
+            
             Brightness = brightness;
         }
 
