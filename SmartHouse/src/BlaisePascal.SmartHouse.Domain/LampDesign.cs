@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    public abstract class LampDesign
+    public abstract class LampDesign // foca
     {
         public Guid Id { get; protected set; }
         public bool IsOn { get; protected set; }
