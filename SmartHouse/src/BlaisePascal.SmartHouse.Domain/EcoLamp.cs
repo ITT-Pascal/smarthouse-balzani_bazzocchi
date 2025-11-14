@@ -8,26 +8,25 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class EcoLamp: LampDesign
     {
-        public const int MaxBrightness = 100;
-
         public DateTime TimeLampOn { get; private set; }
         
 
-        public EcoLamp(DateTime _timeLampOn, Guid guid) 
+        public EcoLamp(DateTime timeLampOn, Guid guid, string lampName)
         {
-            TimeLampOn = _timeLampOn.ToUniversalTime();
+            TimeLampOn = timeLampOn.ToUniversalTime();
             IsOn = true;
             Brightness = 0;
             Id = guid;
+            LampName = lampName;
         }
 
-       
-        public EcoLamp()               //overload del costruttore
+        public EcoLamp(string lampName)               //overload del costruttore
         {
-            Random random = new Random();   
-            IsOn = false;
+
             Brightness = 0;
+            IsOn = false;
             Id = new Guid();
+            LampName = lampName;
         }
 
         public override void TurnOnOff()
@@ -45,21 +44,7 @@ namespace BlaisePascal.SmartHouse.Domain
                Brightness = 0;
             }
         }
-
-        public override void ChangeBrightness(int brightness)
-        {
-            if (!IsOn)
-            {
-                throw new InvalidOperationException("Cannot change brightness if the ecolamp is off");
-            }
-
-            if (brightness > MaxBrightness || brightness < 0)
-            {
-                throw new ArgumentOutOfRangeException("Brightness must be in the range");
-            }
-            Brightness = brightness;
-        }
-
+        
         public override bool IsLampOn()
         {
             return IsOn;

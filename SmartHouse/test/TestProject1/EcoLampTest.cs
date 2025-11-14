@@ -13,7 +13,7 @@ namespace TestProject1
         public void EcoLamp_WhenCreatedTheEcoLampIsOff()
         {
             //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            EcoLamp newEcoLamp = new EcoLamp(timeLampOn, guid, lampName);
 
             //Assert
             Assert.False(newEcoLamp.IsLampOn());
@@ -172,12 +172,13 @@ namespace TestProject1
         [Fact]
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan60Minutes_ReduceBrightness()
         {
+            string lampName = "";
             //Arrange
             
             DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-61);
             Random random = new Random();
             Guid guid = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, guid);
+            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, guid, lampName);
 
 
             //Act

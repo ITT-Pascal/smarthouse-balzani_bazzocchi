@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageProcessor.Processors;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,22 +11,23 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class Lamp: LampDesign
     {
-        public const int MaxBrightness = 100 ;
-       
-        public Lamp(int _brightness, Guid guid)
+        public Lamp(int _brightness, Guid guid, string lampName)
         {
             Brightness = _brightness;
             Id = guid;
+            LampName = lampName;
         }
 
-        public Lamp()               //overload del costruttore
+     
+
+        public Lamp(string lampName)               //overload del costruttore
         {
 
             Brightness = 0;
             IsOn = false;
             Id = new Guid();
+            LampName = lampName;
         }
-
         public override void TurnOnOff()
         {
             if (IsOn == false)
@@ -37,20 +39,6 @@ namespace BlaisePascal.SmartHouse.Domain
                 IsOn = false;
                 Brightness = 0;
             }
-        }
-
-        public override void ChangeBrightness(int brightness)
-        {
-            if (!IsOn)  
-                
-                throw new InvalidOperationException("Cannot change brightness if the lamp is off");
-            
-
-            if (brightness > MaxBrightness || brightness < 0)
-
-                      throw new ArgumentOutOfRangeException("Brightness must be in the range");
-            
-            Brightness = brightness;
         }
 
         public override bool IsLampOn() 
