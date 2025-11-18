@@ -9,36 +9,35 @@ namespace TestProject1
 {
     public class EcoLampTest
     {
+
         [Fact]
         public void EcoLamp_WhenCreatedTheEcoLampIsOff()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp(timeLampOn, guid, lampName);
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Assert
             Assert.False(newEcoLamp.IsLampOn());
-
         }
 
         [Fact]
         public void EcoLamp_IsLampOn_WhenLampIsOn_ReturnTrue()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Act
             newEcoLamp.TurnOnOff();
 
             //Assert
             Assert.True(newEcoLamp.IsOn);
-
         }
 
         [Fact]
         public void EcoLamp_IsLampOn_WhenLampIsOff_ReturnFalse()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Act
             newEcoLamp.TurnOnOff();
@@ -46,28 +45,26 @@ namespace TestProject1
 
             //Assert
             Assert.False(newEcoLamp.IsOn);
-
         }
 
         [Fact]
         public void EcoLampTurnOnOff_WhenTheEcoLampIsOffTurnOn()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Act
             newEcoLamp.TurnOnOff();
 
             //Assert
             Assert.True(newEcoLamp.IsLampOn());
-
         }
 
         [Fact]
         public void EcoLampTurnOnOff_WhenTheEcoLampIsOnTurnOff()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Act
             newEcoLamp.TurnOnOff();
@@ -76,14 +73,13 @@ namespace TestProject1
 
             //Assert
             Assert.False(newEcoLamp.IsLampOn());
-
         }
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsNegative_ThrowArgumentOutOfRangeException()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Act
             newEcoLamp.TurnOnOff();
@@ -91,15 +87,13 @@ namespace TestProject1
 
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.ChangeBrightness(-1));
-
-
         }
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsHigherThan0_BrightnessGetUpdated()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Act
             newEcoLamp.TurnOnOff();
@@ -107,15 +101,13 @@ namespace TestProject1
 
             //Assert
             Assert.Equal(10, newEcoLamp.Brightness);
-
-
         }
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIs0_BrightnessTurn0()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Act
             newEcoLamp.TurnOnOff();
@@ -123,30 +115,24 @@ namespace TestProject1
 
             //Assert
             Assert.Equal(0, newEcoLamp.Brightness);
-
-
         }
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenTheEcoLampIsOff_ThrowInvalidOperationException()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
-
-            
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Assert
             Assert.Throws<InvalidOperationException>(() => newEcoLamp.ChangeBrightness(3)); 
-
-
         }
 
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Act
             newEcoLamp.TurnOnOff();
@@ -154,16 +140,14 @@ namespace TestProject1
 
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.ChangeBrightness(102));
-
-
         }
 
         [Fact]
 
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOff_ThrowException()
         {
-            //Arrange
-            EcoLamp newEcoLamp = new EcoLamp();
+            string lampName = "";
+            EcoLamp newEcoLamp = new EcoLamp(lampName);
 
             //Act
             Assert.Throws<InvalidOperationException>(() => newEcoLamp.AutoTurnOff());
@@ -173,10 +157,9 @@ namespace TestProject1
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan60Minutes_ReduceBrightness()
         {
             string lampName = "";
-            //Arrange
             
+            //Arrange            
             DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-61);
-            Random random = new Random();
             Guid guid = Guid.NewGuid();
             EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, guid, lampName);
 
@@ -194,11 +177,10 @@ namespace TestProject1
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan120Minutes_TurnLampOff()
         {
             //Arrange
-
+            string lampName = "";
             DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-121);
-            Random random = new Random();
             Guid guid = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, guid);
+            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, guid, lampName);
 
 
             //Act
@@ -207,7 +189,7 @@ namespace TestProject1
 
             //Assert
             Assert.Equal(0, newEcoLamp.Brightness);
-            Assert.False(newEcoLamp.IsOn);
+            Assert.False(newEcoLamp.IsLampOn());
 
         }
     }

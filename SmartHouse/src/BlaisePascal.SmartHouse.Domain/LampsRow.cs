@@ -15,7 +15,7 @@ namespace BlaisePascal.SmartHouse.Domain
         public Lamp Lamp { get; set; }
         public EcoLamp EcoLamp { get; set; }
 
-
+        
         public LampsRow(int numLamp) // costruttore
         {
             LampList = new List<LampDesign>();

@@ -30,7 +30,7 @@ namespace TestProject1
             newLamp.TurnOnOff();
 
             //Assert
-            Assert.True(newLamp.IsOn);
+            Assert.True(newLamp.IsLampOn());
 
         }
 
@@ -46,7 +46,7 @@ namespace TestProject1
             newLamp.TurnOnOff();
 
             //Assert
-            Assert.False(newLamp.IsOn);
+            Assert.False(newLamp.IsLampOn());
 
         }
 

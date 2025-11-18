@@ -18,7 +18,7 @@ namespace BlaisePascal.SmartHouse.Domain
             LampName = lampName;
         }
 
-     
+        public Lamp() { }
 
         public Lamp(string lampName)               //overload del costruttore
         {

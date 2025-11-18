@@ -9,7 +9,8 @@ namespace BlaisePascal.SmartHouse.Domain
     public class EcoLamp: LampDesign
     {
         public DateTime TimeLampOn { get; private set; }
-        
+
+        public EcoLamp() { }
 
         public EcoLamp(DateTime timeLampOn, Guid guid, string lampName)
         {
