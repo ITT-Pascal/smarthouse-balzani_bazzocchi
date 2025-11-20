@@ -1,14 +1,18 @@
 ﻿using BlaisePascal.SmartHouse.Domain;
+using ImageProcessor.Processors;
+using System;
 
 namespace TestProject1
 {
     public class LampTest
     {
+
         [Fact]
         public void Lamp_WhenCreatedTheLampIsOff()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp();
+            Lamp newLamp = new Lamp(lampName);
 
             //Assert
             Assert.False(newLamp.IsLampOn());
@@ -18,37 +22,40 @@ namespace TestProject1
         [Fact]
         public void EcoLamp_IsLampOn_WhenLampIsOn_ReturnTrue()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp();
+            Lamp newLamp = new Lamp(lampName);
 
             //Act
             newLamp.TurnOnOff();
 
             //Assert
-            Assert.True(newLamp.IsOn);
+            Assert.True(newLamp.IsLampOn());
 
         }
 
         [Fact]
         public void EcoLamp_IsLampOn_WhenLampIsOff_ReturnFalse()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp();
+            Lamp newLamp = new Lamp(lampName);
 
             //Act
             newLamp.TurnOnOff();
             newLamp.TurnOnOff();
 
             //Assert
-            Assert.False(newLamp.IsOn);
+            Assert.False(newLamp.IsLampOn());
 
         }
 
         [Fact]
         public void LampTurnOnOff_WhenTheLampIsOffTurnOn()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp();
+            Lamp newLamp = new Lamp(lampName);
 
             //Act
             newLamp.TurnOnOff();
@@ -61,8 +68,9 @@ namespace TestProject1
         [Fact]
         public void LampTurnOnOff_WhenTheLampIsOnTurnOff()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp();
+            Lamp newLamp = new Lamp(lampName);
 
             //Act
             newLamp.TurnOnOff();
@@ -77,8 +85,9 @@ namespace TestProject1
         [Fact]
         public void Lamp_ChangeBrightness_WhenBrightnessIsNegative_ThrowArgumentOutOfRangeException()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp();
+            Lamp newLamp = new Lamp(lampName);
 
             //Act
             newLamp.TurnOnOff();
@@ -93,8 +102,9 @@ namespace TestProject1
         [Fact]
         public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan0_BrightnessGetUpdated()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp(8);
+            Lamp newLamp = new Lamp(lampName);
 
             //Act
             newLamp.TurnOnOff();
@@ -109,8 +119,9 @@ namespace TestProject1
         [Fact]
         public void Lamp_ChangeBrightness_WhenBrightnessIs0_BrightnessTurn0()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp(8);
+            Lamp newLamp = new Lamp(lampName);
 
             //Act
             newLamp.TurnOnOff();
@@ -124,8 +135,9 @@ namespace TestProject1
         [Fact]
         public void Lamp_ChangeBrightness_WhenTheLampIsOff_ThrowInvalidOperationException()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp();
+            Lamp newLamp = new Lamp(lampName);
 
 
 
@@ -142,8 +154,9 @@ namespace TestProject1
         [Fact]
         public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()
         {
+            string lampName = "";
             //Arrange
-            Lamp newLamp = new Lamp();
+            Lamp newLamp = new Lamp(lampName);
 
             //Act
             newLamp.TurnOnOff();

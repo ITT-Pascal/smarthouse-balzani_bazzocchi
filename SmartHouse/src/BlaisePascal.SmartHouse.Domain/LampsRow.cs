@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageProcessor.Processors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace BlaisePascal.SmartHouse.Domain
         public const int MaxBrightness = 100;
         public string Name { get; private set; }
         public List<LampDesign> LampList { get; private set; }
+        public Lamp Lamp { get; set; }
+        public EcoLamp EcoLamp { get; set; }
 
 
         public LampsRow(int numLamp,string name)
@@ -21,6 +24,13 @@ namespace BlaisePascal.SmartHouse.Domain
             {
                 LampList.Add(new Lamp(DateTime.UtcNow, new Random(), Guid.NewGuid()));
             }
+        }
+
+        public LampsRow()
+        {
+            LampList = new List<LampDesign>();
+            Lamp = new Lamp(DateTime.UtcNow, new Random(), Guid.NewGuid());
+            EcoLamp = new EcoLamp(DateTime.UtcNow, new Random(), Guid.NewGuid());
         }
 
         public void AddLamp(LampDesign lamp)
