@@ -9,7 +9,7 @@ namespace BlaisePascal.SmartHouse.Domain
     public abstract class LampDesign
     {
         public const int MaxBrightness = 100;
-        public string LampName {  get; protected set; }
+        public string LampName {  get; protected set; } = string.Empty;
         public Guid Id { get; protected set; }
         public bool IsOn { get; protected set; }
         public int Brightness { get; protected set; }
