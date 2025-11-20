@@ -13,7 +13,6 @@ namespace BlaisePascal.SmartHouse.Domain
 
     {
         public const int MaxBrightness = 100;
-        public bool IsOn { get; private set; }
         public int Brightness { get; private set; }
         public Lamp Lamp { get; private set; }
         public EcoLamp EcoLamp { get; private set; }
@@ -21,60 +20,59 @@ namespace BlaisePascal.SmartHouse.Domain
         public TwoDeviceLamp(int brightness, Lamp lamp, EcoLamp ecoLamp)
         {
             Brightness = brightness;
-            Lamp =  lamp; 
+            Lamp = lamp;
             EcoLamp = ecoLamp;
-            IsOn = false;
-        }
 
-        public TwoDeviceLamp() 
-        {
-            Brightness = 0;
-            Lamp = new Lamp();
-            EcoLamp = new EcoLamp();
-            IsOn = false;
         }
-
 
         public void TurnOnOffLamp()
         {
             Lamp.TurnOnOff();
+            Lamp.LastModifiedAtUtc = DateTime.UtcNow;
         }
 
         public void TurnOnOffEcoLamp()
         {
             EcoLamp.TurnOnOff();
+            EcoLamp.LastModifiedAtUtc = DateTime.UtcNow;
         }
 
         public void TurnOnOffBoth()
         {
             EcoLamp.TurnOnOff();
             Lamp.TurnOnOff();
+            Lamp.LastModifiedAtUtc = DateTime.UtcNow;
+            EcoLamp.LastModifiedAtUtc = DateTime.UtcNow;
         }
 
-        public bool IsLampOn()
+        public DeviceStatus LampStatus()
         {
-            return Lamp.IsLampOn();
+            return Lamp.LampStatus();
         }
 
-        public bool IsEcoLampOn()
+        public DeviceStatus EcoLampStatus()
         {
-            return EcoLamp.IsLampOn();
+            return EcoLamp.LampStatus();
         }
 
         public void ChangeLampBrightness(int newLampBrightness)
         {
-            Lamp.ChangeBrightness(newLampBrightness);
+            Lamp.SetIntensity(newLampBrightness);
+            Lamp.LastModifiedAtUtc = DateTime.UtcNow;
         }
 
         public void ChangeEcoLampBrightness(int newEcoLampBrightness)
         {
-            EcoLamp.ChangeBrightness(newEcoLampBrightness);
+            EcoLamp.SetIntensity(newEcoLampBrightness);
+            EcoLamp.LastModifiedAtUtc = DateTime.UtcNow;
         }
 
         public void ChangeEcoLampAndLampBrightness(int newBrightness)
         {
-            Lamp.ChangeBrightness(newBrightness);
-            EcoLamp.ChangeBrightness(newBrightness);
+            Lamp.SetIntensity(newBrightness);
+            EcoLamp.SetIntensity(newBrightness);
+            Lamp.LastModifiedAtUtc = DateTime.UtcNow;
+            EcoLamp.LastModifiedAtUtc = DateTime.UtcNow;
         }
     }
 }

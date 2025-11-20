@@ -97,7 +97,7 @@ namespace TestProject1
 
             //Act
             newEcoLamp.TurnOnOff();
-            newEcoLamp.ChangeBrightness(10);
+            newEcoLamp.SetIntensity(10);
 
             //Assert
             Assert.Equal(10, newEcoLamp.Brightness);
@@ -111,7 +111,7 @@ namespace TestProject1
 
             //Act
             newEcoLamp.TurnOnOff();
-            newEcoLamp.ChangeBrightness(0);
+            newEcoLamp.SetIntensity(0);
 
             //Assert
             Assert.Equal(0, newEcoLamp.Brightness);
@@ -165,11 +165,11 @@ namespace TestProject1
 
 
             //Act
-            newEcoLamp.ChangeBrightness(30);
+            newEcoLamp.SetIntensity(30);
             newEcoLamp.AutoTurnOff();
 
             //Assert
-            Assert.Equal(15, newEcoLamp.Brightness);
+            Assert.Equal(15, newEcoLamp.Intensity);
             
         }
 
@@ -184,7 +184,7 @@ namespace TestProject1
 
 
             //Act
-            newEcoLamp.ChangeBrightness(30);
+            newEcoLamp.SetIntensity(30);
             newEcoLamp.AutoTurnOff();
 
             //Assert

@@ -8,71 +8,76 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class EcoLamp: LampDesign
     {
-        public DateTime TimeLampOn { get; private set; }
+        public const int MaxBrightness = 100;
 
-        public EcoLamp() { }
-
-        public EcoLamp(DateTime timeLampOn, Guid guid, string lampName)
-        {
-            TimeLampOn = timeLampOn.ToUniversalTime();
-            IsOn = true;
-            Brightness = 0;
-            Id = guid;
-            LampName = lampName;
+        public EcoLamp(DateTime createdAtUtc, Random random, Guid id):base (createdAtUtc, random, id) 
+        { 
+            
         }
-
-        public EcoLamp(string lampName)               //overload del costruttore
-        {
-
-            Brightness = 0;
-            IsOn = false;
-            Id = new Guid();
-            LampName = lampName;
-        }
-
+       
         public override void TurnOnOff()
         {
-            if (IsOn == false)
+            if (Status == DeviceStatus.Off)
             {
-                IsOn = true;
-                TimeLampOn = DateTime.UtcNow;
-                Brightness = MaxBrightness;
+                Status = DeviceStatus.On; 
+                Intensity = MaxBrightness;
+                LastModifiedAtUtc = DateTime.Now;
 
             }
             else
             {
-               IsOn = false;
-               Brightness = 0;
+                Status = DeviceStatus.Off;
+                Intensity = 0;
+                LastModifiedAtUtc = DateTime.Now;
             }
         }
-        
-        public override bool IsLampOn()
+
+        public override void SetIntensity(int brightness)
         {
-            return IsOn;
+            if (Status == DeviceStatus.Off)
+            {
+                throw new InvalidOperationException("Cannot change brightness if the ecolamp is off");
+            }
+
+            if (brightness > MaxBrightness || brightness < 0)
+            {
+                throw new ArgumentOutOfRangeException("Brightness must be in the range");
+            }
+            Intensity = brightness;
+            LastModifiedAtUtc = DateTime.Now;
         }
+
+        public override DeviceStatus LampStatus()
+        {
+            return Status;
+        }
+        
+            
+        
+        
+    
 
         public void AutoTurnOff()
         {
-            if (!IsOn)
+            if (Status == DeviceStatus.Off)
             {
                 throw new InvalidOperationException("Cannot call AutoTurnOff method if the ecolamp is off");
             }
 
-            if (IsOn == true)
+            if (Status == DeviceStatus.On)
             {
                 DateTime _now = DateTime.UtcNow;
-                
-                
 
-                if (_now - TimeLampOn > TimeSpan.FromMinutes(60))
+                if (_now - CreatedAtUtc > TimeSpan.FromMinutes(60))
                 {
-                    Brightness = Brightness / 2;
+                    Intensity = Intensity / 2;
                 }
 
-                if (_now - TimeLampOn > TimeSpan.FromMinutes(120))
+                if (_now - CreatedAtUtc > TimeSpan.FromMinutes(120))
                 {
                     TurnOnOff();
                 }
+                LastModifiedAtUtc = DateTime.Now;
             }
 
 

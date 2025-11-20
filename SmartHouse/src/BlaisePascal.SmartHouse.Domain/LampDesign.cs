@@ -8,29 +8,32 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public abstract class LampDesign
     {
-        public const int MaxBrightness = 100;
-        public string LampName {  get; protected set; } = string.Empty;
-        public Guid Id { get; protected set; }
+        public Random random {  get; set; }
         public bool IsOn { get; protected set; }
-        public int Brightness { get; protected set; }
-
-        public abstract void TurnOnOff();
-        public abstract bool IsLampOn();
-        
-        public void ChangeBrightness(int brightness)
+        public int Intensity { get; protected set; }
+        public DeviceStatus Status { get; set; }
+        public Guid Id { get; protected set; }
+        public DateTime CreatedAtUtc { get; protected set; }
+        public DateTime LastModifiedAtUtc { get; set; }
+       
+        public LampDesign(DateTime createdAtUtc, Random _random, Guid guid)
         {
-            if (!IsOn)
-
-                throw new InvalidOperationException("Cannot change brightness if the lamp is off");
-
-
-            if (brightness > MaxBrightness || brightness < 0)
-
-                throw new ArgumentOutOfRangeException("Brightness must be in the range");
-
-            Brightness = brightness;
+            random = _random;
+            CreatedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.UtcNow;
+            IsOn = false;
+            Intensity = 0;
+            Id = guid;
+            Status = DeviceStatus.Off;
         }
 
+        public abstract void TurnOnOff();
+        public abstract void SetIntensity(int brightness);
+        public abstract DeviceStatus LampStatus();
+       
+
+       
+    
 
 
 
