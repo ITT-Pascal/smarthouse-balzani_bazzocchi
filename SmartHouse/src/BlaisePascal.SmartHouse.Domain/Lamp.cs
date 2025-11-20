@@ -11,53 +11,61 @@ namespace BlaisePascal.SmartHouse.Domain
     public class Lamp: LampDesign
     {
         public const int MaxBrightness = 100 ;
-         private Random Random { get; set; }
-       
-        public Lamp(int _brightness, Random random, Guid guid)
+        public const int MinBrightness = 0;
+
+        public Lamp(DateTime createdAtUtc, Random random, Guid guid) : base(createdAtUtc, random, guid)
         {
-            Brightness = _brightness;
-            Random = random;
-            Id = guid;
+
         }
 
-        public Lamp()               //overload del costruttore
-        {
-            Random random = new Random();
-            Brightness = 0;
-            IsOn = false;
-            Id = new Guid();
-        }
-
+        
         public override void TurnOnOff()
         {
             if (IsOn == false)
             {
                 IsOn = true;
-                Brightness = MaxBrightness;
+                Intensity = MaxBrightness;
             } else
             {
                 IsOn = false;
-                Brightness = 0;
+                Intensity = 0;
             }
+            LastModifiedAtUtc = DateTime.UtcNow;
         }
 
-        public override void ChangeBrightness(int brightness)
+        public override void SetIntensity(int intensity)
         {
-            if (!IsOn)
+            if (Status == DeviceStatus.Off)
             {
                 throw new InvalidOperationException("Cannot change brightness if the lamp is off");
             }
 
-            if (brightness > MaxBrightness || brightness < 0)
+            if (intensity > MaxBrightness || intensity  < MinBrightness)
             {
                 throw new ArgumentOutOfRangeException("Brightness must be in the range");
             }
-            Brightness = brightness;
+            Intensity = intensity;
+            LastModifiedAtUtc = DateTime.UtcNow;
         }
-
-        public bool IsLampOn() 
+        public void Dimmer(int amount)
         {
-            return IsOn;
+            if (Status == DeviceStatus.Off)
+            {
+                throw new InvalidOperationException("Cannot dimmer if the lamp is off");
+            }
+            if (Intensity - amount < MinBrightness)
+            {
+                Intensity = MinBrightness;
+            }
+            else
+            {
+                Intensity -= amount;
+            }
+            LastModifiedAtUtc = DateTime.UtcNow;
+        }
+        public override DeviceStatus LampStatus() 
+        {
+            return Status;
         }
 
 

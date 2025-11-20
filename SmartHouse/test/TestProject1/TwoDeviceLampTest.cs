@@ -113,7 +113,7 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.ChangeEcoLampBrightness(17);
 
-        Assert.Equal(17, newTwoDeviceLamp.EcoLamp.Brightness);
+        Assert.Equal(17, newTwoDeviceLamp.EcoLamp.Intensity);
     }
 
     [Fact]
@@ -126,7 +126,7 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.TurnOnOffLamp();
         //Assert
-        Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.EcoLamp.ChangeBrightness(102));
+        Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.EcoLamp.SetIntensity(102));
     }
 
     [Fact]
@@ -139,7 +139,7 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.TurnOnOffLamp();
 
         //Assert
-        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.EcoLamp.ChangeBrightness(4));
+        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.EcoLamp.SetIntensity(4));
     }
 
     [Fact]
@@ -152,7 +152,7 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.TurnOnOffLamp();
         //Assert
-        Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.Lamp.ChangeBrightness(102));
+        Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.Lamp.SetIntensity(102));
     }
 
     [Fact]
@@ -163,7 +163,7 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.TurnOnOffLamp();
         newTwoDeviceLamp.ChangeLampBrightness(3);
 
-        Assert.Equal(3, newTwoDeviceLamp.Lamp.Brightness);
+        Assert.Equal(3, newTwoDeviceLamp.Lamp.Intensity);
     }
 
     [Fact]
@@ -176,7 +176,7 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.TurnOnOffEcoLamp();
 
         //Assert
-        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.Lamp.ChangeBrightness(4));
+        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.Lamp.SetIntensity(4));
     }
 
     [Fact]
@@ -188,8 +188,8 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.ChangeEcoLampAndLampBrightness(20);
 
-        Assert.Equal(20, newTwoDeviceLamp.Lamp.Brightness);
-        Assert.Equal(20, newTwoDeviceLamp.EcoLamp.Brightness);
+        Assert.Equal(20, newTwoDeviceLamp.Lamp.Intensity);
+        Assert.Equal(20, newTwoDeviceLamp.EcoLamp.Intensity);
     }
 
     

@@ -85,7 +85,7 @@ namespace TestProject1
             
 
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.ChangeBrightness(-1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.SetIntensity(-1));
 
 
         }
@@ -98,10 +98,10 @@ namespace TestProject1
 
             //Act
             newLamp.TurnOnOff();
-            newLamp.ChangeBrightness(10);
+            newLamp.SetIntensity(10);
 
             //Assert
-            Assert.Equal(10, newLamp.Brightness);
+            Assert.Equal(10, newLamp.Intensity);
 
 
         }
@@ -114,10 +114,10 @@ namespace TestProject1
 
             //Act
             newLamp.TurnOnOff();
-            newLamp.ChangeBrightness(0);
+            newLamp.SetIntensity(0);
 
             //Assert
-            Assert.Equal(0, newLamp.Brightness);
+            Assert.Equal(0, newLamp.Intensity);
 
 
         }
@@ -130,7 +130,7 @@ namespace TestProject1
 
 
             //Assert
-            Assert.Throws<InvalidOperationException>(() => newLamp.ChangeBrightness(3));
+            Assert.Throws<InvalidOperationException>(() => newLamp.SetIntensity(3));
 
 
         }
@@ -150,7 +150,7 @@ namespace TestProject1
 
 
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.ChangeBrightness(102));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.SetIntensity(102));
 
 
         }

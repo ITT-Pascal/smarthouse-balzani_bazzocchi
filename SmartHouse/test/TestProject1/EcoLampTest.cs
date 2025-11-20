@@ -90,7 +90,7 @@ namespace TestProject1
 
 
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.ChangeBrightness(-1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(-1));
 
 
         }
@@ -103,10 +103,10 @@ namespace TestProject1
 
             //Act
             newEcoLamp.TurnOnOff();
-            newEcoLamp.ChangeBrightness(10);
+            newEcoLamp.SetIntensity(10);
 
             //Assert
-            Assert.Equal(10, newEcoLamp.Brightness);
+            Assert.Equal(10, newEcoLamp.Intensity);
 
 
         }
@@ -119,10 +119,10 @@ namespace TestProject1
 
             //Act
             newEcoLamp.TurnOnOff();
-            newEcoLamp.ChangeBrightness(0);
+            newEcoLamp.SetIntensity(0);
 
             //Assert
-            Assert.Equal(0, newEcoLamp.Brightness);
+            Assert.Equal(0, newEcoLamp.Intensity);
 
 
         }
@@ -136,7 +136,7 @@ namespace TestProject1
             
 
             //Assert
-            Assert.Throws<InvalidOperationException>(() => newEcoLamp.ChangeBrightness(3)); 
+            Assert.Throws<InvalidOperationException>(() => newEcoLamp.SetIntensity(3)); 
 
 
         }
@@ -153,7 +153,7 @@ namespace TestProject1
 
 
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.ChangeBrightness(102));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(102));
 
 
         }
@@ -179,11 +179,11 @@ namespace TestProject1
 
 
             //Act
-            newEcoLamp.ChangeBrightness(30);
+            newEcoLamp.SetIntensity(30);
             newEcoLamp.AutoTurnOff();
 
             //Assert
-            Assert.Equal(15, newEcoLamp.Brightness);
+            Assert.Equal(15, newEcoLamp.Intensity);
             
         }
 
@@ -197,11 +197,11 @@ namespace TestProject1
 
 
             //Act
-            newEcoLamp.ChangeBrightness(30);
+            newEcoLamp.SetIntensity(30);
             newEcoLamp.AutoTurnOff();
 
             //Assert
-            Assert.Equal(0, newEcoLamp.Brightness);
+            Assert.Equal(0, newEcoLamp.Intensity);
             Assert.False(newEcoLamp.IsOn);
 
         }
