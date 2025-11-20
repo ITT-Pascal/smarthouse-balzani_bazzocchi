@@ -16,9 +16,12 @@ public class LampsRowTest
     [Fact]
     public void AddLamp_WhenAddLamp()
     {
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
         LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        Lamp newLamp = new Lamp();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
         newLampsRow.AddLamp(newLamp);
 
@@ -28,10 +31,12 @@ public class LampsRowTest
     [Fact]
     public void AddEcoLamp_WhenAddEcoLamp()
     {
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
         LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        Lamp newLamp = new Lamp();
-        EcoLamp newEcoLamp = new EcoLamp();
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
         newLampsRow.AddEcoLamp(newEcoLamp);
 
@@ -42,44 +47,51 @@ public class LampsRowTest
     public void TurnOnOffAllLamps_WhenAllLampsAreOn()
     {
 
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
         LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        Lamp newLamp = new Lamp();
-        EcoLamp newEcoLamp = new EcoLamp();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+
         newLampsRow.TurnOnOffAllLamps(); // on
         newLampsRow.TurnOnOffAllLamps(); // off
 
         for (int i = 0; i < LampList.Count; i++)
         {
             if (LampList[i] is Lamp)
-            Assert.False(newLampsRow.LampList[i].IsLampOn());
+            Assert.Equal(DeviceStatus.Off, LampList[i].Status);
         }
     }
 
     [Fact]
     public void TurnOnOffAllLamps_WhenAllLampsAreOff()
     {
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
         LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        Lamp newLamp = new Lamp();
-        EcoLamp newEcoLamp = new EcoLamp();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
         newLampsRow.TurnOnOffAllLamps();
 
         for (int i = 0; i < LampList.Count; i++)
         {
             if (LampList[i] is Lamp)
-            Assert.True(newLampsRow.LampList[i].IsLampOn());
+                Assert.Equal(DeviceStatus.On, LampList[i].Status);
         }
     }
 
     [Fact]
     public void TurnOnOffAllEcoLamps_WhenAllEcoLampsAreOn()
     {
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
         LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        Lamp newLamp = new Lamp();
-        EcoLamp newEcoLamp = new EcoLamp();
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
         newLampsRow.TurnOnOffAllEcoLamps(); // on
         newLampsRow.TurnOnOffAllEcoLamps(); // off
@@ -87,73 +99,81 @@ public class LampsRowTest
         for (int i = 0; i < LampList.Count; i++)
         {
             if (LampList[i] is EcoLamp)
-                Assert.False(newLampsRow.LampList[i].IsLampOn());
+                Assert.Equal(DeviceStatus.Off, LampList[i].Status);
         }
     }
 
     [Fact]
     public void TurnOnOffAllEcoLamps_WhenAllEcoLampsAreOff()
     {
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
         LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        Lamp newLamp = new Lamp();
-        EcoLamp newEcoLamp = new EcoLamp();
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
         newLampsRow.TurnOnOffAllEcoLamps();
 
         for (int i = 0; i < LampList.Count; i++)
         {
             if (LampList[i] is EcoLamp)
-                Assert.True(newLampsRow.LampList[i].IsLampOn());
+                Assert.Equal(DeviceStatus.On, LampList[i].Status);
         }
     }
 
     [Fact]
     public void TurnOnOffAllDevices_WhenAllDevicesAreOn()
     {
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
         LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        Lamp newLamp = new Lamp();
-        EcoLamp newEcoLamp = new EcoLamp();
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
         newLampsRow.TurnOnOffAllLamps();
         newLampsRow.TurnOnOffAllEcoLamps();
 
         for (int i = 0; i < LampList.Count; i++)
         {
-            Assert.False(newLampsRow.LampList[i].IsLampOn());
+            Assert.Equal(DeviceStatus.Off, LampList[i].Status);
         }
     }
 
     [Fact]
     public void TurnOnOffAllDevices_WhenAllDevicesAreOff()
     {
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
         LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        Lamp newLamp = new Lamp();
-        EcoLamp newEcoLamp = new EcoLamp();
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
         newLampsRow.TurnOnOffAllLamps();
 
         for (int i = 0; i < LampList.Count; i++)
         {
-            Assert.True(newLampsRow.LampList[i].IsLampOn());
+            Assert.Equal(DeviceStatus.On, LampList[i].Status);
         }
     }
 
     [Fact]
     public void ChangeBrightnessAllDevices_WhenChangeAllDevicesBrightnessTo17_ThenBrightnessIs17()
     {
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
         LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        Lamp newLamp = new Lamp();
-        EcoLamp newEcoLamp = new EcoLamp();
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
         newLampsRow.ChangeBrightnessAllDevices(17);
 
         for (int i = 0; i < LampList.Count; i++)
         {
-            Assert.Equal(17, newLampsRow.LampList[i].Brightness);
+            Assert.Equal(17, newLampsRow.LampList[i].Intensity);
         }
     }
 }

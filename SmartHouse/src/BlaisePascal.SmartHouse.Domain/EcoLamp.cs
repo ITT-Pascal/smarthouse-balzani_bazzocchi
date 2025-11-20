@@ -21,7 +21,7 @@ namespace BlaisePascal.SmartHouse.Domain
             {
                 Status = DeviceStatus.On; 
                 Intensity = MaxBrightness;
-                LastModifiedAtUtc = DateTime.Now;
+                LastModifiedAtUtc = DateTime.UtcNow;
 
             }
             else
@@ -44,7 +44,7 @@ namespace BlaisePascal.SmartHouse.Domain
                 throw new ArgumentOutOfRangeException("Brightness must be in the range");
             }
             Intensity = brightness;
-            LastModifiedAtUtc = DateTime.Now;
+            LastModifiedAtUtc = DateTime.UtcNow;
         }
 
         public override DeviceStatus LampStatus()

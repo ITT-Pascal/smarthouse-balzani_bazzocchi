@@ -13,58 +13,73 @@ namespace TestProject1
         [Fact]
         public void EcoLamp_WhenCreatedTheEcoLampIsOff()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Assert
-            Assert.False(newEcoLamp.IsLampOn());
+            Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
         }
 
         [Fact]
         public void EcoLamp_IsLampOn_WhenLampIsOn_ReturnTrue()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
             newEcoLamp.TurnOnOff();
 
             //Assert
-            Assert.True(newEcoLamp.IsOn);
+            Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
         }
 
         [Fact]
         public void EcoLamp_IsLampOn_WhenLampIsOff_ReturnFalse()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newEcoLamp.TurnOnOff();
-            newEcoLamp.TurnOnOff();
+            newLamp.TurnOnOff();
+            newLamp.TurnOnOff();
 
             //Assert
-            Assert.False(newEcoLamp.IsOn);
+            Assert.Equal(DeviceStatus.Off, newLamp.Status);
         }
 
         [Fact]
         public void EcoLampTurnOnOff_WhenTheEcoLampIsOffTurnOn()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newEcoLamp.TurnOnOff();
+            newLamp.TurnOnOff();
 
             //Assert
-            Assert.True(newEcoLamp.IsLampOn());
+            Assert.Equal(DeviceStatus.On, newLamp.Status);
         }
 
         [Fact]
         public void EcoLampTurnOnOff_WhenTheEcoLampIsOnTurnOff()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
             newEcoLamp.TurnOnOff();
@@ -72,82 +87,100 @@ namespace TestProject1
 
 
             //Assert
-            Assert.False(newEcoLamp.IsLampOn());
+            Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
         }
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsNegative_ThrowArgumentOutOfRangeException()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
             newEcoLamp.TurnOnOff();
 
 
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.ChangeBrightness(-1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(-1));
         }
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsHigherThan0_BrightnessGetUpdated()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
             newEcoLamp.TurnOnOff();
             newEcoLamp.SetIntensity(10);
 
             //Assert
-            Assert.Equal(10, newEcoLamp.Brightness);
+            Assert.Equal(10, newEcoLamp.Intensity);
         }
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIs0_BrightnessTurn0()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
             newEcoLamp.TurnOnOff();
             newEcoLamp.SetIntensity(0);
 
             //Assert
-            Assert.Equal(0, newEcoLamp.Brightness);
+            Assert.Equal(0, newEcoLamp.Intensity);
         }
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenTheEcoLampIsOff_ThrowInvalidOperationException()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Assert
-            Assert.Throws<InvalidOperationException>(() => newEcoLamp.ChangeBrightness(3)); 
+            Assert.Throws<InvalidOperationException>(() => newEcoLamp.SetIntensity(3)); 
         }
 
 
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
             newEcoLamp.TurnOnOff();
 
 
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.ChangeBrightness(102));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(102));
         }
 
         [Fact]
 
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOff_ThrowException()
         {
-            string lampName = "";
-            EcoLamp newEcoLamp = new EcoLamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
             Assert.Throws<InvalidOperationException>(() => newEcoLamp.AutoTurnOff());
@@ -156,12 +189,12 @@ namespace TestProject1
         [Fact]
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan60Minutes_ReduceBrightness()
         {
-            string lampName = "";
-            
-            //Arrange            
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();           
             DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-61);
             Guid guid = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, guid, lampName);
+            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);
 
 
             //Act
@@ -177,10 +210,12 @@ namespace TestProject1
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan120Minutes_TurnLampOff()
         {
             //Arrange
-            string lampName = "";
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
             DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-121);
             Guid guid = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, guid, lampName);
+            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);
 
 
             //Act
@@ -188,8 +223,8 @@ namespace TestProject1
             newEcoLamp.AutoTurnOff();
 
             //Assert
-            Assert.Equal(0, newEcoLamp.Brightness);
-            Assert.False(newEcoLamp.IsLampOn());
+            Assert.Equal(0, newEcoLamp.Intensity);
+            Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
 
         }
     }

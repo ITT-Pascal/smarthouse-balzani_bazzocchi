@@ -10,67 +10,77 @@ namespace TestProject1
         [Fact]
         public void Lamp_WhenCreatedTheLampIsOff()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Assert
-            Assert.False(newLamp.IsLampOn());
+            Assert.Equal(DeviceStatus.Off, newLamp.Status);
 
         }
 
         [Fact]
         public void EcoLamp_IsLampOn_WhenLampIsOn_ReturnTrue()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
             newLamp.TurnOnOff();
 
             //Assert
-            Assert.True(newLamp.IsLampOn());
+            Assert.Equal(DeviceStatus.On, newLamp.Status);
 
         }
 
         [Fact]
         public void EcoLamp_IsLampOn_WhenLampIsOff_ReturnFalse()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
             newLamp.TurnOnOff();
             newLamp.TurnOnOff();
 
             //Assert
-            Assert.False(newLamp.IsLampOn());
+            Assert.Equal(DeviceStatus.Off, newLamp.Status);
 
         }
 
         [Fact]
         public void LampTurnOnOff_WhenTheLampIsOffTurnOn()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
             newLamp.TurnOnOff();
 
             //Assert
-            Assert.True(newLamp.IsLampOn());
+            Assert.Equal(DeviceStatus.On, newLamp.Status);
 
         }
              
         [Fact]
         public void LampTurnOnOff_WhenTheLampIsOnTurnOff()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
             newLamp.TurnOnOff();
@@ -78,16 +88,18 @@ namespace TestProject1
 
 
             //Assert
-            Assert.False(newLamp.IsLampOn());
+            Assert.Equal(DeviceStatus.Off, newLamp.Status);
 
         }
 
         [Fact]
         public void Lamp_ChangeBrightness_WhenBrightnessIsNegative_ThrowArgumentOutOfRangeException()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
             newLamp.TurnOnOff();
@@ -102,9 +114,11 @@ namespace TestProject1
         [Fact]
         public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan0_BrightnessGetUpdated()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
             newLamp.TurnOnOff();
@@ -119,9 +133,11 @@ namespace TestProject1
         [Fact]
         public void Lamp_ChangeBrightness_WhenBrightnessIs0_BrightnessTurn0()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
             newLamp.TurnOnOff();
@@ -135,9 +151,11 @@ namespace TestProject1
         [Fact]
         public void Lamp_ChangeBrightness_WhenTheLampIsOff_ThrowInvalidOperationException()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
 
 
@@ -154,9 +172,11 @@ namespace TestProject1
         [Fact]
         public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()
         {
-            string lampName = "";
-            //Arrange
-            Lamp newLamp = new Lamp(lampName);
+            DateTime createdAtUtc = DateTime.UtcNow;
+            Random random = new Random();
+            Guid id = Guid.NewGuid();
+            DeviceStatus status = new DeviceStatus();
+            Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
             newLamp.TurnOnOff();
