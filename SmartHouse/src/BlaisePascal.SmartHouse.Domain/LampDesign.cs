@@ -15,7 +15,10 @@ namespace BlaisePascal.SmartHouse.Domain
         public Guid Id { get; protected set; }
         public DateTime CreatedAtUtc { get; protected set; }
         public DateTime LastModifiedAtUtc { get; set; }
-       
+
+        public abstract int MaxIntensity {  get; }
+        public abstract int MinIntensity { get; }
+
         public LampDesign(DateTime createdAtUtc, Random _random, Guid guid)
         {
             random = _random;
@@ -27,8 +30,37 @@ namespace BlaisePascal.SmartHouse.Domain
             Status = DeviceStatus.Off;
         }
 
-        public abstract void TurnOnOff();
-        public abstract void SetIntensity(int brightness);
+        public virtual void TurnOnOff()
+        {
+            if (Status == DeviceStatus.Off)
+            {
+                Status = DeviceStatus.On;
+                Intensity = MaxIntensity;
+                LastModifiedAtUtc = DateTime.UtcNow;
+
+            }
+            else
+            {
+                Status = DeviceStatus.Off;
+                Intensity = 0;
+                LastModifiedAtUtc = DateTime.Now;
+            }
+        }
+        public virtual void SetIntensity(int intensity)
+        {
+            if (Status == DeviceStatus.Off)
+            {
+                throw new InvalidOperationException("Cannot change brightness if the ecolamp is off");
+            }
+
+            if (intensity > MaxIntensity || intensity < 0)
+            {
+                throw new ArgumentOutOfRangeException("Brightness must be in the range");
+            }
+            Intensity = intensity;
+            LastModifiedAtUtc = DateTime.UtcNow;
+        }
+        
         public abstract DeviceStatus LampStatus();
        
 

@@ -13,7 +13,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Assert
@@ -27,7 +26,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
@@ -44,7 +42,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
@@ -62,7 +59,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
@@ -79,7 +75,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
@@ -98,7 +93,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
@@ -117,7 +111,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
@@ -136,7 +129,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
@@ -154,7 +146,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
 
@@ -175,7 +166,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act

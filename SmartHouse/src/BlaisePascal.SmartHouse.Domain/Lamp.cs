@@ -14,6 +14,9 @@ namespace BlaisePascal.SmartHouse.Domain
         public const int MaxBrightness = 100 ;
         public const int MinBrightness = 0;
 
+        public override int MaxIntensity => MaxBrightness;
+        public override int MinIntensity => MinBrightness;
+
         public Lamp(DateTime createdAtUtc, Random random, Guid guid) : base(createdAtUtc, random, guid)
         {
 
@@ -22,31 +25,13 @@ namespace BlaisePascal.SmartHouse.Domain
         
         public override void TurnOnOff()
         {
-            if (IsOn == false)
-            {
-                IsOn = true;
-                Intensity = MaxBrightness;
-            } else
-            {
-                IsOn = false;
-                Intensity = 0;
-            }
-            LastModifiedAtUtc = DateTime.UtcNow;
+            base.TurnOnOff();
         }
+       
 
         public override void SetIntensity(int intensity)
         {
-            if (Status == DeviceStatus.Off)
-            {
-                throw new InvalidOperationException("Cannot change brightness if the lamp is off");
-            }
-
-            if (intensity > MaxBrightness || intensity  < MinBrightness)
-            {
-                throw new ArgumentOutOfRangeException("Brightness must be in the range");
-            }
-            Intensity = intensity;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            base.SetIntensity(intensity);
         }
         public void Dimmer(int amount)
         {
