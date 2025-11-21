@@ -16,7 +16,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Assert
@@ -29,7 +28,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
@@ -45,7 +43,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
@@ -62,7 +59,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
@@ -78,7 +74,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
@@ -96,7 +91,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
@@ -113,7 +107,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
@@ -130,7 +123,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
@@ -147,7 +139,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Assert
@@ -161,7 +152,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
@@ -179,7 +169,6 @@ namespace TestProject1
             DateTime createdAtUtc = DateTime.UtcNow;
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
@@ -190,8 +179,7 @@ namespace TestProject1
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan60Minutes_ReduceBrightness()
         {
             Random random = new Random();
-            Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();           
+            Guid id = Guid.NewGuid();         
             DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-61);
             Guid guid = Guid.NewGuid();
             EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);
@@ -212,7 +200,6 @@ namespace TestProject1
             //Arrange
             Random random = new Random();
             Guid id = Guid.NewGuid();
-            DeviceStatus status = new DeviceStatus();
             DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-121);
             Guid guid = Guid.NewGuid();
             EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);

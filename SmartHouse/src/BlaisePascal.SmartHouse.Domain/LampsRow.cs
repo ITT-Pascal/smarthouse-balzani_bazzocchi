@@ -15,23 +15,34 @@ namespace BlaisePascal.SmartHouse.Domain
         public Lamp Lamp { get; set; }
         public EcoLamp EcoLamp { get; set; }
 
-
-        public LampsRow(int numLamp,string name)
+        public LampsRow(List<LampDesign> lamps, string name)
         {
-            LampList = new List<LampDesign>();
             Name = name;
-            for (int i = 0; i < numLamp; i++)
+            if (string.IsNullOrWhiteSpace(name))
             {
-                LampList.Add(new Lamp(DateTime.UtcNow, new Random(), Guid.NewGuid()));
+                throw new ArgumentException("Name cannot be null or empty", nameof(name));
             }
-        }
+            if (lamps == null)
+            {
+                throw new ArgumentNullException(nameof(lamps), "LampList cannot be null");
+            }
 
-        public LampsRow()
-        {
             LampList = new List<LampDesign>();
+            foreach (var lamp in lamps)
+            {
+                if (lamp == null)
+                {
+                    throw new ArgumentNullException(nameof(lamp));
+                }
+                LampList.Add(lamp);
+            }
+
+           
             Lamp = new Lamp(DateTime.UtcNow, new Random(), Guid.NewGuid());
             EcoLamp = new EcoLamp(DateTime.UtcNow, new Random(), Guid.NewGuid());
         }
+
+        
 
         public void AddLamp(LampDesign lamp)
         {
