@@ -1,4 +1,4 @@
-using BlaisePascal.SmartHouse.Domain;
+using BlaisePascal.SmartHouse.Domain.Lamp;
 
 namespace TestProject1;
 

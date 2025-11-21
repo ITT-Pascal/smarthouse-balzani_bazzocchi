@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain
+namespace BlaisePascal.SmartHouse.Domain.Lamp
 {
     public abstract class LampDesign
     {
@@ -36,7 +36,7 @@ namespace BlaisePascal.SmartHouse.Domain
             {
                 Status = DeviceStatus.On;
                 Intensity = MaxIntensity;
-                LastModifiedAtUtc = DateTime.UtcNow;
+                LastModifiedAtUtc = DateTime.UtcNow;         
 
             }
             else
