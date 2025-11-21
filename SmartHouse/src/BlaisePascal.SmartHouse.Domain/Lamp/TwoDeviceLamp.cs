@@ -17,9 +17,9 @@ namespace BlaisePascal.SmartHouse.Domain.Lamp
         public Lamp Lamp { get; private set; }
         public EcoLamp EcoLamp { get; private set; }
 
-        public TwoDeviceLamp(int brightness, Lamp lamp, EcoLamp ecoLamp)
+        public TwoDeviceLamp(Lamp lamp, EcoLamp ecoLamp)
         {
-            Brightness = brightness;
+            Brightness = MaxBrightness;
             Lamp = lamp;
             EcoLamp = ecoLamp;
 

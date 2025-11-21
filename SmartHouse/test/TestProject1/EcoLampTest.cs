@@ -186,6 +186,7 @@ namespace TestProject1
 
 
             //Act
+            newEcoLamp.TurnOnOff();
             newEcoLamp.SetIntensity(30);
             newEcoLamp.AutoTurnOff();
 
@@ -206,6 +207,7 @@ namespace TestProject1
 
 
             //Act
+            newEcoLamp.TurnOnOff();
             newEcoLamp.SetIntensity(30);
             newEcoLamp.AutoTurnOff();
 

@@ -5,110 +5,152 @@ public class TwoDeviceLampTest // prova
 {
     [Fact]
     public void TurnOnOffLamp_WhenLampIsOffTurnOn()
-    {   
+    {
         //Arrange
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.TurnOnOffLamp();
 
         //Assert
-        Assert.True(newTwoDeviceLamp.IsLampOn());
+        Assert.Equal(DeviceStatus.On, newLamp.Status);
     }
 
     [Fact]
     public void TurnOnOffLamp_WhenLampIsOnTurnOff()
     {
-        //Arrange
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.TurnOnOffLamp();
         newTwoDeviceLamp.TurnOnOffLamp();
 
         //Assert
-        Assert.False(newTwoDeviceLamp.IsLampOn());
+        Assert.Equal(DeviceStatus.Off, newLamp.Status);
     }
 
     [Fact]
     public void TurnOnOffEcoLamp_WhenEcoLampIsOffTurnOn()
     {
-        //Arrange
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.TurnOnOffEcoLamp();
 
         //Assert
-        Assert.True(newTwoDeviceLamp.IsEcoLampOn());
+        Assert.Equal(DeviceStatus.On, newLamp.Status);
     }
 
     [Fact]
     public void TurnOnOffEcoLamp_WhenEcoLampIsOnTurnOff()
     {
-        //Arrange
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.TurnOnOffEcoLamp();
 
         //Assert
-        Assert.False(newTwoDeviceLamp.IsEcoLampOn());
+        Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
     }
 
     [Fact]
     public void TurnOnOffBoth_WhenEcoLampAndLampAreOffTurnItsOn()
     {
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         newTwoDeviceLamp.TurnOnOffBoth();
 
-        Assert.True(newTwoDeviceLamp.IsEcoLampOn());
-        Assert.True(newTwoDeviceLamp.IsLampOn());
+        Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
+        Assert.Equal(DeviceStatus.On, newLamp.Status);
     }
 
     [Fact]
     public void TurnOffBoth_WhenEcoLampIsOnAndLampIsOffTurnEcoLampOffAndTurnLampOn()
     {
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.TurnOnOffBoth();
 
-        Assert.False(newTwoDeviceLamp.IsEcoLampOn());
-        Assert.True(newTwoDeviceLamp.IsLampOn());
+        Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
+        Assert.Equal(DeviceStatus.On, newLamp.Status);
     }
 
     [Fact]
     public void TurnOffBoth_WhenEcoLampIsOffAndLampIsOnTurnEcoLampOnAndTurnLampOff()
     {
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         newTwoDeviceLamp.TurnOnOffLamp();
         newTwoDeviceLamp.TurnOnOffBoth();
 
-        Assert.True(newTwoDeviceLamp.IsEcoLampOn());
-        Assert.False(newTwoDeviceLamp.IsLampOn());
+        Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
+        Assert.Equal(DeviceStatus.Off, newLamp.Status);
     }
 
     [Fact]
     public void TurnOnOffBoth_WhenEcoLampAndLampAreOnTurnItsOff()
     {
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.TurnOnOffLamp();
         newTwoDeviceLamp.TurnOnOffBoth();
 
-        Assert.False(newTwoDeviceLamp.IsEcoLampOn());
-        Assert.False(newTwoDeviceLamp.IsLampOn());
+        Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
+        Assert.Equal(DeviceStatus.Off, newLamp.Status);
     }
 
     [Fact]
     public void ChangeEcoLampBrightness_WhenChangeTheEcoLampBrightnessTo17_ThenTheEcoLampBrightnessIs17()
     {
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         newTwoDeviceLamp.TurnOnOffEcoLamp();
         newTwoDeviceLamp.ChangeEcoLampBrightness(17);
@@ -120,7 +162,12 @@ public class TwoDeviceLampTest // prova
     public void ChangeLampBrightness_WhenEcoLampBrightnessIsOver100_ThrowArgumentOutOfRangeException()
     {
         //Arrange
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.TurnOnOffEcoLamp();
@@ -133,7 +180,12 @@ public class TwoDeviceLampTest // prova
     public void ChangeLampBrightness_WhenEcoLampIsOff_ThrowInvalidOperationException()
     {
         //Arrange
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.TurnOnOffLamp();
@@ -146,7 +198,12 @@ public class TwoDeviceLampTest // prova
     public void ChangeLampBrightness_WhenLampBrightnessIsOver100_ThrowArgumentOutOfRangeException()
     {
         //Arrange
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.TurnOnOffEcoLamp();
@@ -158,7 +215,12 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void ChangeLampBrightness_WhenChangeTheLampBrightnessTo3_ThenTheLampBrightnessIs3()
     {
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         newTwoDeviceLamp.TurnOnOffLamp();
         newTwoDeviceLamp.ChangeLampBrightness(3);
@@ -170,8 +232,12 @@ public class TwoDeviceLampTest // prova
     public void ChangeLampBrightness_WhenLampIsOff_ThrowInvalidOperationException()
     {
         //Arrange
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
-
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
         //Act
         newTwoDeviceLamp.TurnOnOffEcoLamp();
 
@@ -182,7 +248,12 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void ChangeEcoLampAndLampBrightness_WhenChangeEcoLamp_AndLampBrightnessTo20_EcoLampAndLampBrightnessIs20()
     {
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp();
+        DateTime createdAtUtc = DateTime.UtcNow;
+        Random random = new Random();
+        Guid id = Guid.NewGuid();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         newTwoDeviceLamp.TurnOnOffLamp();
         newTwoDeviceLamp.TurnOnOffEcoLamp();
