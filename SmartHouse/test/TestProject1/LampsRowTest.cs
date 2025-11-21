@@ -19,9 +19,10 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        string name = "";
+        LampsRow newLampsRow = new LampsRow(LampList, name);
 
         newLampsRow.AddLamp(newLamp);
 
@@ -34,8 +35,10 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        string name = "";
+        LampsRow newLampsRow = new LampsRow(LampList, name);
         EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
         newLampsRow.AddEcoLamp(newEcoLamp);
@@ -50,9 +53,10 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        string name = "";
+        LampsRow newLampsRow = new LampsRow(LampList, name);
 
         newLampsRow.TurnOnOffAllLamps(); // on
         newLampsRow.TurnOnOffAllLamps(); // off
@@ -70,9 +74,10 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        string name = "";
+        LampsRow newLampsRow = new LampsRow(LampList, name);
 
         newLampsRow.TurnOnOffAllLamps();
 
@@ -89,9 +94,10 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        string name = "";
+        LampsRow newLampsRow = new LampsRow(LampList, name);
 
         newLampsRow.TurnOnOffAllEcoLamps(); // on
         newLampsRow.TurnOnOffAllEcoLamps(); // off
@@ -107,11 +113,10 @@ public class LampsRowTest
     public void TurnOnOffAllEcoLamps_WhenAllEcoLampsAreOff()
     {
         DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
         Guid id = Guid.NewGuid();
-        LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        string name = "";
+        LampsRow newLampsRow = new LampsRow(LampList, name);
 
         newLampsRow.TurnOnOffAllEcoLamps();
 
@@ -128,9 +133,10 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        string name = "";
+        LampsRow newLampsRow = new LampsRow(LampList, name);
 
         newLampsRow.TurnOnOffAllLamps();
         newLampsRow.TurnOnOffAllEcoLamps();
@@ -147,9 +153,10 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        string name = "";
+        LampsRow newLampsRow = new LampsRow(LampList, name);
 
         newLampsRow.TurnOnOffAllLamps();
 
@@ -165,9 +172,10 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        LampsRow newLampsRow = new LampsRow();
         List<LampDesign> LampList = new List<LampDesign>();
-        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+        Lamp newLamp = new Lamp(createdAtUtc, random, id);
+        string name = "";
+        LampsRow newLampsRow = new LampsRow(LampList, name);
 
         newLampsRow.ChangeBrightnessAllDevices(17);
 
