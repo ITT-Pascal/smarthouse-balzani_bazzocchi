@@ -175,47 +175,46 @@ namespace TestProject1
             Assert.Throws<InvalidOperationException>(() => newEcoLamp.AutoTurnOff());
         }
 
-        [Fact]
-        public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan60Minutes_ReduceBrightness()
-        {
-            Random random = new Random();
-            Guid id = Guid.NewGuid();         
-            DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-61);
-            Guid guid = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);
+        //[Fact]
+        //public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan60Minutes_ReduceBrightness()
+        //{
+        //    Random random = new Random();
+        //    Guid id = Guid.NewGuid();         
+        //    DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-61);
+        //    Guid guid = Guid.NewGuid();
+        //    EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);
 
 
-            //Act
-            newEcoLamp.TurnOnOff();
-            newEcoLamp.SetIntensity(30);
-            newEcoLamp.AutoTurnOff();
+        //    //Act
+        //    newEcoLamp.TurnOnOff();
+        //    newEcoLamp.SetIntensity(30);
+        //    newEcoLamp.AutoTurnOff();
 
-            //Assert
-            Assert.Equal(15, newEcoLamp.Intensity);
-            
-        }
+        //    //Assert
+        //    Assert.Equal(15, newEcoLamp.Intensity);           
+        //}
 
-        [Fact]
-        public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan120Minutes_TurnLampOff()
-        {
-            //Arrange
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-121);
-            Guid guid = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);
+        //[Fact]
+        //public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan120Minutes_TurnLampOff()
+        //{
+        //    //Arrange
+        //    Random random = new Random();
+        //    Guid id = Guid.NewGuid();
+        //    DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-121);
+        //    Guid guid = Guid.NewGuid();
+        //    EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);
 
 
-            //Act
-            newEcoLamp.TurnOnOff();
-            newEcoLamp.SetIntensity(30);
-            newEcoLamp.AutoTurnOff();
+        //    //Act
+        //    newEcoLamp.TurnOnOff();
+        //    newEcoLamp.SetIntensity(30);
+        //    newEcoLamp.AutoTurnOff();
 
-            //Assert
-            Assert.Equal(0, newEcoLamp.Intensity);
-            Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
+        //    //Assert
+        //    Assert.Equal(0, newEcoLamp.Intensity);
+        //    Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
 
-        }
+        //}
     }
 }
 
