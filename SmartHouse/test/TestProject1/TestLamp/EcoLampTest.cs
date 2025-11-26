@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject1.LampTest.LampTest
+namespace TestProject1.TestLamp.LampTest
 {
     public class EcoLampTest
     {

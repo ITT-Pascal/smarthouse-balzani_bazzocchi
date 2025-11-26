@@ -2,7 +2,7 @@
 using ImageProcessor.Processors;
 using System;
 
-namespace TestProject1.LampTest
+namespace TestProject1.TestLamp.LampTest
 {
     public class LampTest
     {

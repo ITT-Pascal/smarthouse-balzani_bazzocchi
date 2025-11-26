@@ -1,6 +1,6 @@
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 
-namespace TestProject1.LampTest.LampTest;
+namespace TestProject1.TestLamp.LampTest;
 
 public class LampsRowTest
 {

@@ -1,6 +1,6 @@
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 
-namespace TestProject1.LampTest;
+namespace TestProject1.TestLamp;
 public class TwoDeviceLampTest // prova
 {
     [Fact]
