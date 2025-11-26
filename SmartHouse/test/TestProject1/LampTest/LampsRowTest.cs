@@ -1,6 +1,6 @@
-using BlaisePascal.SmartHouse.Domain.Lamp;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 
-namespace TestProject1;
+namespace TestProject1.LampTest.LampTest;
 
 public class LampsRowTest
 {

@@ -10,8 +10,4 @@
     <PackageReference Include="ImageProcessor" Version="2.9.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Electrodomestic\" />
-  </ItemGroup>
-
 </Project>

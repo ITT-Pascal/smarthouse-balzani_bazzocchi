@@ -1,8 +1,8 @@
-﻿using BlaisePascal.SmartHouse.Domain.Lamp;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using ImageProcessor.Processors;
 using System;
 
-namespace TestProject1
+namespace TestProject1.LampTest
 {
     public class LampTest
     {

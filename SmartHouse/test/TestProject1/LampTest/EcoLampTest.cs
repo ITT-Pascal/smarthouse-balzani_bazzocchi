@@ -1,11 +1,11 @@
-﻿using BlaisePascal.SmartHouse.Domain.Lamp;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject1
+namespace TestProject1.LampTest.LampTest
 {
     public class EcoLampTest
     {

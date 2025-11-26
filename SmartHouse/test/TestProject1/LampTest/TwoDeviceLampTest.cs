@@ -1,6 +1,6 @@
-using BlaisePascal.SmartHouse.Domain.Lamp;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 
-namespace TestProject1;
+namespace TestProject1.LampTest;
 public class TwoDeviceLampTest // prova
 {
     [Fact]
@@ -53,7 +53,7 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.TurnOnOffEcoLamp();
 
         //Assert
-        Assert.Equal(DeviceStatus.On, newLamp.Status);
+        Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
     }
 
     [Fact]

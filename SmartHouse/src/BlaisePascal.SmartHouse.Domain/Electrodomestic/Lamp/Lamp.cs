@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Lamp
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
     public class Lamp: LampDesign
     {
