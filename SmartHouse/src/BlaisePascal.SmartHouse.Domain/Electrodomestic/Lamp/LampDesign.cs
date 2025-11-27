@@ -16,7 +16,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         public DateTime CreatedAtUtc { get; protected set; }
         public DateTime LastModifiedAtUtc { get; set; }
 
-        public abstract int MaxIntensity {  get; }
+        public abstract int MaxIntensity { get; }
         public abstract int MinIntensity { get; }
 
         public LampDesign(DateTime createdAtUtc, Random _random, Guid guid)
