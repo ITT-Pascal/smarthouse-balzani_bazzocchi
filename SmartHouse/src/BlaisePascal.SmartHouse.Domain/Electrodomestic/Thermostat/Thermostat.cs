@@ -17,7 +17,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat
         public const int MaxTemperature = 40;
         public DateTime LastModifiedAtUtc { get; set; }
         public DeviceStatus Status { get; set; }
-        
+        public Guid Id { get; set; }
+
         public Thermostat(string name, double temp)
         {
             Name = name;
@@ -25,6 +26,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat
             TargetTemperature = temp;
             Status = DeviceStatus.Off;
             LastModifiedAtUtc = DateTime.UtcNow;
+            Id = Guid.NewGuid();
         }
 
         public void TurnOn()
