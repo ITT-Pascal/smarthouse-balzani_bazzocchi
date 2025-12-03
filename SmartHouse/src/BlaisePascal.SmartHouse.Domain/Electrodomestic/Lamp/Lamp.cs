@@ -54,6 +54,6 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
             return Status;
         }
 
-
+        
     }
 }
