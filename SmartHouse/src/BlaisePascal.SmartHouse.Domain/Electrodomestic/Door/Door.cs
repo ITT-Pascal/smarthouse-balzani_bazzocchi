@@ -9,16 +9,15 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
 {
     public class Door
     {
-        public bool IsOpen { get; private set; }
         public bool IsLocked { get; private set; }
 
         public Guid Id { get; private set; }
-        public string Name { get; private set; }
+        public string Name { get; private set; } = string.Empty;
         public DeviceStatus Status { get; private set; }
 
-        private readonly string _lockCode;
+        private readonly int _lockCode;
 
-        public Door(string lockCode)
+        public Door(int lockCode)
         {
             _lockCode = lockCode;
             IsLocked = false;
@@ -40,14 +39,14 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
         }
 
         // Chiude a chiave (solo se è chiusa)
-        public void Lock(string code)
+        public void Lock(int code)
         {
-            if (IsOpen == false && code == _lockCode)
+            if (Status == DeviceStatus.Off && code == _lockCode)
                 IsLocked = true;
         }
 
         // Sblocca la porta
-        public void Unlock(string code)
+        public void Unlock(int code)
         {
             if (code == _lockCode)
                 IsLocked = false;

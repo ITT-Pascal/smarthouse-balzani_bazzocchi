@@ -7,37 +7,25 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat
 {
-    public class Thermostat
+    public class Thermostat: AbstractDevice
     {
-        public string Name { get; set; }
         public double CurrentTemperature { get; private set; }
         public double TargetTemperature { get; private set; }
 
         public const int MinTemperature = 0;
         public const int MaxTemperature = 40;
         public DateTime LastModifiedAtUtc { get; set; }
-        public DeviceStatus Status { get; set; }
-        public Guid Id { get; set; }
 
-        public Thermostat(string name, double temp)
+        public Thermostat(string name, double temp): base(name)
         {
-            Name = name;
             CurrentTemperature = temp;
             TargetTemperature = temp;
-            Status = DeviceStatus.Off;
-            LastModifiedAtUtc = DateTime.UtcNow;
-            Id = Guid.NewGuid();
-        }
-
-        public void TurnOn()
-        {
-            Status = DeviceStatus.On;
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
-        public void TurnOff()
+        public override void TurnOnOff()
         {
-            Status = DeviceStatus.Off;
+            base.TurnOnOff();
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 

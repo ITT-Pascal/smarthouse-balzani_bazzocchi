@@ -7,34 +7,20 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
 {
-    public class AirConditioner
+    public class AirConditioner: AbstractDevice
     {
-        public string Name { get; set; }
         public double CurrentTemperature { get; private set; }
         public double TargetTemperature { get; private set; }
 
         public const int MinTemperature = 10;
         public const int MaxTemperature = 30;
-        public DeviceStatus Status { get; set; }
-        public Guid Id { get; set; }
-        public TimeOnly CurrentTime { get; set; }
+        public TimeOnly? HourToTurnOn { get; set; } // nullable
+        public TimeOnly? HourToTurnOff { get; set; } // nullable
 
-        public AirConditioner(string name, double currentTemperture, double targettemperature, Guid id)
+        public AirConditioner(string name, double currentTemperture, double targetTemperature, Guid id): base(name)
         {
-            Name = name;
             CurrentTemperature = currentTemperture;
-            TargetTemperature = targettemperature;
-            Status = DeviceStatus.Off;
-            Id = id;
-            CurrentTime = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute);
-        }
-
-        public void TurnOnOff()
-        {
-            if (Status == DeviceStatus.Off)
-                Status = DeviceStatus.On;
-            else
-                Status = DeviceStatus.Off;
+            TargetTemperature = targetTemperature;
         }
 
         public void SetTargetTemperature(double temperature)
@@ -44,6 +30,32 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
             if (Status == DeviceStatus.Off)
                 throw new InvalidOperationException("You CANNOT set the temperature if the airconditioner is off!!");
             TargetTemperature = temperature;
+        }
+
+        public void SetAutoTurnOn(TimeOnly hourToTurnOn)
+        {
+            //TimeOnly CurrentTime = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute);
+            HourToTurnOn = hourToTurnOn;
+        }
+
+        public void SetAutoTurnOff(TimeOnly hourToTurnOff)
+        {
+            HourToTurnOff = hourToTurnOff;
+        }
+
+        public void AutoTurnOn()
+        {
+            TimeOnly now = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute);
+            if (HourToTurnOn == now && Status == DeviceStatus.Off && CurrentTemperature < TargetTemperature)
+                Status = DeviceStatus.On;
+        }
+
+        public void AutoTurnOff()
+        {
+            TimeOnly now = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute);
+            if (Status == DeviceStatus.On)
+                if (HourToTurnOff == now || CurrentTemperature == TargetTemperature)
+                    Status = DeviceStatus.Off;
         }
     }
 }
