@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
+using BlaisePascal.SmartHouse.Domain;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat;
 
 namespace TestProject1.TestThermostat.ThermostatTests
@@ -27,7 +27,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
             // Act
-            thermostat.TurnOn();
+            thermostat.TurnOnOff();
             // Assert
             Assert.Equal(DeviceStatus.On, thermostat.Status);
         }
@@ -38,8 +38,8 @@ namespace TestProject1.TestThermostat.ThermostatTests
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
             // Act
-            thermostat.TurnOn();
-            thermostat.TurnOff();
+            thermostat.TurnOnOff();
+            thermostat.TurnOnOff();
             // Assert
             Assert.Equal(DeviceStatus.Off, thermostat.Status);
         }
@@ -57,7 +57,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         {
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOn();
+            thermostat.TurnOnOff();
             // Act
             thermostat.SetTargetTemperature(22);
             // Assert
@@ -69,7 +69,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         {
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOn();
+            thermostat.TurnOnOff();
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => thermostat.SetTargetTemperature(50));
         }
@@ -78,7 +78,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         {
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOn();
+            thermostat.TurnOnOff();
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => thermostat.SetTargetTemperature(-1));
         }
@@ -95,7 +95,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         {
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOn();
+            thermostat.TurnOnOff();
             thermostat.SetTargetTemperature(25);
             // Act
             thermostat.UpdateTemperature();
@@ -107,7 +107,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         {
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 30);
-            thermostat.TurnOn();
+            thermostat.TurnOnOff();
             thermostat.SetTargetTemperature(25);
             // Act
             thermostat.UpdateTemperature();
@@ -127,7 +127,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         {
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOn();
+            thermostat.TurnOnOff();
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => thermostat.SetCurrentTemperature(50));
         }
@@ -136,7 +136,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         {
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOn();
+            thermostat.TurnOnOff();
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => thermostat.SetCurrentTemperature(-1));
         }
@@ -145,7 +145,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         {
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOn();
+            thermostat.TurnOnOff();
             // Act
             thermostat.SetCurrentTemperature(22);
             // Assert

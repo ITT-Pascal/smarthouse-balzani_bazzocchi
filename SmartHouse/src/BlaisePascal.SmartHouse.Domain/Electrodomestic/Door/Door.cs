@@ -1,5 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,33 +14,35 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
         public string Name { get; private set; } = string.Empty;
         public DeviceStatus Status { get; private set; }
 
-        private readonly int _lockCode;
+        private int _lockCode;
 
         public Door(int lockCode)
         {
             _lockCode = lockCode;
             IsLocked = false;
-            Status = DeviceStatus.Off;
+            Status = DeviceStatus.Close;
         }
+
+        public Door() { }
 
         // Apre la porta (solo se non è chiusa a chiave)
         public void Open()
         {
             if (IsLocked == false)
-                Status = DeviceStatus.On;
+                Status = DeviceStatus.Open;
 
         }
 
         // Chiude la porta
         public void Close()
         {
-            Status = DeviceStatus.Off;
+            Status = DeviceStatus.Close;
         }
 
         // Chiude a chiave (solo se è chiusa)
-        public void Lock(int code)
+        public void Lock()
         {
-            if (Status == DeviceStatus.Off && code == _lockCode)
+            if (Status == DeviceStatus.Close)
                 IsLocked = true;
         }
 
@@ -50,6 +51,12 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
         {
             if (code == _lockCode)
                 IsLocked = false;
+        }
+
+        public void SetNewUnlockCode(int newUnlockCode)
+        {
+            if (Status == DeviceStatus.Open)
+                _lockCode = newUnlockCode;
         }
     }
 

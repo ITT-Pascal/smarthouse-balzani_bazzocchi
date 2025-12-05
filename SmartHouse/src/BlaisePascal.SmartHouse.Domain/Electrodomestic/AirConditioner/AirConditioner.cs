@@ -1,7 +1,7 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,16 +11,22 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
     {
         public double CurrentTemperature { get; private set; }
         public double TargetTemperature { get; private set; }
-
+        public int Power { get; set; }
         public const int MinTemperature = 10;
         public const int MaxTemperature = 30;
+        public const int MinPower = 1;
+        public const int MaxPower = 3;
         public TimeOnly? HourToTurnOn { get; set; } // nullable
         public TimeOnly? HourToTurnOff { get; set; } // nullable
 
-        public AirConditioner(string name, double currentTemperture, double targetTemperature, Guid id): base(name)
+        public AirConditioner(Guid id, string name, double currentTemperture, double targetTemperature, int power): base(name)
         {
             CurrentTemperature = currentTemperture;
             TargetTemperature = targetTemperature;
+            if (power < MinPower || power > MaxPower)
+                throw new ArgumentOutOfRangeException($"La potenza può assumere solamente valori compresi fra {MinPower} e {MaxPower}");
+            Power = power;
+                
         }
 
         public void SetTargetTemperature(double temperature)

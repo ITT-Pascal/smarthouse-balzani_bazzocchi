@@ -1,5 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +8,9 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
 {
     public abstract class AbstractDevice
     {
-        protected Guid Id { get; set; }
-        protected string Name { get; set; } = string.Empty;
-        protected DeviceStatus Status { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public DeviceStatus Status { get; set; }
 
         protected AbstractDevice(string name)
         {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
+namespace BlaisePascal.SmartHouse.Domain
 {
     public enum DeviceStatus
     {
@@ -13,6 +13,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
        On = 2,
        Standby = 3,
        Error = 4,
-
+       Open = 5,
+       Close = 6,
     }
 }

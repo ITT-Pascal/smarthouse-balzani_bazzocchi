@@ -1,3 +1,4 @@
+using BlaisePascal.SmartHouse.Domain;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 
 namespace TestProject1.TestLamp;
