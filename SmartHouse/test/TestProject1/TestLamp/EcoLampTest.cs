@@ -1,4 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using System;
 using System.Collections.Generic;

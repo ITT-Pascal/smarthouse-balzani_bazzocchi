@@ -26,6 +26,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
         public void SwitchDayNightMode()
         {
             TimeOnly Now = new TimeOnly(DateTime.UtcNow.Hour, DateTime.UtcNow.Minute);
+            if(Status == DeviceStatus.Off)
+                throw new InvalidOperationException("CCTV is off. Cannot switch day/night mode.");
             if (Status == DeviceStatus.On)
             {
                 if (Now == StartOfDay)

@@ -28,8 +28,10 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
         // Apre la porta (solo se non è chiusa a chiave)
         public void Open()
         {
+             if (IsLocked)
+                throw new InvalidOperationException("Cannot open a locked door.");
             if (IsLocked == false)
-                Status = DeviceStatus.Open;
+             Status = DeviceStatus.Open;
 
         }
 
@@ -42,6 +44,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
         // Chiude a chiave (solo se è chiusa)
         public void Lock()
         {
+            if (Status == DeviceStatus.Open)
+                throw new InvalidOperationException("Cannot lock an open door.");
             if (Status == DeviceStatus.Close)
                 IsLocked = true;
         }

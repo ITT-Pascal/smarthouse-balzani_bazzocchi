@@ -15,6 +15,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         public Guid Id { get; protected set; }
         public DateTime CreatedAtUtc { get; protected set; }
         public DateTime LastModifiedAtUtc { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public abstract int MaxIntensity { get; }
         public abstract int MinIntensity { get; }

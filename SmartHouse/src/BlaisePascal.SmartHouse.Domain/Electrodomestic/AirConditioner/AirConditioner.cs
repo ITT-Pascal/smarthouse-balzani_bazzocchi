@@ -31,7 +31,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
 
         public void SetTargetTemperature(double temperature)
         {
-            if (temperature < TargetTemperature || temperature > TargetTemperature)
+            if (temperature < MinTemperature || temperature > MaxTemperature)
                 throw new ArgumentOutOfRangeException($"La temperatura deve essere compresa fra {MinTemperature} e {MaxTemperature}");
             if (Status == DeviceStatus.Off)
                 throw new InvalidOperationException("You CANNOT set the temperature if the airconditioner is off!!");
