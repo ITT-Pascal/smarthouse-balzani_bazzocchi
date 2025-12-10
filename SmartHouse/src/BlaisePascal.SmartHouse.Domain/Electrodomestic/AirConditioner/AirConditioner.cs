@@ -47,6 +47,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
         public void SetAutoTurnOff(TimeOnly hourToTurnOff)
         {
             HourToTurnOff = hourToTurnOff;
+
         }
 
         public void AutoTurnOn()
