@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,23 +10,60 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
     public abstract class AbstractDevice
     {
         public Guid Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
         public DeviceStatus Status { get; set; }
+        public DateTime CreatedAtUtc { get; protected set; }
+        public DateTime LastModifiedAtUtc { get; set; }
+        public Random Random { get; set; }
 
-        protected AbstractDevice(string name)
+        protected AbstractDevice(string name, Guid id)
         {
-            Id = Guid.NewGuid();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Name cannot be null or empty", nameof(name));
+            }
+            CreatedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.UtcNow;
+            Random = new Random();
+            Id = id;
             Name = name;
             Status = DeviceStatus.Off;
         }
-
-        public virtual void TurnOnOff()
+        public virtual void Toggle()
         {
-            if (Status == DeviceStatus.Off)
-                Status = DeviceStatus.On;
-            else
-                Status = DeviceStatus.Off;
+            if(Status == DeviceStatus.On)
+            {
+                SwitchOff();
+                LastModifiedAtUtc = DateTime.UtcNow;
+            }
+            else if(Status == DeviceStatus.Off)
+            {
+                SwitchOn();
+                LastModifiedAtUtc = DateTime.UtcNow;
+            }
+        }
+        public virtual void SwitchOn()
+        {
+            Status = DeviceStatus.On;
+            LastModifiedAtUtc = DateTime.UtcNow;
         }
 
+        public virtual void SwitchOff()
+        {
+            Status = DeviceStatus.Off;
+            LastModifiedAtUtc = DateTime.UtcNow;
+        }
+        public virtual void Open()
+        {
+            Status = DeviceStatus.Open;
+        }
+        public virtual void Close()
+        {
+            Status = DeviceStatus.Close;
+        }
+        public virtual DeviceStatus GetStatus()
+        {
+            return Status;
+        }
     }
 }

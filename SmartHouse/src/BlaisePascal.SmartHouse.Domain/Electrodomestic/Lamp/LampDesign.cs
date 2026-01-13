@@ -6,46 +6,25 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
-    public abstract class LampDesign
+    public abstract class LampDesign: AbstractDevice
     {
-        public Random random {  get; set; }
-        public bool IsOn { get; protected set; }
         public int Intensity { get; protected set; }
-        public DeviceStatus Status { get; set; }
-        public Guid Id { get; protected set; }
-        public DateTime CreatedAtUtc { get; protected set; }
-        public DateTime LastModifiedAtUtc { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public const int MaxIntensity = 100;
+        public const int MinIntensity = 0;
 
-        public abstract int MaxIntensity { get; }
-        public abstract int MinIntensity { get; }
-
-        public LampDesign(DateTime createdAtUtc, Random _random, Guid guid)
+        public LampDesign(Guid id, string name):base( name, id)
         {
-            random = _random;
-            CreatedAtUtc = DateTime.UtcNow;
-            LastModifiedAtUtc = DateTime.UtcNow;
-            IsOn = false;
-            Intensity = 0;
-            Id = guid;
-            Status = DeviceStatus.Off;
+
         }
-
-        public virtual void TurnOnOff()
+        public override void SwitchOn()
         {
-            if (Status == DeviceStatus.Off)
-            {
-                Status = DeviceStatus.On;
-                Intensity = MaxIntensity;
-                LastModifiedAtUtc = DateTime.UtcNow;         
-
-            }
-            else
-            {
-                Status = DeviceStatus.Off;
-                Intensity = 0;
-                LastModifiedAtUtc = DateTime.Now;
-            }
+            base.SwitchOn();
+            Intensity = MaxIntensity;
+        }
+        public override void SwitchOff()
+        {
+            base.SwitchOff();
+            Intensity = MinIntensity;
         }
         public virtual void SetIntensity(int intensity)
         {
@@ -61,14 +40,5 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
             Intensity = intensity;
             LastModifiedAtUtc = DateTime.UtcNow;
         }
-        
-        public abstract DeviceStatus LampStatus();
-       
-
-       
-    
-
-
-
     }
 }

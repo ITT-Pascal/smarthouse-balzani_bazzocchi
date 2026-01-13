@@ -1,170 +1,131 @@
-﻿using ImageProcessor.Processors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
+﻿namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
-    public class LampsRow
+    public class LampsRow: AbstractDevice
     {
         // Properties
-        public const int MaxBrightness = 100;
-        public string Name { get; private set; }
-        public List<LampDesign> LampList { get; private set; }
-        public Lamp Lamp { get; set; }
-        public EcoLamp EcoLamp { get; set; }
+        public List<LampDesign> lamps { get; private set; }
 
         // Constructor
-        public LampsRow(List<LampDesign> lamps, string name)
+        public LampsRow(string name, Guid id):base(name, id)
         {
-            Name = name;
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException("Name cannot be null or empty", nameof(name));
-            }
-            if (lamps == null)
-            {
-                throw new ArgumentNullException(nameof(lamps), "LampList cannot be null");
-            }
-
-            LampList = new List<LampDesign>();
-            foreach (var lamp in lamps)
-            {
-                if (lamp == null)
-                {
-                    throw new ArgumentNullException(nameof(lamp));
-                }
-                LampList.Add(lamp);
-            }
-
-           
-            Lamp = new Lamp(DateTime.UtcNow, new Random(), Guid.NewGuid());
-            EcoLamp = new EcoLamp(DateTime.UtcNow, new Random(), Guid.NewGuid());
+            lamps = new List<LampDesign>();
         }
 
         // Switch On/Off Methods
-        public void SwitchOn()
+        public override void SwitchOn()
         {
-            for (int i = 0; i < LampList.Count; i++)
+            base.SwitchOn();
+            for (int i = 0; i < lamps.Count; i++)
             {
-                LampList[i].TurnOnOff();
-                LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
-                LampList[i].Status = DeviceStatus.On;
+                lamps[i].SwitchOn();
             }
         }
 
         public void SwitchOn(Guid id)
         {
-            for (int i = 0; i < LampList.Count; i++)
+            base.SwitchOn();
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i].Id == id)
+                if (lamps[i].Id == id)
                 {
-                    LampList[i].TurnOnOff();
-                    LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
-                    LampList[i].Status = DeviceStatus.On;
+                    lamps[i].SwitchOn();
                 }
             }
         }
 
         public void SwitchOn(string name)
         {
-            for (int i = 0; i < LampList.Count; i++)
+            base.SwitchOn();
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i].Name == name)
+                if (lamps[i].Name == name)
                 {
-                    LampList[i].TurnOnOff();
-                    LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
-                    LampList[i].Status = DeviceStatus.On;
+                    lamps[i].SwitchOn();
                 }
             }
         }
-        public void SwitchOff()
+        public override void SwitchOff()
         {
-            for (int i = 0; i < LampList.Count; i++)
+            base.SwitchOff();
+            for (int i = 0; i < lamps.Count; i++)
             {
-                LampList[i].TurnOnOff();
-                LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
-                LampList[i].Status = DeviceStatus.Off;
+                lamps[i].SwitchOff();
             }
         }
 
         public void SwitchOff(Guid id)
         {
-            for (int i = 0; i < LampList.Count; i++)
+            base.SwitchOff();
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i].Id == id)
+                if (lamps[i].Id == id)
                 {
-                    LampList[i].TurnOnOff();
-                    LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
-                    LampList[i].Status = DeviceStatus.Off;
+                    lamps[i].SwitchOff();
                 }
             }
         }
 
         public void SwitchOff(string name)
         {
-            for (int i = 0; i < LampList.Count; i++)
+            base.SwitchOff();
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i].Name == name)
+                if (lamps[i].Name == name)
                 {
-                    LampList[i].TurnOnOff();
-                    LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
-                    LampList[i].Status = DeviceStatus.Off;
+                    lamps[i].SwitchOff();
                 }
             }
         }
 
         //Add/Remove Lamp Methods
-        public void AddLamp(LampDesign lamp)
+        public void AddLamp(LampDesign lampDevice)
         {
-            if (lamp == null)
+            if (lampDevice == null)
             {
-                throw new ArgumentNullException(nameof(lamp), "Lamp cannot be null");
+                throw new ArgumentNullException(nameof(lampDevice), "Lamp cannot be null");
             }
-            if (!(lamp is Lamp))
+            if (!(lampDevice is Lamp))
             {
-                throw new ArgumentException("The lamp must be of type Lamp", nameof(lamp));
+                throw new ArgumentException("The lamp must be of type Lamp", nameof(lampDevice));
             }
-            LampList.Add(lamp);
-            lamp.LastModifiedAtUtc = DateTime.UtcNow;
+            lamps.Add(lampDevice);
+            lampDevice.LastModifiedAtUtc = DateTime.UtcNow;
         }   
 
 
-        public void AddEcoLamp(LampDesign ecoLamp)
+        public void AddEcoLamp(LampDesign lampDevice)
         {
-            if (ecoLamp == null)
+            if (lampDevice == null)
             {
-                throw new ArgumentNullException(nameof(ecoLamp), "EcoLamp cannot be null");
+                throw new ArgumentNullException(nameof(lampDevice), "EcoLamp cannot be null");
             }
-            if (!(ecoLamp is EcoLamp))
+            if (!(lampDevice is EcoLamp))
             {
-                throw new ArgumentException("The lamp must be of type EcoLamp", nameof(ecoLamp));
+                throw new ArgumentException("The lamp must be of type EcoLamp", nameof(lampDevice));
             }
-            LampList.Add(ecoLamp);
-            ecoLamp.LastModifiedAtUtc = DateTime.UtcNow;
+            lamps.Add(lampDevice);
+            lampDevice.LastModifiedAtUtc = DateTime.UtcNow;
         }
 
-        public void RemoveLamp(Guid id)
+        public void RemoveLampDevice(Guid id)
         {
-            for (int i = 0; i < LampList.Count; i++)
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i].Id == id)
+                if (lamps[i].Id == id)
                 {
-                    LampList.RemoveAt(i);
+                    lamps.RemoveAt(i);
                     break;
                 }
             }
         }
 
-        public void RemoveLamp(string name)
+        public void RemoveLampDevice(string name)
         {
-            for (int i = 0; i < LampList.Count; i++)
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i].Name == name)
+                if (lamps[i].Name == name)
                 {
-                    LampList.RemoveAt(i);
+                    lamps.RemoveAt(i);
                     break;
                 }
             }
@@ -177,82 +138,77 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
                 throw new ArgumentNullException(nameof(lamp), "Lamp cannot be null");
             }
            
-            if (position < 0 || position > LampList.Count)
+            if (position < 0 || position > lamps.Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(position), "Position is out of range");
             }
-            LampList.Insert(position, lamp);
+            lamps.Insert(position, lamp);
             lamp.LastModifiedAtUtc = DateTime.UtcNow;
         }
         public void RemoveLampInPosition(int position)
         {
-            if (position < 0 || position >= LampList.Count)
+            if (position < 0 || position >= lamps.Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(position), "Position is out of range");
             }
-            LampList.RemoveAt(position);
+            lamps.RemoveAt(position);
         }
 
         // Turn On/Off Methods for All Lamps
-        public void TurnOnOffAllLamps()
+        public void ToggleAllLamps()
         {
-            for (int i = 0; i < LampList.Count; i++)
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i] is Lamp)
-                    LampList[i].TurnOnOff();
-                LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
+                if (lamps[i] is Lamp)
+                    lamps[i].Toggle();
             }
         }
 
-        public void TurnOnOffAllEcoLamps()
+        public void ToggleAllEcoLamps()
         {
-            for (int i = 0; i < LampList.Count; i++)
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i] is EcoLamp)
-                    LampList[i].TurnOnOff();
-                LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
+                if (lamps[i] is EcoLamp)
+                    lamps[i].Toggle();
             }
         }
 
-        public void TurnOnOffAllDevices()
+        public void ToggleAll()
         {
-            for (int i = 0; i < LampList.Count; i++)
+            base.Toggle();
+            for (int i = 0; i < lamps.Count; i++)
             {
-                LampList[i].TurnOnOff();
-                LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
+                lamps[i].Toggle();
             }
         }
 
         // Set Intensity Methods
         public void SetIntensityForAllLamps(int intensity)
         {
-            for (int i = 0; i < LampList.Count; i++)
+            for (int i = 0; i < lamps.Count; i++)
             {
-                LampList[i].SetIntensity(intensity);
-                LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
+                lamps[i].SetIntensity(intensity);
             }
         }
 
         public void SetIntensityForLamp(Guid id, int brightness)
         {
-            for (int i = 0; i < LampList.Count; i++)
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i].Id == id)
+                if (lamps[i].Id == id)
                 {
-                    LampList[i].SetIntensity(brightness);
-                    LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
+                    lamps[i].SetIntensity(brightness);
                 }
             }
         }
 
         public void SetIntensityForLamp(string name, int brightness)
         {
-            for (int i = 0; i < LampList.Count; i++)
+            for (int i = 0; i < lamps.Count; i++)
             {
-                if (LampList[i].Name == name)
+                if (lamps[i].Name == name)
                 {
-                    LampList[i].SetIntensity(brightness);
-                    LampList[i].LastModifiedAtUtc = DateTime.UtcNow;
+                    lamps[i].SetIntensity(brightness);
                 }
             }
         }
@@ -262,7 +218,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         {
             LampDesign? maxLamp = null;
             int maxIntensity = -1;
-            foreach (var lamp in LampList)
+            foreach (var lamp in lamps)
             {
                 if (lamp.Intensity > maxIntensity)
                 {
@@ -275,8 +231,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         public LampDesign? FindLampWithMinIntensity()
         {
             LampDesign? minLamp = null;
-            int minIntensity = MaxBrightness + 1;
-            foreach (var lamp in LampList)
+            int minIntensity = -1 ;
+            foreach (var lamp in lamps)
             {
                 if (lamp.Intensity < minIntensity)
                 {
@@ -289,7 +245,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         public List<LampDesign> FindLampsByIntensityRange(int min, int max)
         {
             List<LampDesign> result = new List<LampDesign>();
-            foreach (var lamp in LampList)
+            foreach (var lamp in lamps)
             {
                 if (lamp.Intensity >= min && lamp.Intensity <= max)
                 {
@@ -301,9 +257,9 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         public List<LampDesign> FindAllOn()
         {
             List<LampDesign> result = new List<LampDesign>();
-            foreach (var lamp in LampList)
+            foreach (var lamp in lamps)
             {
-                if (lamp.IsOn)
+                if (lamp.Status == DeviceStatus.On)
                 {
                     result.Add(lamp);
                 }
@@ -313,9 +269,9 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         public List<LampDesign> FindAllOff()
         {
             List<LampDesign> result = new List<LampDesign>();
-            foreach (var lamp in LampList)
+            foreach (var lamp in lamps)
             {
-                if (!lamp.IsOn)
+                if (lamp.Status == DeviceStatus.Off)
                 {
                     result.Add(lamp);
                 }
@@ -324,7 +280,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         } 
         public LampDesign? FindLampById(Guid id)
         {
-            foreach (var lamp in LampList)
+            foreach (var lamp in lamps)
             {
                 if (lamp.Id == id)
                 {
@@ -337,11 +293,11 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         {
             if (descending)
             {
-                return LampList.OrderByDescending(l => l.Intensity).ToList();
+                return lamps.OrderByDescending(l => l.Intensity).ToList();
             }
             else
             {
-                return LampList.OrderBy(l => l.Intensity).ToList();
+                return lamps.OrderBy(l => l.Intensity).ToList();
             }
         }
     }

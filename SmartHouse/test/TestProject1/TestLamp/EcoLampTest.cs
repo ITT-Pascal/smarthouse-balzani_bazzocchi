@@ -32,7 +32,7 @@ namespace TestProject1.TestLamp.LampTest
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
-            newEcoLamp.TurnOnOff();
+            newEcoLamp.Toggle();
 
             //Assert
             Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
@@ -47,8 +47,8 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
+            newLamp.Toggle();
 
             //Assert
             Assert.Equal(DeviceStatus.Off, newLamp.Status);
@@ -63,7 +63,7 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
 
             //Assert
             Assert.Equal(DeviceStatus.On, newLamp.Status);
@@ -78,8 +78,8 @@ namespace TestProject1.TestLamp.LampTest
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
-            newEcoLamp.TurnOnOff();
-            newEcoLamp.TurnOnOff();
+            newEcoLamp.Toggle();
+            newEcoLamp.Toggle();
 
 
             //Assert
@@ -95,7 +95,7 @@ namespace TestProject1.TestLamp.LampTest
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
-            newEcoLamp.TurnOnOff();
+            newEcoLamp.Toggle();
 
 
             //Assert
@@ -111,7 +111,7 @@ namespace TestProject1.TestLamp.LampTest
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
-            newEcoLamp.TurnOnOff();
+            newEcoLamp.Toggle();
             newEcoLamp.SetIntensity(10);
 
             //Assert
@@ -127,7 +127,7 @@ namespace TestProject1.TestLamp.LampTest
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
-            newEcoLamp.TurnOnOff();
+            newEcoLamp.Toggle();
             newEcoLamp.SetIntensity(0);
 
             //Assert
@@ -156,7 +156,7 @@ namespace TestProject1.TestLamp.LampTest
             EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
 
             //Act
-            newEcoLamp.TurnOnOff();
+            newEcoLamp.Toggle();
 
 
             //Assert

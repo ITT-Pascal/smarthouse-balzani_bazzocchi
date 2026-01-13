@@ -16,7 +16,7 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
-        newTwoDeviceLamp.TurnOnOffLamp();
+        newTwoDeviceLamp.Toggle();
 
         //Assert
         Assert.Equal(DeviceStatus.On, newLamp.Status);
@@ -33,8 +33,8 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
-        newTwoDeviceLamp.TurnOnOffLamp();
-        newTwoDeviceLamp.TurnOnOffLamp();
+        newTwoDeviceLamp.Toggle();
+        newTwoDeviceLamp.Toggle();
 
         //Assert
         Assert.Equal(DeviceStatus.Off, newLamp.Status);
@@ -51,7 +51,7 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
+        newTwoDeviceLamp.ToggleEco();
 
         //Assert
         Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
@@ -68,8 +68,8 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
+        newTwoDeviceLamp.ToggleEco();
+        newTwoDeviceLamp.ToggleEco();
 
         //Assert
         Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
@@ -85,7 +85,7 @@ public class TwoDeviceLampTest // prova
         EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
-        newTwoDeviceLamp.TurnOnOffBoth();
+        newTwoDeviceLamp.ToggleBoth();
 
         Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
         Assert.Equal(DeviceStatus.On, newLamp.Status);
@@ -101,8 +101,8 @@ public class TwoDeviceLampTest // prova
         EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
-        newTwoDeviceLamp.TurnOnOffBoth();
+        newTwoDeviceLamp.ToggleEco();
+        newTwoDeviceLamp.ToggleBoth();
 
         Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
         Assert.Equal(DeviceStatus.On, newLamp.Status);
@@ -118,8 +118,8 @@ public class TwoDeviceLampTest // prova
         EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
-        newTwoDeviceLamp.TurnOnOffLamp();
-        newTwoDeviceLamp.TurnOnOffBoth();
+        newTwoDeviceLamp.Toggle();
+        newTwoDeviceLamp.ToggleBoth();
 
         Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
         Assert.Equal(DeviceStatus.Off, newLamp.Status);
@@ -135,9 +135,9 @@ public class TwoDeviceLampTest // prova
         EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
-        newTwoDeviceLamp.TurnOnOffLamp();
-        newTwoDeviceLamp.TurnOnOffBoth();
+        newTwoDeviceLamp.ToggleEco();
+        newTwoDeviceLamp.Toggle();
+        newTwoDeviceLamp.ToggleBoth();
 
         Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
         Assert.Equal(DeviceStatus.Off, newLamp.Status);
@@ -153,8 +153,8 @@ public class TwoDeviceLampTest // prova
         EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
-        newTwoDeviceLamp.ChangeEcoLampBrightness(17);
+        newTwoDeviceLamp.ToggleEco();
+        newTwoDeviceLamp.ChangeEcoLampIntensity(17);
 
         Assert.Equal(17, newTwoDeviceLamp.EcoLamp.Intensity);
     }
@@ -171,8 +171,8 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
-        newTwoDeviceLamp.TurnOnOffLamp();
+        newTwoDeviceLamp.ToggleEco();
+        newTwoDeviceLamp.Toggle();
         //Assert
         Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.EcoLamp.SetIntensity(102));
     }
@@ -189,7 +189,7 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
-        newTwoDeviceLamp.TurnOnOffLamp();
+        newTwoDeviceLamp.Toggle();
 
         //Assert
         Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.EcoLamp.SetIntensity(4));
@@ -207,8 +207,8 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
         //Act
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
-        newTwoDeviceLamp.TurnOnOffLamp();
+        newTwoDeviceLamp.ToggleEco();
+        newTwoDeviceLamp.Toggle();
         //Assert
         Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.Lamp.SetIntensity(102));
     }
@@ -223,8 +223,8 @@ public class TwoDeviceLampTest // prova
         EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
-        newTwoDeviceLamp.TurnOnOffLamp();
-        newTwoDeviceLamp.ChangeLampBrightness(3);
+        newTwoDeviceLamp.Toggle();
+        newTwoDeviceLamp.ChangeLampIntensity(3);
 
         Assert.Equal(3, newTwoDeviceLamp.Lamp.Intensity);
     }
@@ -240,7 +240,7 @@ public class TwoDeviceLampTest // prova
         EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
         //Act
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
+        newTwoDeviceLamp.ToggleEco();
 
         //Assert
         Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.Lamp.SetIntensity(4));
@@ -256,8 +256,8 @@ public class TwoDeviceLampTest // prova
         EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(newLamp, newEcoLamp);
 
-        newTwoDeviceLamp.TurnOnOffLamp();
-        newTwoDeviceLamp.TurnOnOffEcoLamp();
+        newTwoDeviceLamp.Toggle();
+        newTwoDeviceLamp.ToggleEco();
         newTwoDeviceLamp.ChangeEcoLampAndLampBrightness(20);
 
         Assert.Equal(20, newTwoDeviceLamp.Lamp.Intensity);

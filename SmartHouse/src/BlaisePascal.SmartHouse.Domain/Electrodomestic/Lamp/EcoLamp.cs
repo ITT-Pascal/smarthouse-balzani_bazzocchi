@@ -8,29 +8,10 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
     public class EcoLamp: LampDesign
     {
-        public const int MaxBrightness = 100;
-        public const int MinBrightness = 0;
-
-        public override int MaxIntensity => MaxBrightness;
-        public override int MinIntensity => MinBrightness;
-
-        public EcoLamp(DateTime createdAtUtc, Random random, Guid id):base (createdAtUtc, random, id) 
-        { 
-            
-        }
-
-        
-
-        public override void SetIntensity(int intensity)
+        public EcoLamp(string name, Guid id) : base(id, name)
         {
-            base.SetIntensity(intensity);
-        }
 
-        public override DeviceStatus LampStatus()
-        {
-            return Status;
         }
-
         public void AutoTurnOff()
         {
             if (Status == DeviceStatus.Off)
@@ -49,7 +30,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 
                 if (_now - CreatedAtUtc > TimeSpan.FromMinutes(120))
                 {
-                    TurnOnOff();
+                    Toggle();
                 }
                 LastModifiedAtUtc = DateTime.Now;
             }

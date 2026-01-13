@@ -30,7 +30,7 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
 
             //Assert
             Assert.Equal(DeviceStatus.On, newLamp.Status);
@@ -46,8 +46,8 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
+            newLamp.Toggle();
 
             //Assert
             Assert.Equal(DeviceStatus.Off, newLamp.Status);
@@ -63,7 +63,7 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
 
             //Assert
             Assert.Equal(DeviceStatus.On, newLamp.Status);
@@ -79,8 +79,8 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
+            newLamp.Toggle();
 
 
             //Assert
@@ -97,7 +97,7 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
             
 
             //Assert
@@ -115,7 +115,7 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
             newLamp.SetIntensity(10);
 
             //Assert
@@ -133,7 +133,7 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
             newLamp.SetIntensity(0);
 
             //Assert
@@ -170,7 +170,7 @@ namespace TestProject1.TestLamp.LampTest
             Lamp newLamp = new Lamp(createdAtUtc, random, id);
 
             //Act
-            newLamp.TurnOnOff();
+            newLamp.Toggle();
 
 
             //Assert

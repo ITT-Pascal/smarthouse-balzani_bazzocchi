@@ -19,7 +19,7 @@ public class LampsRowTest
 
         newLampsRow.AddLamp(newLamp);
 
-        Assert.IsType<Lamp>(newLampsRow.LampList[0]); // new nel costruttore nuovo.
+        Assert.IsType<Lamp>(newLampsRow.lamps[0]); // new nel costruttore nuovo.
     }
 
     [Fact]
@@ -36,7 +36,7 @@ public class LampsRowTest
 
         newLampsRow.AddEcoLamp(newEcoLamp);
 
-        Assert.IsType<EcoLamp>(newLampsRow.LampList[0]);
+        Assert.IsType<EcoLamp>(newLampsRow.lamps[0]);
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public class LampsRowTest
         string name = "hello";
         LampsRow newLampsRow = new LampsRow(LampList, name);
         newLampsRow.AddLampInPosition(newLamp, 0);
-        Assert.IsType<Lamp>(newLampsRow.LampList[0]);
+        Assert.IsType<Lamp>(newLampsRow.lamps[0]);
     }
 
     [Fact]
@@ -64,8 +64,8 @@ public class LampsRowTest
         string name = "miao";
         LampsRow newLampsRow = new LampsRow(LampList, name);
         newLampsRow.AddLamp(newLamp);
-        newLampsRow.RemoveLamp(id);
-        Assert.Empty(newLampsRow.LampList);
+        newLampsRow.RemoveLampDevice(id);
+        Assert.Empty(newLampsRow.lamps);
     }
     [Fact]
     public void RemoveLamp_WhenRemoveLampByName()
@@ -79,8 +79,8 @@ public class LampsRowTest
         newLamp.Name = name;
         LampsRow newLampsRow = new LampsRow(LampList, name);
         newLampsRow.AddLamp(newLamp);
-        newLampsRow.RemoveLamp(name);
-        Assert.Empty(newLampsRow.LampList);
+        newLampsRow.RemoveLampDevice(name);
+        Assert.Empty(newLampsRow.lamps);
     }
     [Fact]
     public void RemoveLampInPosition_WhenRemoveLampInPositionDoItProperly()
@@ -94,7 +94,7 @@ public class LampsRowTest
         LampsRow newLampsRow = new LampsRow(LampList, name);
         newLampsRow.AddLampInPosition(newLamp, 0);
         newLampsRow.RemoveLampInPosition(0);
-        Assert.Empty(newLampsRow.LampList);
+        Assert.Empty(newLampsRow.lamps);
     }   
 
     //TurnOnOffAllLamps Tests
@@ -110,8 +110,8 @@ public class LampsRowTest
         string name = "bibi";
         LampsRow newLampsRow = new LampsRow(LampList, name);
 
-        newLampsRow.TurnOnOffAllLamps(); // on
-        newLampsRow.TurnOnOffAllLamps(); // off
+        newLampsRow.ToggleAllLamps(); // on
+        newLampsRow.ToggleAllLamps(); // off
 
         for (int i = 0; i < LampList.Count; i++)
         {
@@ -131,7 +131,7 @@ public class LampsRowTest
         string name = "wow";
         LampsRow newLampsRow = new LampsRow(LampList, name);
 
-        newLampsRow.TurnOnOffAllLamps();
+        newLampsRow.ToggleAllLamps();
 
         for (int i = 0; i < LampList.Count; i++)
         {
@@ -151,8 +151,8 @@ public class LampsRowTest
         string name = "hi";
         LampsRow newLampsRow = new LampsRow(LampList, name);
 
-        newLampsRow.TurnOnOffAllEcoLamps(); // on
-        newLampsRow.TurnOnOffAllEcoLamps(); // off
+        newLampsRow.ToggleAllEcoLamps(); // on
+        newLampsRow.ToggleAllEcoLamps(); // off
 
         for (int i = 0; i < LampList.Count; i++)
         {
@@ -170,7 +170,7 @@ public class LampsRowTest
         string name = "Luca";
         LampsRow newLampsRow = new LampsRow(LampList, name);
 
-        newLampsRow.TurnOnOffAllEcoLamps();
+        newLampsRow.ToggleAllEcoLamps();
 
         for (int i = 0; i < LampList.Count; i++)
         {
@@ -190,8 +190,8 @@ public class LampsRowTest
         string name = "Io";
         LampsRow newLampsRow = new LampsRow(LampList, name);
 
-        newLampsRow.TurnOnOffAllLamps();
-        newLampsRow.TurnOnOffAllEcoLamps();
+        newLampsRow.ToggleAllLamps();
+        newLampsRow.ToggleAllEcoLamps();
 
         for (int i = 0; i < LampList.Count; i++)
         {
@@ -210,7 +210,7 @@ public class LampsRowTest
         string name = "No";
         LampsRow newLampsRow = new LampsRow(LampList, name);
 
-        newLampsRow.TurnOnOffAllLamps();
+        newLampsRow.ToggleAllLamps();
 
         for (int i = 0; i < LampList.Count; i++)
         {
@@ -232,8 +232,8 @@ public class LampsRowTest
         newLampsRow.SetIntensityForLamp(id, 25);
         for (int i = 0; i < LampList.Count; i++)
         {
-            if (newLampsRow.LampList[i].Id == id)
-                Assert.Equal(25, newLampsRow.LampList[i].Intensity);
+            if (newLampsRow.lamps[i].Id == id)
+                Assert.Equal(25, newLampsRow.lamps[i].Intensity);
         }
     }
     [Fact]
@@ -250,8 +250,8 @@ public class LampsRowTest
         newLampsRow.SetIntensityForLamp(name, 50);
         for (int i = 0; i < LampList.Count; i++)
         {
-            if (newLampsRow.LampList[i].Name == name)
-                Assert.Equal(50, newLampsRow.LampList[i].Intensity);
+            if (newLampsRow.lamps[i].Name == name)
+                Assert.Equal(50, newLampsRow.lamps[i].Intensity);
         }
     }
     [Fact]
@@ -269,7 +269,7 @@ public class LampsRowTest
 
         for (int i = 0; i < LampList.Count; i++)
         {
-            Assert.Equal(17, newLampsRow.LampList[i].Intensity);
+            Assert.Equal(17, newLampsRow.lamps[i].Intensity);
         }
     }
     //SwitchOn Tests
@@ -287,7 +287,7 @@ public class LampsRowTest
         for (int i = 0; i < LampList.Count; i++)
         {
             newLampsRow.SwitchOn();
-            Assert.Equal(DeviceStatus.On, newLampsRow.LampList[i].Status);
+            Assert.Equal(DeviceStatus.On, newLampsRow.lamps[i].Status);
         }
     }
 
@@ -304,8 +304,8 @@ public class LampsRowTest
         newLampsRow.SwitchOn(id);
         for (int i = 0; i < LampList.Count; i++)
         {
-            if (newLampsRow.LampList[i].Id == id)
-                Assert.Equal(DeviceStatus.On, newLampsRow.LampList[i].Status);
+            if (newLampsRow.lamps[i].Id == id)
+                Assert.Equal(DeviceStatus.On, newLampsRow.lamps[i].Status);
         }
     }
     [Fact]
@@ -321,8 +321,8 @@ public class LampsRowTest
         newLampsRow.SwitchOn(name);
         for (int i = 0; i < LampList.Count; i++)
         {
-            if (newLampsRow.LampList[i].Name == name)
-                Assert.Equal(DeviceStatus.On, newLampsRow.LampList[i].Status);
+            if (newLampsRow.lamps[i].Name == name)
+                Assert.Equal(DeviceStatus.On, newLampsRow.lamps[i].Status);
         }
     }
     [Fact]
@@ -339,8 +339,8 @@ public class LampsRowTest
         newLampsRow.SwitchOff(id); // poi lo spengo
         for (int i = 0; i < LampList.Count; i++)
         {
-            if (newLampsRow.LampList[i].Id == id)
-                Assert.Equal(DeviceStatus.Off, newLampsRow.LampList[i].Status);
+            if (newLampsRow.lamps[i].Id == id)
+                Assert.Equal(DeviceStatus.Off, newLampsRow.lamps[i].Status);
         }
     }
 
@@ -358,8 +358,8 @@ public class LampsRowTest
         newLampsRow.SwitchOff(name); // poi lo spengo
         for (int i = 0; i < LampList.Count; i++)
         {
-            if (newLampsRow.LampList[i].Name == name)
-                Assert.Equal(DeviceStatus.Off, newLampsRow.LampList[i].Status);
+            if (newLampsRow.lamps[i].Name == name)
+                Assert.Equal(DeviceStatus.Off, newLampsRow.lamps[i].Status);
         }
     }
     [Fact]

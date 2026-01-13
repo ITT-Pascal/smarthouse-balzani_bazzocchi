@@ -6,42 +6,26 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
 {
-    public class Door
+    public class Door: AbstractDevice
     {
         public bool IsLocked { get; private set; }
-
-        public Guid Id { get; private set; }
-        public string Name { get; private set; } = string.Empty;
-        public DeviceStatus Status { get; private set; }
-
         private int _lockCode;
 
-        public Door(int lockCode)
+        public Door(int lockCode, string name, Guid id):base( name, id)
         {
             _lockCode = lockCode;
             IsLocked = false;
             Status = DeviceStatus.Close;
         }
-
-        public Door() { }
-
-        // Apre la porta (solo se non è chiusa a chiave)
-        public void Open()
+        public override void Open()
         {
-             if (IsLocked)
+            if (IsLocked)
                 throw new InvalidOperationException("Cannot open a locked door.");
-            if (IsLocked == false)
-             Status = DeviceStatus.Open;
+           base.Open();
 
         }
+        public override void Close() => base.Close();
 
-        // Chiude la porta
-        public void Close()
-        {
-            Status = DeviceStatus.Close;
-        }
-
-        // Chiude a chiave (solo se è chiusa)
         public void Lock()
         {
             if (Status == DeviceStatus.Open)
@@ -49,14 +33,11 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
             if (Status == DeviceStatus.Close)
                 IsLocked = true;
         }
-
-        // Sblocca la porta
         public void Unlock(int code)
         {
             if (code == _lockCode)
                 IsLocked = false;
         }
-
         public void SetNewUnlockCode(int newUnlockCode)
         {
             if (Status == DeviceStatus.Open)
