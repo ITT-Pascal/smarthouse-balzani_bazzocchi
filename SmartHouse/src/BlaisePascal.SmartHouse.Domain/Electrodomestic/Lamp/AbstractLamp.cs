@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
-    public abstract class LampDesign: AbstractDevice
+    public abstract class AbstractLamp: AbstractDevice
     {
         public int Intensity { get; protected set; }
         public const int MaxIntensity = 100;
         public const int MinIntensity = 0;
 
-        public LampDesign(Guid id, string name):base( name, id)
+        public AbstractLamp(Guid id, string name):base( name, id)
         {
 
         }

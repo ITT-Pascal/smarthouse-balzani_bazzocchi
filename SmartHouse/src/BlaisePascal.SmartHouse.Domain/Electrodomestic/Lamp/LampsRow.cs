@@ -3,12 +3,12 @@
     public class LampsRow: AbstractDevice
     {
         // Properties
-        public List<LampDesign> lamps { get; private set; }
+        public List<AbstractLamp> lamps { get; private set; }
 
         // Constructor
         public LampsRow(string name, Guid id):base(name, id)
         {
-            lamps = new List<LampDesign>();
+            lamps = new List<AbstractLamp>();
         }
 
         // Switch On/Off Methods
@@ -78,7 +78,7 @@
         }
 
         //Add/Remove Lamp Methods
-        public void AddLamp(LampDesign lampDevice)
+        public void AddLamp(AbstractLamp lampDevice)
         {
             if (lampDevice == null)
             {
@@ -93,7 +93,7 @@
         }   
 
 
-        public void AddEcoLamp(LampDesign lampDevice)
+        public void AddEcoLamp(AbstractLamp lampDevice)
         {
             if (lampDevice == null)
             {
@@ -131,7 +131,7 @@
             }
         }
         //Add/Remove Lamp In Position Method
-        public void AddLampInPosition(LampDesign lamp, int position)
+        public void AddLampInPosition(AbstractLamp lamp, int position)
         {
             if (lamp == null)
             {
@@ -214,9 +214,9 @@
         }
 
         // Search and Sort Methods
-        public LampDesign? FindLampWithMaxIntensity()
+        public AbstractLamp? FindLampWithMaxIntensity()
         {
-            LampDesign? maxLamp = null;
+            AbstractLamp? maxLamp = null;
             int maxIntensity = -1;
             foreach (var lamp in lamps)
             {
@@ -228,9 +228,9 @@
             }
             return maxLamp;
         }
-        public LampDesign? FindLampWithMinIntensity()
+        public AbstractLamp? FindLampWithMinIntensity()
         {
-            LampDesign? minLamp = null;
+            AbstractLamp? minLamp = null;
             int minIntensity = -1 ;
             foreach (var lamp in lamps)
             {
@@ -242,9 +242,9 @@
             }
             return minLamp;
         }
-        public List<LampDesign> FindLampsByIntensityRange(int min, int max)
+        public List<AbstractLamp> FindLampsByIntensityRange(int min, int max)
         {
-            List<LampDesign> result = new List<LampDesign>();
+            List<AbstractLamp> result = new List<AbstractLamp>();
             foreach (var lamp in lamps)
             {
                 if (lamp.Intensity >= min && lamp.Intensity <= max)
@@ -254,9 +254,9 @@
             }
             return result;
         }
-        public List<LampDesign> FindAllOn()
+        public List<AbstractLamp> FindAllOn()
         {
-            List<LampDesign> result = new List<LampDesign>();
+            List<AbstractLamp> result = new List<AbstractLamp>();
             foreach (var lamp in lamps)
             {
                 if (lamp.Status == DeviceStatus.On)
@@ -266,9 +266,9 @@
             }
             return result;
         }
-        public List<LampDesign> FindAllOff()
+        public List<AbstractLamp> FindAllOff()
         {
-            List<LampDesign> result = new List<LampDesign>();
+            List<AbstractLamp> result = new List<AbstractLamp>();
             foreach (var lamp in lamps)
             {
                 if (lamp.Status == DeviceStatus.Off)
@@ -278,7 +278,7 @@
             }
             return result;
         } 
-        public LampDesign? FindLampById(Guid id)
+        public AbstractLamp? FindLampById(Guid id)
         {
             foreach (var lamp in lamps)
             {
@@ -289,7 +289,7 @@
             }
             return null;
         }
-        public List<LampDesign> SortByIntensity(bool descending)
+        public List<AbstractLamp> SortByIntensity(bool descending)
         {
             if (descending)
             {

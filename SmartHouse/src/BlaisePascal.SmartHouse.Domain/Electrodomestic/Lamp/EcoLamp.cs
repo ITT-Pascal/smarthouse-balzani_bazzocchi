@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
-    public class EcoLamp: LampDesign
+    public class EcoLamp: AbstractLamp
     {
         public EcoLamp(string name, Guid id) : base(id, name)
         {

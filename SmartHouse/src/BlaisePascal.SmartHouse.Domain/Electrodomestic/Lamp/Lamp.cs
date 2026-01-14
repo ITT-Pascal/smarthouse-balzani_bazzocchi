@@ -1,6 +1,6 @@
 ﻿namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
-    public class Lamp: LampDesign
+    public class Lamp: AbstractLamp
     {
         public Lamp(  Guid id, string name) : base(id, name)
         {

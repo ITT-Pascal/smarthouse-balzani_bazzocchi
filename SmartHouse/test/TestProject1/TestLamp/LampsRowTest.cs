@@ -12,7 +12,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "foca";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -28,7 +28,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "ciao";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -45,7 +45,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "hello";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -59,7 +59,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "miao";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -73,7 +73,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "gatto";
         newLamp.Name = name;
@@ -88,7 +88,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "topo";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -105,7 +105,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "bibi";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -126,7 +126,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "wow";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -146,7 +146,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "hi";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -166,7 +166,7 @@ public class LampsRowTest
     {
         DateTime createdAtUtc = DateTime.UtcNow;
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         string name = "Luca";
         LampsRow newLampsRow = new LampsRow(LampList, name);
 
@@ -185,7 +185,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "Io";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -205,7 +205,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "No";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -225,7 +225,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "pallone";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -242,7 +242,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "pallina";
         newLamp.Name = name;
@@ -260,7 +260,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "pallina";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -279,7 +279,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "pallone";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -297,7 +297,7 @@ public class LampsRowTest
         Guid id = Guid.NewGuid();
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "palla";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -314,7 +314,7 @@ public class LampsRowTest
         Guid id = Guid.NewGuid();
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "pallina";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -331,7 +331,7 @@ public class LampsRowTest
         Guid id = Guid.NewGuid();
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "pacco";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -350,7 +350,7 @@ public class LampsRowTest
         Guid id = Guid.NewGuid();
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "pacco";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -368,7 +368,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "pacco";
         LampsRow newLampsRow = new LampsRow(LampList, name);
@@ -385,7 +385,7 @@ public class LampsRowTest
         DateTime createdAtUtc = DateTime.UtcNow;
         Random random = new Random();
         Guid id = Guid.NewGuid();
-        List<LampDesign> LampList = new List<LampDesign>();
+        List<AbstractLamp> LampList = new List<AbstractLamp>();
         Lamp newLamp = new Lamp(createdAtUtc, random, id);
         string name = "pacco";
         LampsRow newLampsRow = new LampsRow(LampList, name);
