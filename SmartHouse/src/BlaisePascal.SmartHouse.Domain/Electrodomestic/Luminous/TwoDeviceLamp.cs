@@ -1,4 +1,5 @@
-﻿using ImageProcessor.Processors;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+using ImageProcessor.Processors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,17 @@ using System.Xml.Serialization;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
-    public class TwoDeviceLamp
+    public class TwoDeviceLamp: AbstractDevice
     {
         public Lamp Lamp { get; private set; }
         public EcoLamp EcoLamp { get; private set; }
-        public TwoDeviceLamp(Lamp lamp, EcoLamp ecoLamp)
+        public TwoDeviceLamp(string name, Lamp lamp, EcoLamp ecoLamp, Guid id):base(name, id)
         {
             Lamp = lamp;
             EcoLamp = ecoLamp;
 
         }
-        public void Toggle()
+        public void ToggleLamp()
         {
             Lamp.Toggle();
         }

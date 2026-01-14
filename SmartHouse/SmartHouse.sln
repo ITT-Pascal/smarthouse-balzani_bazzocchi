@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6C83A596-D32
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B39C0392-7591-4BB6-B847-F5713156ACBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "test\TestProject1\TestProject1.csproj", "{5E64F7B6-C30D-46A3-8698-CD590DC629E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlaisePascal.SmartHouse.Domain.UnitTest", "test\TestProject1\BlaisePascal.SmartHouse.Domain.UnitTest.csproj", "{5E64F7B6-C30D-46A3-8698-CD590DC629E1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{4BC0EDA8-E422-44C2-8D55-61C2D89AB033}"
 EndProject

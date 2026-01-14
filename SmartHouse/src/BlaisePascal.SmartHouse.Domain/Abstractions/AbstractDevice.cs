@@ -1,20 +1,21 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
+namespace BlaisePascal.SmartHouse.Domain.Abstractions
 {
     public abstract class AbstractDevice
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public DeviceStatus Status { get; set; }
+        public Guid Id { get; protected set; }
+        public string Name { get; protected set; }
+        public DeviceStatus Status { get; protected set; }
         public DateTime CreatedAtUtc { get; protected set; }
-        public DateTime LastModifiedAtUtc { get; set; }
-        public Random Random { get; set; }
+        public DateTime LastModifiedAtUtc { get; protected set; }
+        public Random Random { get; protected set; }
 
         protected AbstractDevice(string name, Guid id)
         {

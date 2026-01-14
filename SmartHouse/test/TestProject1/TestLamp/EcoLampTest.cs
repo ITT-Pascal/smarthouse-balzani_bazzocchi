@@ -10,78 +10,55 @@ namespace TestProject1.TestLamp.LampTest
 {
     public class EcoLampTest
     {
+        Guid id = Guid.NewGuid();
+        string name = "Pippo";
 
         [Fact]
         public void EcoLamp_WhenCreatedTheEcoLampIsOff()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            //Assert
+            Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
+        }
+        [Fact]
+        public void EcoLamp_SwitchOn_WhenLampIsOn_ReturnTrue()
+        {
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            //Act
+            newEcoLamp.SwitchOn();
+            //Assert
+            Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
+        }
+
+        [Fact]
+        public void EcoLamp_SwitchOff_WhenLampIsOff_ReturnFalse()
+        {
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            //Act
+            newEcoLamp.SwitchOn();
+            newEcoLamp.SwitchOff();
 
             //Assert
             Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
         }
 
         [Fact]
-        public void EcoLamp_IsLampOn_WhenLampIsOn_ReturnTrue()
+        public void EcoLampTurnOnOff_WhenTheEcoLampIsOffTurnOn()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
-
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
             //Act
             newEcoLamp.Toggle();
-
             //Assert
             Assert.Equal(DeviceStatus.On, newEcoLamp.Status);
         }
 
         [Fact]
-        public void EcoLamp_IsLampOn_WhenLampIsOff_ReturnFalse()
-        {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
-
-            //Act
-            newLamp.Toggle();
-            newLamp.Toggle();
-
-            //Assert
-            Assert.Equal(DeviceStatus.Off, newLamp.Status);
-        }
-
-        [Fact]
-        public void EcoLampTurnOnOff_WhenTheEcoLampIsOffTurnOn()
-        {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
-
-            //Act
-            newLamp.Toggle();
-
-            //Assert
-            Assert.Equal(DeviceStatus.On, newLamp.Status);
-        }
-
-        [Fact]
         public void EcoLampTurnOnOff_WhenTheEcoLampIsOnTurnOff()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
-
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
             //Act
             newEcoLamp.Toggle();
             newEcoLamp.Toggle();
-
-
             //Assert
             Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
         }
@@ -89,15 +66,9 @@ namespace TestProject1.TestLamp.LampTest
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsNegative_ThrowArgumentOutOfRangeException()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
-
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
             //Act
             newEcoLamp.Toggle();
-
-
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(-1));
         }
@@ -105,10 +76,7 @@ namespace TestProject1.TestLamp.LampTest
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsHigherThan0_BrightnessGetUpdated()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
 
             //Act
             newEcoLamp.Toggle();

@@ -3,31 +3,47 @@ using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using ImageProcessor.Processors;
 using System;
 
-namespace TestProject1.TestLamp.LampTest
+namespace BlaisePascal.SmartHouse.Domain.UnitTest.TestLamp
 {
     public class LampTest
     {
+        Guid id = Guid.NewGuid();
+        string name = "Pippo";
 
         [Fact]
         public void Lamp_WhenCreatedTheLampIsOff()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
+            Lamp newLamp = new Lamp(id, name);
+            //Assert
+            Assert.Equal(DeviceStatus.Off, newLamp.Status);
+
+        }
+        [Fact]
+        public void Lamp_SwitchOn_WhenLampIsOn_ReturnTrue()
+        {
+            Lamp newLamp = new Lamp(id, name);
+            //Act
+            newLamp.SwitchOn();
+            //Assert
+            Assert.Equal(DeviceStatus.On, newLamp.Status);
+        }
+        [Fact]
+        public void Lamp_SwitchOff_WhenLampIsOff_ReturnFalse()
+        {
+            Lamp newLamp = new Lamp(id, name);
+
+            //Act
+            newLamp.SwitchOn();
+            newLamp.SwitchOff();
 
             //Assert
             Assert.Equal(DeviceStatus.Off, newLamp.Status);
 
         }
-
         [Fact]
-        public void EcoLamp_IsLampOn_WhenLampIsOn_ReturnTrue()
+        public void Lamp_Toggle_WhenTheLampIsOffTurnOn()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
+            Lamp newLamp = new Lamp(id, name);
 
             //Act
             newLamp.Toggle();
@@ -36,47 +52,10 @@ namespace TestProject1.TestLamp.LampTest
             Assert.Equal(DeviceStatus.On, newLamp.Status);
 
         }
-
         [Fact]
-        public void EcoLamp_IsLampOn_WhenLampIsOff_ReturnFalse()
+        public void Lamp_Toggle_WhenTheLampIsOnTurnOff()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
-
-            //Act
-            newLamp.Toggle();
-            newLamp.Toggle();
-
-            //Assert
-            Assert.Equal(DeviceStatus.Off, newLamp.Status);
-
-        }
-
-        [Fact]
-        public void LampTurnOnOff_WhenTheLampIsOffTurnOn()
-        {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
-
-            //Act
-            newLamp.Toggle();
-
-            //Assert
-            Assert.Equal(DeviceStatus.On, newLamp.Status);
-
-        }
-             
-        [Fact]
-        public void LampTurnOnOff_WhenTheLampIsOnTurnOff()
-        {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
+            Lamp newLamp = new Lamp(id, name);
 
             //Act
             newLamp.Toggle();
@@ -85,94 +64,51 @@ namespace TestProject1.TestLamp.LampTest
 
             //Assert
             Assert.Equal(DeviceStatus.Off, newLamp.Status);
-
         }
 
         [Fact]
-        public void Lamp_ChangeBrightness_WhenBrightnessIsNegative_ThrowArgumentOutOfRangeException()
+        public void Lamp_SetIntensity_WhenIntensityIsNegative_ThrowArgumentOutOfRangeException()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
-
+            Lamp newLamp = new Lamp(id, name);
             //Act
             newLamp.Toggle();
-            
-
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.SetIntensity(-1));
-
-
         }
 
         [Fact]
-        public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan0_BrightnessGetUpdated()
+        public void Lamp_SetIntensity_WhenNewIntensityIsHigherThan0_IntensityGetUpdated()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
-
+            Lamp newLamp = new Lamp(id, name);
             //Act
             newLamp.Toggle();
             newLamp.SetIntensity(10);
-
             //Assert
             Assert.Equal(10, newLamp.Intensity);
-
-
         }
-
         [Fact]
-        public void Lamp_ChangeBrightness_WhenBrightnessIs0_BrightnessTurn0()
+        public void Lamp_SetIntensity_WhenNewIntensityIs0_IntensityTurn0()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
-
+            Lamp newLamp = new Lamp(id, name);
             //Act
             newLamp.Toggle();
             newLamp.SetIntensity(0);
-
             //Assert
             Assert.Equal(0, newLamp.Intensity);
-
-
         }
         [Fact]
         public void Lamp_ChangeBrightness_WhenTheLampIsOff_ThrowInvalidOperationException()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
-
-
-
+            Lamp newLamp = new Lamp(id, name);
             //Assert
             Assert.Throws<InvalidOperationException>(() => newLamp.SetIntensity(3));
-
-
         }
-
-
-
-        
-
         [Fact]
-        public void Lamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()
+        public void Lamp_SetIntensity_WhenIntensityIsHigherThan100_ThrowArgumentOutOfRangeException()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            Lamp newLamp = new Lamp(createdAtUtc, random, id);
-
+            Lamp newLamp = new Lamp(id, name);
             //Act
             newLamp.Toggle();
-
-
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.SetIntensity(102));
 

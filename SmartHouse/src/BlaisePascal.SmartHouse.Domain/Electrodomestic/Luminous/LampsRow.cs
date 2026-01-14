@@ -1,4 +1,6 @@
-﻿namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
     public class LampsRow: AbstractDevice
     {
@@ -89,7 +91,6 @@
                 throw new ArgumentException("The lamp must be of type Lamp", nameof(lampDevice));
             }
             lamps.Add(lampDevice);
-            lampDevice.LastModifiedAtUtc = DateTime.UtcNow;
         }   
 
 
@@ -104,7 +105,7 @@
                 throw new ArgumentException("The lamp must be of type EcoLamp", nameof(lampDevice));
             }
             lamps.Add(lampDevice);
-            lampDevice.LastModifiedAtUtc = DateTime.UtcNow;
+           
         }
 
         public void RemoveLampDevice(Guid id)
@@ -143,7 +144,6 @@
                 throw new ArgumentOutOfRangeException(nameof(position), "Position is out of range");
             }
             lamps.Insert(position, lamp);
-            lamp.LastModifiedAtUtc = DateTime.UtcNow;
         }
         public void RemoveLampInPosition(int position)
         {
