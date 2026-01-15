@@ -5,216 +5,143 @@ namespace TestProject1.TestLamp.LampTest;
 
 public class LampsRowTest
 {
+    string name = "pippo";
+    Guid id = Guid.NewGuid();
+    Lamp lamp1 = new Lamp(Guid.NewGuid(), "lamp1");
+    Lamp lamp2 = new Lamp(Guid.NewGuid(), "lamp2");
+    EcoLamp ecoLamp1 = new EcoLamp("ecoLamp1", Guid.NewGuid());
+    EcoLamp ecoLamp2 = new EcoLamp("ecoLamp2", Guid.NewGuid());
     //Add/Remove Lamp Tests
     [Fact]
-    public void AddLamp_WhenAddLamp()
+    public void AddLamp_WhenAddLampAddProperly()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "foca";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-
-        newLampsRow.AddLamp(newLamp);
-
-        Assert.IsType<Lamp>(newLampsRow.lamps[0]); // new nel costruttore nuovo.
+        LampsRow lampsRow = new LampsRow(name, id);
+        lampsRow.AddLamp(lamp1);
+        Assert.IsType<Lamp>(lampsRow.lamps[0]); // new nel costruttore nuovo.
     }
-
     [Fact]
     public void AddEcoLamp_WhenAddEcoLamp()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "ciao";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-        EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
-
-        newLampsRow.AddEcoLamp(newEcoLamp);
-
-        Assert.IsType<EcoLamp>(newLampsRow.lamps[0]);
+        LampsRow lampsRow = new LampsRow(name, id);
+        lampsRow.AddLamp(ecoLamp1);
+        Assert.IsType<EcoLamp>(lampsRow.lamps[0]);
     }
-
     [Fact]
     public void AddLampInPosition_WhenAddLampInPositionDoItProperly()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "hello";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-        newLampsRow.AddLampInPosition(newLamp, 0);
-        Assert.IsType<Lamp>(newLampsRow.lamps[0]);
+        LampsRow lampsRow = new LampsRow(name, id);
+        int position = 1;
+        lampsRow.AddLampInPosition(lamp1, position);
+        Assert.IsType<Lamp>(lampsRow.lamps[1]);
     }
-
     [Fact]
-    public void RemoveLamp_WhenRemoveLampById()
+    public void RemoveLamp_WhenRemoveLampById_RemoveProperly()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "miao";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-        newLampsRow.AddLamp(newLamp);
-        newLampsRow.RemoveLampDevice(id);
-        Assert.Empty(newLampsRow.lamps);
+        LampsRow lampsRow = new LampsRow(name, id);
+        lampsRow.AddLamp(lamp1);
+        lampsRow.RemoveLampDevice(id);
+        Assert.Empty(lampsRow.lamps);
     }
     [Fact]
     public void RemoveLamp_WhenRemoveLampByName()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "gatto";
-        newLamp.Name = name;
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-        newLampsRow.AddLamp(newLamp);
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
         newLampsRow.RemoveLampDevice(name);
         Assert.Empty(newLampsRow.lamps);
     }
     [Fact]
     public void RemoveLampInPosition_WhenRemoveLampInPositionDoItProperly()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "topo";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-        newLampsRow.AddLampInPosition(newLamp, 0);
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLampInPosition(lamp1, 0);
         newLampsRow.RemoveLampInPosition(0);
         Assert.Empty(newLampsRow.lamps);
     }   
-
     //TurnOnOffAllLamps Tests
     [Fact]
-    public void TurnOnOffAllLamps_WhenAllLampsAreOn()
+    public void ToggleAllLamps_WhenAllLampsAreOnTurnOff()
     {
-
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "bibi";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         newLampsRow.ToggleAllLamps(); // on
         newLampsRow.ToggleAllLamps(); // off
-
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
-            if (LampList[i] is Lamp)
-            Assert.Equal(DeviceStatus.Off, LampList[i].Status);
+            if (newLampsRow.lamps[i] is Lamp)
+            Assert.Equal(DeviceStatus.Off, newLampsRow.lamps[i].Status);
         }
     }
 
     [Fact]
-    public void TurnOnOffAllLamps_WhenAllLampsAreOff()
+    public void ToggleAllLamps_WhenAllLampsAreOffTurnOn()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "wow";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         newLampsRow.ToggleAllLamps();
-
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
-            if (LampList[i] is Lamp)
-                Assert.Equal(DeviceStatus.On, LampList[i].Status);
+            if (newLampsRow.lamps[i] is Lamp)
+                Assert.Equal(DeviceStatus.On, newLampsRow.lamps[i].Status);
         }
     }
 
     [Fact]
-    public void TurnOnOffAllEcoLamps_WhenAllEcoLampsAreOn()
+    public void TurnOnOffAllEcoLamps_WhenAllEcoLampsAreOnTurnOff()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "hi";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(ecoLamp1);
+        newLampsRow.AddLamp(ecoLamp2);
         newLampsRow.ToggleAllEcoLamps(); // on
         newLampsRow.ToggleAllEcoLamps(); // off
 
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
-            if (LampList[i] is EcoLamp)
-                Assert.Equal(DeviceStatus.Off, LampList[i].Status);
+            if (newLampsRow.lamps[i] is EcoLamp)
+                Assert.Equal(DeviceStatus.Off, newLampsRow.lamps[i].Status);
         }
     }
 
     [Fact]
-    public void TurnOnOffAllEcoLamps_WhenAllEcoLampsAreOff()
+    public void TurnOnOffAllEcoLamps_WhenAllEcoLampsAreOffTurnOn()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        string name = "Luca";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(ecoLamp1);
+        newLampsRow.AddLamp(ecoLamp2);
         newLampsRow.ToggleAllEcoLamps();
-
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
-            if (LampList[i] is EcoLamp)
-                Assert.Equal(DeviceStatus.On, LampList[i].Status);
+            if (    newLampsRow.lamps[i] is EcoLamp)
+                Assert.Equal(DeviceStatus.On, newLampsRow.lamps[i].Status);
         }
     }
 
     [Fact]
-    public void TurnOnOffAllDevices_WhenAllDevicesAreOn()
+    public void TurnOnOffAllDevices_WhenAllDevicesAreOnTurnOff()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "Io";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-
-        newLampsRow.ToggleAllLamps();
-        newLampsRow.ToggleAllEcoLamps();
-
-        for (int i = 0; i < LampList.Count; i++)
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(ecoLamp1);
+        newLampsRow.ToggleAll(); // on
+        newLampsRow.ToggleAll(); // off
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
-            Assert.Equal(DeviceStatus.Off, LampList[i].Status);
+            Assert.Equal(DeviceStatus.Off, newLampsRow.lamps[i].Status);
         }
     }
 
     [Fact]
-    public void TurnOnOffAllDevices_WhenAllDevicesAreOff()
+    public void TurnOnOffAllDevices_WhenAllDevicesAreOffTurnOn()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "No";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-
-        newLampsRow.ToggleAllLamps();
-
-        for (int i = 0; i < LampList.Count; i++)
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(ecoLamp1);
+        newLampsRow.ToggleAll(); // on
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
-            Assert.Equal(DeviceStatus.On, LampList[i].Status);
+            Assert.Equal(DeviceStatus.On, newLampsRow.lamps[i].Status);
         }
     }
 
@@ -222,15 +149,11 @@ public class LampsRowTest
     [Fact]
     public void SetIntensityForLamp_WhenSetLampIntensityByIdTo25_ThenBrightnessIs25()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "pallone";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         newLampsRow.SetIntensityForLamp(id, 25);
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
             if (newLampsRow.lamps[i].Id == id)
                 Assert.Equal(25, newLampsRow.lamps[i].Intensity);
@@ -239,16 +162,11 @@ public class LampsRowTest
     [Fact]
     public void SetIntensityForLamp_WhenSetLampIntensityByNameTo50_ThenBrightnessIs50()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "pallina";
-        newLamp.Name = name;
-        LampsRow newLampsRow = new LampsRow(LampList, name);
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         newLampsRow.SetIntensityForLamp(name, 50);
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
             if (newLampsRow.lamps[i].Name == name)
                 Assert.Equal(50, newLampsRow.lamps[i].Intensity);
@@ -257,17 +175,11 @@ public class LampsRowTest
     [Fact]
     public void SetIntensityForAllLamps_WhenChangeAllDevicesBrightnessTo17_ThenBrightnessIs17()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "pallina";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         newLampsRow.SetIntensityForAllLamps(17);
-
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i <newLampsRow.lamps.Count; i++)
         {
             Assert.Equal(17, newLampsRow.lamps[i].Intensity);
         }
@@ -276,15 +188,10 @@ public class LampsRowTest
     [Fact]
     public void SwitchOn_WhenSwitchOnAllLamps_ThenAllLampsAreOn()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "pallone";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
-        
-        for (int i = 0; i < LampList.Count; i++)
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
             newLampsRow.SwitchOn();
             Assert.Equal(DeviceStatus.On, newLampsRow.lamps[i].Status);
@@ -294,15 +201,12 @@ public class LampsRowTest
     [Fact]
     public void SwitchOn_WhenSwitchOnLampById_ThenLampIsOn()
     {
-        Guid id = Guid.NewGuid();
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "palla";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
+       
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         newLampsRow.SwitchOn(id);
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
             if (newLampsRow.lamps[i].Id == id)
                 Assert.Equal(DeviceStatus.On, newLampsRow.lamps[i].Status);
@@ -311,15 +215,11 @@ public class LampsRowTest
     [Fact]
     public void SwitchOn_WhenSwitchOnByName_ThenLampIsOn()
     {
-        Guid id = Guid.NewGuid();
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "pallina";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         newLampsRow.SwitchOn(name);
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
             if (newLampsRow.lamps[i].Name == name)
                 Assert.Equal(DeviceStatus.On, newLampsRow.lamps[i].Status);
@@ -328,16 +228,10 @@ public class LampsRowTest
     [Fact]
     public void SwitchOff_WhenSwitchOffLampById_ThenLampIsOff()
     {
-        Guid id = Guid.NewGuid();
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "pacco";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
+        LampsRow newLampsRow = new LampsRow(name, id);
         newLampsRow.SwitchOn(id); // prima lo accendo
         newLampsRow.SwitchOff(id); // poi lo spengo
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
             if (newLampsRow.lamps[i].Id == id)
                 Assert.Equal(DeviceStatus.Off, newLampsRow.lamps[i].Status);
@@ -347,16 +241,12 @@ public class LampsRowTest
     [Fact]
     public void SwitchOff_WhenSwitchOffByName_ThenLampIsOff()
     {
-        Guid id = Guid.NewGuid();
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "pacco";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         newLampsRow.SwitchOn(name); // prima lo accendo
         newLampsRow.SwitchOff(name); // poi lo spengo
-        for (int i = 0; i < LampList.Count; i++)
+        for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
             if (newLampsRow.lamps[i].Name == name)
                 Assert.Equal(DeviceStatus.Off, newLampsRow.lamps[i].Status);
@@ -365,13 +255,9 @@ public class LampsRowTest
     [Fact]
     public void FindAllOn_FindAllOnLamps_ReturnOnlyOnLamps()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "pacco";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         newLampsRow.SwitchOn(id); // accendo la lampada
         var onLamps = newLampsRow.FindAllOn();
         foreach (var lamp in onLamps)
@@ -382,13 +268,9 @@ public class LampsRowTest
     [Fact]
     public void FindAllOff_FindAllOffLamps_ReturnOnlyOffLamps()
     {
-        DateTime createdAtUtc = DateTime.UtcNow;
-        Random random = new Random();
-        Guid id = Guid.NewGuid();
-        List<AbstractLamp> LampList = new List<AbstractLamp>();
-        Lamp newLamp = new Lamp(createdAtUtc, random, id);
-        string name = "pacco";
-        LampsRow newLampsRow = new LampsRow(LampList, name);
+        LampsRow newLampsRow = new LampsRow(name, id);
+        newLampsRow.AddLamp(lamp1);
+        newLampsRow.AddLamp(lamp2);
         var offLamps = newLampsRow.FindAllOff();
         foreach (var lamp in offLamps)
         {

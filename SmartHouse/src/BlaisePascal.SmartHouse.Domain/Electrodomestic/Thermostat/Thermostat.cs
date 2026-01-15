@@ -11,24 +11,13 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat
     {
         public double CurrentTemperature { get; private set; }
         public double TargetTemperature { get; private set; }
-
         public const int MinTemperature = 0;
         public const int MaxTemperature = 40;
-        public DateTime LastModifiedAtUtc { get; set; }
-
-        public Thermostat(string name, double temp): base(name)
+        public Thermostat(string name, double temp, Guid id): base(name, id)
         {
             CurrentTemperature = temp;
             TargetTemperature = temp;
-            LastModifiedAtUtc = DateTime.UtcNow;
         }
-
-        public override void TurnOnOff()
-        {
-            base.TurnOnOff();
-            LastModifiedAtUtc = DateTime.UtcNow;
-        }
-
         public void SetTargetTemperature(double temp)
         {
             if (temp < MinTemperature || temp > MaxTemperature)

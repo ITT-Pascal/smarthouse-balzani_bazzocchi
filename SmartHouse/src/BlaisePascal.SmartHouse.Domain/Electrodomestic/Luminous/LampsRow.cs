@@ -25,7 +25,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 
         public void SwitchOn(Guid id)
         {
-            base.SwitchOn();
+            base.SwitchOn(); //lampsRow è un device, quindi chiamiamo il switchOn della classe base
             for (int i = 0; i < lamps.Count; i++)
             {
                 if (lamps[i].Id == id)

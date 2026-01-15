@@ -10,11 +10,12 @@ namespace TestProject1.TestThermostat.ThermostatTests
 {
     public class ThermostatTests
     {
+        Guid id = Guid.NewGuid();
         [Fact]
         public void Thermostat_WhenCreated_ThermostatIsOff()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
 
             // Assert
             Assert.Equal(DeviceStatus.Off, thermostat.Status);
@@ -25,9 +26,9 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_WhenTurnOn_ThermostatIsOn()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
             // Act
-            thermostat.TurnOnOff();
+            thermostat.SwitchOn();
             // Assert
             Assert.Equal(DeviceStatus.On, thermostat.Status);
         }
@@ -36,10 +37,10 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_WhenTurnOff_ThermostatIsOff()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
             // Act
-            thermostat.TurnOnOff();
-            thermostat.TurnOnOff();
+            thermostat.SwitchOn();
+            thermostat.SwitchOff();
             // Assert
             Assert.Equal(DeviceStatus.Off, thermostat.Status);
         }
@@ -48,7 +49,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_SetTargetTemperature_WhenThermostatIsOff_ThrowInvalidOperationException()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => thermostat.SetTargetTemperature(22));
         }
@@ -56,8 +57,8 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_SetTargetTemperature_WhenThermostatIsOn_SetSuccessfully()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOnOff();
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
+            thermostat.SwitchOn();
             // Act
             thermostat.SetTargetTemperature(22);
             // Assert
@@ -68,8 +69,8 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_SetTargetTemperature_WhenTemperatureIsOutOfRange_ThrowArgumentOutOfRangeException()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOnOff();
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
+            thermostat.SwitchOn();
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => thermostat.SetTargetTemperature(50));
         }
@@ -77,8 +78,8 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_SetTargetTemperature_WhenTemperatureValueIsLowerThanRange_ThrowArgumentOutOfRangeException()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOnOff();
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
+            thermostat.SwitchOn();
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => thermostat.SetTargetTemperature(-1));
         }
@@ -86,7 +87,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_UpdateTemperature_WhenThermostatIsOff_ThrowInvalidOperationException()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => thermostat.UpdateTemperature());
         }
@@ -94,8 +95,8 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_UpdateTemperature_WhenCurrentTemperatureIsLowerThanTarget_IncreaseCurrentTemperature()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOnOff();
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
+            thermostat.SwitchOn();
             thermostat.SetTargetTemperature(25);
             // Act
             thermostat.UpdateTemperature();
@@ -106,8 +107,8 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_UpdateTemperature_WhenCurrentTemperatureIsHigherThanTarget_DecreaseCurrentTemperature()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 30);
-            thermostat.TurnOnOff();
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
+            thermostat.SwitchOn();
             thermostat.SetTargetTemperature(25);
             // Act
             thermostat.UpdateTemperature();
@@ -118,7 +119,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_SetCurrentTemperature_WhenThermostatIsOff_ThrowInvalidOperationException()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => thermostat.SetCurrentTemperature(22));
         }
@@ -126,8 +127,8 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_SetCurrentTemperature_WhenTemperatureIsOutOfRange_ThrowArgumentOutOfRangeException()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOnOff();
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
+            thermostat.SwitchOn();
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => thermostat.SetCurrentTemperature(50));
         }
@@ -135,8 +136,8 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_SetCurrentTemperature_WhenTemperatureValueIsLowerThanRange_ThrowArgumentOutOfRangeException()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOnOff();
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
+            thermostat.SwitchOn();
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => thermostat.SetCurrentTemperature(-1));
         }
@@ -144,8 +145,8 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_SetCurrentTemperature_WhenThermostatIsOn_SetSuccessfully()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
-            thermostat.TurnOnOff();
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
+            thermostat.SwitchOn();
             // Act
             thermostat.SetCurrentTemperature(22);
             // Assert
@@ -155,7 +156,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
         public void Thermostat_SetTemperatureOnTime_WhenThermostatIsOff_ThrowInvalidOperationException()
         {
             // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20);
+            Thermostat thermostat = new Thermostat("Living Room Thermostat", 20, id);
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => thermostat.SetTemperatureOnTime(DateTime.UtcNow.AddMinutes(10), 22));
         }

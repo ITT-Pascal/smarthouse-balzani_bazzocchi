@@ -89,15 +89,10 @@ namespace TestProject1.TestLamp.LampTest
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIs0_BrightnessTurn0()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
-
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
             //Act
             newEcoLamp.Toggle();
             newEcoLamp.SetIntensity(0);
-
             //Assert
             Assert.Equal(0, newEcoLamp.Intensity);
         }
@@ -105,11 +100,7 @@ namespace TestProject1.TestLamp.LampTest
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenTheEcoLampIsOff_ThrowInvalidOperationException()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
-
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
             //Assert
             Assert.Throws<InvalidOperationException>(() => newEcoLamp.SetIntensity(3)); 
         }
@@ -118,15 +109,9 @@ namespace TestProject1.TestLamp.LampTest
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
-
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
             //Act
             newEcoLamp.Toggle();
-
-
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(102));
         }
@@ -135,11 +120,7 @@ namespace TestProject1.TestLamp.LampTest
 
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOff_ThrowException()
         {
-            DateTime createdAtUtc = DateTime.UtcNow;
-            Random random = new Random();
-            Guid id = Guid.NewGuid();
-            EcoLamp newEcoLamp = new EcoLamp(createdAtUtc, random, id);
-
+            EcoLamp newEcoLamp = new EcoLamp(name, id);
             //Act
             Assert.Throws<InvalidOperationException>(() => newEcoLamp.AutoTurnOff());
         }

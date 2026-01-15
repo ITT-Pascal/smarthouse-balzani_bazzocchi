@@ -13,7 +13,7 @@ namespace TestProject1.ElectrodomesticTest.AirConditionerTests
         public void SetTargetTemperature_IfTheTemperatureIsInRange_SetTheTemperature()
         {
             AirConditioner A = new AirConditioner(Guid.NewGuid(), "AC1", 22.0, 26.0, 2);
-            A.TurnOnOff(); 
+            A.Toggle(); 
             A.SetTargetTemperature(24.0);
             Assert.Equal(24.0, A.TargetTemperature);
         }
@@ -22,7 +22,7 @@ namespace TestProject1.ElectrodomesticTest.AirConditionerTests
         public void SetTargetTemperature_IfTheTemperatureIsOutOfRange_ThrowArgumentOutOfRangeException()
         {
             AirConditioner A = new AirConditioner(Guid.NewGuid(), "AC1", 22.0, 26.0, 2);
-            A.TurnOnOff();
+            A.Toggle();
             Assert.Throws<ArgumentOutOfRangeException>(() => A.SetTargetTemperature(35.0));
         }
         [Fact]
