@@ -18,18 +18,15 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         {
             Lamp = lamp;
             EcoLamp = ecoLamp;
-
         }
         public void ToggleLamp()
         {
             Lamp.Toggle();
         }
-
         public void ToggleEco()
         {
             EcoLamp.Toggle();
         }
-
         public void ToggleBoth()
         {
             EcoLamp.Toggle();
@@ -39,12 +36,10 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
         {
             Lamp.SetIntensity(intensity);
         }
-
         public void ChangeEcoLampIntensity(int intensity)
         {
             EcoLamp.SetIntensity(intensity);
         }
-
         public void ChangeEcoLampAndLampBrightness(int intensity)
         {
             Lamp.SetIntensity(intensity);

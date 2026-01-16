@@ -6,13 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject1.TestLamp.LampTest
+namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
 {
     public class EcoLampTest
     {
         Guid id = Guid.NewGuid();
         string name = "Pippo";
-
         [Fact]
         public void EcoLamp_WhenCreatedTheEcoLampIsOff()
         {

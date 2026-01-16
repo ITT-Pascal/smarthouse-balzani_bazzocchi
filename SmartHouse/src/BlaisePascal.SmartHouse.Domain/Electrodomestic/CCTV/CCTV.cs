@@ -12,7 +12,6 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
         public bool NightVision { get; set; }
         TimeOnly StartOfDay;
         TimeOnly StartOfNight;
-        
         public CCTV(string name, Guid id): base(name, id)
         {
             StartOfDay = new TimeOnly(21, 30);
@@ -23,7 +22,6 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
             if (Now == StartOfNight)
                 NightVision = true;
         }
-
         public void SwitchDayNightMode()
         {
             TimeOnly Now = new TimeOnly(DateTime.UtcNow.Hour, DateTime.UtcNow.Minute);

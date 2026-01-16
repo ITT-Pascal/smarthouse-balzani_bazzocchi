@@ -15,5 +15,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
        Error = 4,
        Open = 5,
        Close = 6,
+       Lock = 7,
+       Unlock = 8,
     }
 }

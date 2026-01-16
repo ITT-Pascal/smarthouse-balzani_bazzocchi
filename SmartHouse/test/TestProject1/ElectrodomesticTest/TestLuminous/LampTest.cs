@@ -3,7 +3,7 @@ using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using ImageProcessor.Processors;
 using System;
 
-namespace BlaisePascal.SmartHouse.Domain.UnitTest.TestLamp
+namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
 {
     public class LampTest
     {
@@ -111,9 +111,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.TestLamp
             newLamp.Toggle();
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.SetIntensity(102));
-
-
         }
-
     }
 }

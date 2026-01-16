@@ -13,6 +13,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
             lamps = new List<AbstractLamp>();
         }
 
+
         // Switch On/Off Methods
         public override void SwitchOn()
         {
@@ -22,7 +23,6 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
                 lamps[i].SwitchOn();
             }
         }
-
         public void SwitchOn(Guid id)
         {
             base.SwitchOn(); //lampsRow è un device, quindi chiamiamo il switchOn della classe base
@@ -175,7 +175,6 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 
         public void ToggleAll()
         {
-            base.Toggle();
             for (int i = 0; i < lamps.Count; i++)
             {
                 lamps[i].Toggle();

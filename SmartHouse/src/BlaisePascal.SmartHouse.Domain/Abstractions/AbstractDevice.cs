@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Abstractions
 {
-    public abstract class AbstractDevice
+    public abstract class AbstractDevice: ISwitchable
     {
         public Guid Id { get; protected set; }
         public string Name { get; protected set; }
@@ -53,14 +53,6 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions
         {
             Status = DeviceStatus.Off;
             LastModifiedAtUtc = DateTime.UtcNow;
-        }
-        public virtual void Open()
-        {
-            Status = DeviceStatus.Open;
-        }
-        public virtual void Close()
-        {
-            Status = DeviceStatus.Close;
         }
         public virtual DeviceStatus GetStatus()
         {
