@@ -53,7 +53,7 @@ namespace TestProject1.DoorTest.DoorTest
             Door newDoor = new Door(123, name, id);
             newDoor.Lock();
             newDoor.Unlock(123);
-            Assert.False(newDoor.Status == DeviceStatus.Unlock);
+            Assert.True(newDoor.Status == DeviceStatus.Unlock);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace TestProject1.DoorTest.DoorTest
             Door newDoor = new Door(123, name, id);
             newDoor.Lock();
             newDoor.Unlock(999);
-            Assert.True(newDoor.Status == DeviceStatus.Unlock);
+            Assert.False(newDoor.Status == DeviceStatus.Unlock);
         }
 
         [Fact]
@@ -74,7 +74,7 @@ namespace TestProject1.DoorTest.DoorTest
             newDoor.Close();
             newDoor.Lock();
             newDoor.Unlock(999);
-            Assert.False(newDoor.Status == DeviceStatus.Unlock);
+            Assert.True(newDoor.Status == DeviceStatus.Unlock);
         }
         [Fact]
         public void SetNewUnlockCode_IfTheDoorIsCloseDoNotSetNewCode()
@@ -84,7 +84,7 @@ namespace TestProject1.DoorTest.DoorTest
             newDoor.SetNewUnlockCode(999);
             newDoor.Lock();
             newDoor.Unlock(999);
-            Assert.True(newDoor.Status == DeviceStatus.Unlock);
+            Assert.False(newDoor.Status == DeviceStatus.Unlock);
         }
     }
 }

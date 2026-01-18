@@ -33,9 +33,9 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat
             if (Status == DeviceStatus.Off)
                 throw new InvalidOperationException("Cannot update temperature when the thermostat is off.");
             if (CurrentTemperature < TargetTemperature)
-                CurrentTemperature += 0.5;
+                CurrentTemperature += TargetTemperature - CurrentTemperature;
             else if (CurrentTemperature > TargetTemperature)
-                CurrentTemperature -= 0.5;
+                CurrentTemperature -= CurrentTemperature - TargetTemperature;
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 

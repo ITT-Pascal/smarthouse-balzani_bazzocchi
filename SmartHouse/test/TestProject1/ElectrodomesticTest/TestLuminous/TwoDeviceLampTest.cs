@@ -120,7 +120,7 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
 
         newTwoDeviceLamp.ToggleEco();
-        newTwoDeviceLamp.ChangeEcoLampIntensity(17);
+        newTwoDeviceLamp.SetEcoLampIntensity(17);
 
         Assert.Equal(17, newTwoDeviceLamp.EcoLamp.Intensity);
     }
@@ -162,21 +162,21 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.ToggleEco();
         newTwoDeviceLamp.Toggle();
         //Assert
-        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.ChangeLampIntensity(102));
+        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.SetLampIntensity(102));
     }
     [Fact]
-    public void ChangeLampBrightness_WhenChangeTheLampBrightnessTo3_ThenTheLampBrightnessIs3()
+    public void SetLampIntensity_WhenChangeTheLampBrightnessTo3_ThenTheLampBrightnessIs3()
     {
         Lamp newLamp = new Lamp(idL, lampName);
         EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
-        newTwoDeviceLamp.Toggle();
-        newTwoDeviceLamp.ChangeLampIntensity(3);
+        newTwoDeviceLamp.ToggleLamp();
+        newTwoDeviceLamp.SetLampIntensity(3);
 
         Assert.Equal(3, newTwoDeviceLamp.Lamp.Intensity);
     }
     [Fact]
-    public void ChangeLampBrightness_WhenLampIsOff_ThrowInvalidOperationException()
+    public void SetLampIntensity_WhenLampIsOff_ThrowInvalidOperationException()
     {
         //Arrange
         Lamp newLamp = new Lamp(idL, lampName);
@@ -188,15 +188,15 @@ public class TwoDeviceLampTest // prova
         Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.Lamp.SetIntensity(4));
     }
     [Fact]
-    public void ChangeEcoLampAndLampBrightness_WhenChangeEcoLamp_AndLampBrightnessTo20_EcoLampAndLampBrightnessIs20()
+    public void SetBothIntensity_WhenChangeEcoLamp_AndLampBrightnessTo20_EcoLampAndLampBrightnessIs20()
     {
         Lamp newLamp = new Lamp(idL, lampName);
         EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
 
-        newTwoDeviceLamp.Toggle();
+        newTwoDeviceLamp.ToggleLamp();
         newTwoDeviceLamp.ToggleEco();
-        newTwoDeviceLamp.ChangeEcoLampAndLampBrightness(20);
+        newTwoDeviceLamp.SetBothIntensity(20);
 
         Assert.Equal(20, newTwoDeviceLamp.Lamp.Intensity);
         Assert.Equal(20, newTwoDeviceLamp.EcoLamp.Intensity);

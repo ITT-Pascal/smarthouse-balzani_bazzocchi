@@ -101,7 +101,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
             // Act
             thermostat.UpdateTemperature();
             // Assert
-            Assert.Equal(20.5, thermostat.CurrentTemperature);
+            Assert.Equal(25, thermostat.CurrentTemperature);
         }
         [Fact]
         public void Thermostat_UpdateTemperature_WhenCurrentTemperatureIsHigherThanTarget_DecreaseCurrentTemperature()
@@ -113,7 +113,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
             // Act
             thermostat.UpdateTemperature();
             // Assert
-            Assert.Equal(29.5, thermostat.CurrentTemperature);
+            Assert.Equal(25, thermostat.CurrentTemperature);
         }
         [Fact]
         public void Thermostat_SetCurrentTemperature_WhenThermostatIsOff_ThrowInvalidOperationException()
