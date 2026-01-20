@@ -1,6 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
 {
     public class LampsRow: AbstractDevice
     {
