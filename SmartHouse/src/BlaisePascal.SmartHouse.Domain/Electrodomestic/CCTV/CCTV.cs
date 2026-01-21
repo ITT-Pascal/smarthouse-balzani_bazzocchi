@@ -10,9 +10,11 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
     public class CCTV: AbstractDevice
     {
         public bool NightVision { get; set; }
+        public RecordingStatus RecordingStatus { get; set; }
+        public List<Recording> Recordings { get; private set; }
         TimeOnly StartOfDay;
         TimeOnly StartOfNight;
-        public CCTV(string name, Guid id): base(name, id)
+        public CCTV(string name, Guid id, List<Recording>recordings): base(name, id)
         {
             StartOfDay = new TimeOnly(21, 30);
             StartOfNight = new TimeOnly(7, 30);
@@ -21,6 +23,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
                 NightVision = false;
             if (Now == StartOfNight)
                 NightVision = true;
+            Recordings = recordings;
+            RecordingStatus = RecordingStatus.NotRecording;
         }
         public void SwitchDayNightMode()
         {
@@ -33,6 +37,40 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
                     NightVision = false;
                 if (Now == StartOfNight)
                     NightVision = true;
+            }
+        }
+        public void StartRecording()
+        {
+            if (Status == DeviceStatus.Off)
+                throw new InvalidOperationException("CCTV is off. Cannot start recording.");
+            if (Status == DeviceStatus.On)
+            {
+                RecordingStatus = RecordingStatus.Recording;
+                LastModifiedAtUtc = DateTime.UtcNow;
+            }
+        }
+        public void StopRecording(string nameOfRecording)
+        {
+            if (Status == DeviceStatus.Off)
+                throw new InvalidOperationException("CCTV is off. Cannot stop recording.");
+            if (Status == DeviceStatus.On && RecordingStatus == RecordingStatus.Recording)
+            {
+                RecordingStatus = RecordingStatus.NotRecording;
+                Recordings.Add(new Recording(LastModifiedAtUtc, DateTime.UtcNow, nameOfRecording));
+            }
+        }
+        public void DeleteRecording(string nameOfRecording)
+        {
+            foreach(var recording in Recordings)
+            {
+                if (recording.Name == nameOfRecording)
+                {
+                    Recordings.Remove(recording);
+                }
+                else
+                {
+                    throw new InvalidOperationException("Recording not found.");
+                }
             }
         }
     }

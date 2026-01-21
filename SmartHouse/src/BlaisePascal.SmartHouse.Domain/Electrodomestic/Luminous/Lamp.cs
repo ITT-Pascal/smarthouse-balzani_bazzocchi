@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
-    public class Lamp: AbstractLamp
+    public sealed class Lamp: AbstractLamp
     {
         public Lamp(  Guid id, string name) : base(id, name)
         {

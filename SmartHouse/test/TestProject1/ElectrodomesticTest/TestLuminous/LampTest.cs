@@ -1,4 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using ImageProcessor.Processors;
 using System;

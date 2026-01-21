@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice
 {
     public class AirConditioner: AbstractDevice
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic;
+using BlaisePascal.SmartHouse.Domain.Abstractions;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat;
 
 namespace TestProject1.TestThermostat.ThermostatTests

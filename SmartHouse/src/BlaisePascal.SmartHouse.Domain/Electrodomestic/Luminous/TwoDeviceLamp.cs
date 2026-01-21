@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
 {
-    public class TwoDeviceLamp: AbstractDevice
+    public sealed class TwoDeviceLamp: AbstractDevice
     {
         public Lamp Lamp { get; private set; }
         public EcoLamp EcoLamp { get; private set; }

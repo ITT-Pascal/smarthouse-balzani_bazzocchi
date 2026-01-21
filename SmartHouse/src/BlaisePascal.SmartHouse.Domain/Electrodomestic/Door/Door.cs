@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
 {
-    public class Door: AbstractDevice
+    public class Door: AbstractDevice, IOpenable, ILockable
     {
         private int _lockCode;
         public Door(int lockCode, string name, Guid id):base( name, id)

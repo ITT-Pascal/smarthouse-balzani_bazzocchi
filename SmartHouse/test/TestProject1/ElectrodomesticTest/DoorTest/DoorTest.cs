@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Door;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic;
+using BlaisePascal.SmartHouse.Domain.Abstractions;
 
 namespace TestProject1.DoorTest.DoorTest
 {

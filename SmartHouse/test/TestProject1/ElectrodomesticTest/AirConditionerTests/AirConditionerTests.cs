@@ -1,4 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
