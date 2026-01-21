@@ -9,6 +9,6 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
     public enum RecordingStatus
     {
         Recording,
-        NotRecording,
+        NotRecording
     }
 }

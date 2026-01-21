@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
 {
-    public class CCTV: AbstractDevice
+    public class CCTV: AbstractDevice, ISecureSwitchable
     {
-        public bool NightVision { get; set; }
-        public RecordingStatus RecordingStatus { get; set; }
+        public bool NightVision { get; private set; }
+        public RecordingStatus RecordingStatus { get; private set; }
         public List<Recording> Recordings { get; private set; }
-        TimeOnly StartOfDay;
-        TimeOnly StartOfNight;
+        public TimeOnly StartOfDay { get; private set; }
+        public TimeOnly StartOfNight { get; private set; }
+        private int SecurityCode { get; set; }
         public CCTV(string name, Guid id, List<Recording>recordings): base(name, id)
         {
             StartOfDay = new TimeOnly(21, 30);
@@ -25,6 +26,27 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
                 NightVision = true;
             Recordings = recordings;
             RecordingStatus = RecordingStatus.NotRecording;
+            SecurityCode = 0000;
+        }
+        public void SecureSwitchOn(int code)
+        {
+            if (code == SecurityCode)
+                base.SwitchOn();
+        }
+        public void SecureSwitchOff(int code)
+        {
+            if (code == SecurityCode)
+                base.SwitchOff();
+        }
+        public void SecureToggle(int code)
+        {
+            if (code == SecurityCode)
+                base.Toggle();
+        }
+        public void SetNewSecurityCode(int newCode, int oldCode)
+        {
+            if (oldCode == SecurityCode)
+                SecurityCode = newCode;
         }
         public void SwitchDayNightMode()
         {
