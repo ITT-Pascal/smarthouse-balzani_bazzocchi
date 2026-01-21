@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
 {
     public sealed class TwoDeviceLamp: AbstractDevice
     {

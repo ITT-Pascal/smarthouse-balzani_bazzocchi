@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Door;
 using BlaisePascal.SmartHouse.Domain.Abstractions;
 
@@ -11,9 +10,9 @@ namespace TestProject1.DoorTest.DoorTest
 {
     public class DoorTest
     {
-        string name = "door";
-        Guid id = Guid.NewGuid();
-        int lockCode = 123;
+        readonly string name = "door";
+        readonly Guid id = Guid.NewGuid();
+        readonly int lockCode = 123;
         [Fact]
         public void Open_IfTheDoorIsUnlockedOpen()
         {

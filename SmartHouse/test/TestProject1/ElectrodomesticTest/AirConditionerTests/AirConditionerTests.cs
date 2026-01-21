@@ -9,10 +9,11 @@ namespace TestProject1.ElectrodomesticTest.AirConditionerTests
 {
     public class AirConditionerTests
     {
+        AirConditioner A = new AirConditioner(Guid.NewGuid(), "AC1", 22.0, 26.0, 2);
         [Fact]
         public void SetTargetTemperature_IfTheTemperatureIsInRange_SetTheTemperature()
         {
-            AirConditioner A = new AirConditioner(Guid.NewGuid(), "AC1", 22.0, 26.0, 2);
+           
             A.Toggle(); 
             A.SetTargetTemperature(24.0);
             Assert.Equal(24.0, A.TargetTemperature);
@@ -21,14 +22,12 @@ namespace TestProject1.ElectrodomesticTest.AirConditionerTests
         [Fact]
         public void SetTargetTemperature_IfTheTemperatureIsOutOfRange_ThrowArgumentOutOfRangeException()
         {
-            AirConditioner A = new AirConditioner(Guid.NewGuid(), "AC1", 22.0, 26.0, 2);
             A.Toggle();
             Assert.Throws<ArgumentOutOfRangeException>(() => A.SetTargetTemperature(35.0));
         }
         [Fact]
         public void SetTargetTemperature_IfTheAirConditionerIsOff_ThrowInvalidOperationException()
         {
-            AirConditioner A = new AirConditioner(Guid.NewGuid(), "AC1", 22.0, 26.0, 2);
             Assert.Throws<InvalidOperationException>(() => A.SetTargetTemperature(24.0));
         }
     }
