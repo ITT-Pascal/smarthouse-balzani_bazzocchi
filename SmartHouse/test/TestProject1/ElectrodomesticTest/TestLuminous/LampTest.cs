@@ -1,5 +1,5 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
 using ImageProcessor.Processors;
 using System;
 
@@ -7,8 +7,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
 {
     public class LampTest
     {
-        Guid id = Guid.NewGuid();
-        string name = "Pippo";
+        readonly Guid id = Guid.NewGuid();
+        readonly string name = "Pippo";
 
         [Fact]
         public void Lamp_WhenCreatedTheLampIsOff()

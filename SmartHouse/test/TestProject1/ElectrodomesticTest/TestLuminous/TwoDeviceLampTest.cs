@@ -1,15 +1,15 @@
 using BlaisePascal.SmartHouse.Domain.Electrodomestic;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp;
 public class TwoDeviceLampTest // prova
 {
-    Guid idL = Guid.NewGuid();
-    Guid idE = Guid.NewGuid();
-    Guid idTwo = Guid.NewGuid();
-    string lampName = "lamp";
-    string ecoName = "ecolamp";
-    string twoName = "twoName";
+    readonly Guid idL = Guid.NewGuid();
+    readonly Guid idE = Guid.NewGuid();
+    readonly Guid idTwo = Guid.NewGuid();
+    readonly string lampName = "lamp";
+    readonly string ecoName = "ecolamp";
+    readonly string twoName = "twoName";
     [Fact]
     public void ToggleLamp_WhenLampIsOffTurnOn()
     {

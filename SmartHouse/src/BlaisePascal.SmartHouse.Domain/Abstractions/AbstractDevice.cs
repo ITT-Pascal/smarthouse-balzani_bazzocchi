@@ -1,5 +1,4 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +39,6 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions
             else if(Status == DeviceStatus.Off)
             {
                 SwitchOn();
-                LastModifiedAtUtc = DateTime.UtcNow;
             }
         }
         public virtual void SwitchOn()
