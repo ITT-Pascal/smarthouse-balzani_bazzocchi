@@ -1,18 +1,18 @@
-using BlaisePascal.SmartHouse.Domain.Abstractions;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp;
 
 public class LampsRowTest
 {
-    string name = "pippo";
-    Guid id = Guid.NewGuid();
-    Guid idLamp = Guid.NewGuid();
-    string nameLamp = "name";
-    Lamp lamp1 = new Lamp(Guid.NewGuid(), "lamp1");
-    Lamp lamp2 = new Lamp(Guid.NewGuid(), "lamp2");
-    AbstractLamp ecoLamp1 = new EcoLamp("ecoLamp1", Guid.NewGuid());
-    EcoLamp ecoLamp2 = new EcoLamp("ecoLamp2", Guid.NewGuid());
+    readonly string name = "pippo";
+    readonly Guid id = Guid.NewGuid();
+    readonly Guid idLamp = Guid.NewGuid();
+    readonly string nameLamp = "name";
+    readonly Lamp lamp1 = new Lamp(Guid.NewGuid(), "lamp1");
+    readonly Lamp lamp2 = new Lamp(Guid.NewGuid(), "lamp2");
+    readonly AbstractLamp ecoLamp1 = new EcoLamp("ecoLamp1", Guid.NewGuid());
+    readonly EcoLamp ecoLamp2 = new EcoLamp("ecoLamp2", Guid.NewGuid());
     //Add/Remove Lamp Tests
     [Fact]
     public void AddLamp_WhenAddLampAddProperly()

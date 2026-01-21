@@ -1,5 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Lamp;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +10,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
 {
     public class EcoLampTest
     {
-        Guid id = Guid.NewGuid();
-        string name = "Pippo";
+        readonly Guid id = Guid.NewGuid();
+        readonly string name = "Pippo";
         [Fact]
         public void EcoLamp_WhenCreatedTheEcoLampIsOff()
         {
