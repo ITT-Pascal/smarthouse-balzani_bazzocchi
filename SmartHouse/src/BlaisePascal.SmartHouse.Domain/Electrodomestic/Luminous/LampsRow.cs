@@ -182,7 +182,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
         }
 
         // Set Intensity Methods
-        public void SetIntensityForAllLamps(int intensity)
+        public void SetIntensityForAllLamps(Intensity intensity)
         {
             for (int i = 0; i < lamps.Count; i++)
             {
@@ -190,24 +190,24 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             }
         }
 
-        public void SetIntensityForLamp(Guid id, int brightness)
+        public void SetIntensityForLamp(Guid id, Intensity intensity)
         {
             for (int i = 0; i < lamps.Count; i++)
             {
                 if (lamps[i].Id == id)
                 {
-                    lamps[i].SetIntensity(brightness);
+                    lamps[i].SetIntensity(intensity);
                 }
             }
         }
 
-        public void SetIntensityForLamp(string name, int brightness)
+        public void SetIntensityForLamp(string name, Intensity intensity)
         {
             for (int i = 0; i < lamps.Count; i++)
             {
                 if (lamps[i].Name == name)
                 {
-                    lamps[i].SetIntensity(brightness);
+                    lamps[i].SetIntensity(intensity);
                 }
             }
         }
@@ -219,9 +219,9 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             int maxIntensity = -1;
             foreach (var lamp in lamps)
             {
-                if (lamp.Intensity > maxIntensity)
+                if (lamp.Intensity.Value > maxIntensity)
                 {
-                    maxIntensity = lamp.Intensity;
+                    maxIntensity = lamp.Intensity.Value;
                     maxLamp = lamp;
                 }
             }
@@ -233,9 +233,9 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             int minIntensity = -1 ;
             foreach (var lamp in lamps)
             {
-                if (lamp.Intensity < minIntensity)
+                if (lamp.Intensity.Value < minIntensity)
                 {
-                    minIntensity = lamp.Intensity;
+                    minIntensity = lamp.Intensity.Value;
                     minLamp = lamp;
                 }
             }
@@ -246,7 +246,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             List<AbstractLamp> result = new List<AbstractLamp>();
             foreach (var lamp in lamps)
             {
-                if (lamp.Intensity >= min && lamp.Intensity <= max)
+                if (lamp.Intensity.Value >= min && lamp.Intensity.Value <= max)
                 {
                     result.Add(lamp);
                 }

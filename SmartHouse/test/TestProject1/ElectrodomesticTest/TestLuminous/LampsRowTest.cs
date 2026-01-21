@@ -1,5 +1,6 @@
 using BlaisePascal.SmartHouse.Domain.Electrodomestic;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
+using BlaisePascal.SmartHouse.Domain.Abstractions;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp;
 
@@ -154,11 +155,11 @@ public class LampsRowTest
         LampsRow newLampsRow = new LampsRow(name, id);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
-        newLampsRow.SetIntensityForLamp(id, 25);
+        newLampsRow.SetIntensityForLamp(id, new Intensity(25));
         for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
             if (newLampsRow.lamps[i].Id == id)
-                Assert.Equal(25, newLampsRow.lamps[i].Intensity);
+                Assert.Equal(25, newLampsRow.lamps[i].Intensity.Value);
         }
     }
     [Fact]
@@ -167,11 +168,11 @@ public class LampsRowTest
         LampsRow newLampsRow = new LampsRow(name, id);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
-        newLampsRow.SetIntensityForLamp(name, 50);
+        newLampsRow.SetIntensityForLamp(name, new Intensity(50));
         for (int i = 0; i < newLampsRow.lamps.Count; i++)
         {
             if (newLampsRow.lamps[i].Name == name)
-                Assert.Equal(50, newLampsRow.lamps[i].Intensity);
+                Assert.Equal(50, newLampsRow.lamps[i].Intensity.Value);
         }
     }
     [Fact]
@@ -181,10 +182,10 @@ public class LampsRowTest
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.ToggleAllLamps();
-        newLampsRow.SetIntensityForAllLamps(17);
+        newLampsRow.SetIntensityForAllLamps(new Intensity(17));
         for (int i = 0; i <newLampsRow.lamps.Count; i++)
         {
-            Assert.Equal(17, newLampsRow.lamps[i].Intensity);
+            Assert.Equal(17, newLampsRow.lamps[i].Intensity.Value);
         }
     }
     //SwitchOn Tests

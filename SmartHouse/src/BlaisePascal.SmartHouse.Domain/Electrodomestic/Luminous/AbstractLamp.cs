@@ -9,12 +9,14 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
 {
     public abstract class AbstractLamp : AbstractDevice
     {
-        public int Intensity { get; protected set; }
-        public const int MaxIntensity = 100;
-        public const int MinIntensity = 0;
+        public Intensity Intensity { get; protected set; }
+        public Intensity MaxIntensity { get; protected set; }
+        public Intensity MinIntensity { get; protected set; }
         public AbstractLamp(Guid id, string name) : base(name, id)
         {
-
+            MinIntensity = new Intensity(0);
+            MaxIntensity = new Intensity(100);
+            Intensity = MinIntensity;
         }
         public override void SwitchOn()
         {
@@ -26,14 +28,14 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             base.SwitchOff();
             Intensity = MinIntensity;
         }
-        public virtual void SetIntensity(int intensity)
+        public virtual void SetIntensity(Intensity intensity)
         {
             if (Status == DeviceStatus.Off)
             {
                 throw new InvalidOperationException("Cannot change brightness if the ecolamp is off");
             }
 
-            if (intensity > MaxIntensity || intensity < 0)
+            if ( intensity.Value > MaxIntensity.Value || intensity.Value < MinIntensity.Value)
             {
                 throw new ArgumentOutOfRangeException("Brightness must be in the range");
             }

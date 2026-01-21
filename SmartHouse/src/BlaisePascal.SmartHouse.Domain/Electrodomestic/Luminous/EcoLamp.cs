@@ -26,7 +26,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
 
                 if (_now - CreatedAtUtc > TimeSpan.FromMinutes(60))
                 {
-                    Intensity = Intensity / 2;
+                    
+                    Intensity = new Intensity(Intensity.Value-25);
                 }
 
                 if (_now - CreatedAtUtc > TimeSpan.FromMinutes(120))

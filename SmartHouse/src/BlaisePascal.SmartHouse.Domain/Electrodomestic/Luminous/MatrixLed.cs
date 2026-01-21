@@ -75,7 +75,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
                 }
             }
         }
-        public override void SetIntensity(int intensity)
+        public override void SetIntensity(Intensity intensity)
         {
             for (int r = 0; r < Matrix.GetLength(0); r++)
             {
@@ -85,7 +85,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
                 }
             }
         }
-        public void SetRowIntensity(int rowNumber, int intensity)
+        public void SetRowIntensity(int rowNumber, Intensity intensity)
         {
             for (int c = 0; c < Matrix.GetLength(1); c++)
             {

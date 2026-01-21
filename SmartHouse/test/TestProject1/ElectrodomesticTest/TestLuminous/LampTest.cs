@@ -2,6 +2,7 @@
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
 using ImageProcessor.Processors;
 using System;
+using BlaisePascal.SmartHouse.Domain.Abstractions;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
 {
@@ -73,7 +74,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
             //Act
             newLamp.Toggle();
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.SetIntensity(-1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.SetIntensity(new Intensity(-1)));
         }
 
         [Fact]
@@ -82,9 +83,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
             Lamp newLamp = new Lamp(id, name);
             //Act
             newLamp.Toggle();
-            newLamp.SetIntensity(10);
+            newLamp.SetIntensity(new Intensity(10));
             //Assert
-            Assert.Equal(10, newLamp.Intensity);
+            Assert.Equal(10, newLamp.Intensity.Value);
         }
         [Fact]
         public void Lamp_SetIntensity_WhenNewIntensityIs0_IntensityTurn0()
@@ -92,16 +93,16 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
             Lamp newLamp = new Lamp(id, name);
             //Act
             newLamp.Toggle();
-            newLamp.SetIntensity(0);
+            newLamp.SetIntensity(new Intensity(0));
             //Assert
-            Assert.Equal(0, newLamp.Intensity);
+            Assert.Equal(0, newLamp.Intensity.Value);
         }
         [Fact]
         public void Lamp_ChangeBrightness_WhenTheLampIsOff_ThrowInvalidOperationException()
         {
             Lamp newLamp = new Lamp(id, name);
             //Assert
-            Assert.Throws<InvalidOperationException>(() => newLamp.SetIntensity(3));
+            Assert.Throws<InvalidOperationException>(() => newLamp.SetIntensity(new Intensity(3)));
         }
         [Fact]
         public void Lamp_SetIntensity_WhenIntensityIsHigherThan100_ThrowArgumentOutOfRangeException()
@@ -110,7 +111,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
             //Act
             newLamp.Toggle();
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.SetIntensity(102));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newLamp.SetIntensity(new Intensity(102)));
         }
     }
 }

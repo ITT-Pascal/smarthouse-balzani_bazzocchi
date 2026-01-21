@@ -32,15 +32,15 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             EcoLamp.Toggle();
             Lamp.Toggle();
         }
-        public void SetLampIntensity(int intensity)
+        public void SetLampIntensity(Intensity intensity)
         {
             Lamp.SetIntensity(intensity);
         }
-        public void SetEcoLampIntensity(int intensity)
+        public void SetEcoLampIntensity(Intensity intensity)
         {
             EcoLamp.SetIntensity(intensity);
         }
-        public void SetBothIntensity(int intensity)
+        public void SetBothIntensity(Intensity intensity)
         {
             Lamp.SetIntensity(intensity);
             EcoLamp.SetIntensity(intensity);

@@ -1,5 +1,6 @@
 using BlaisePascal.SmartHouse.Domain.Electrodomestic;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
+using BlaisePascal.SmartHouse.Domain.Abstractions;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp;
 public class TwoDeviceLampTest // prova
@@ -120,9 +121,9 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
 
         newTwoDeviceLamp.ToggleEco();
-        newTwoDeviceLamp.SetEcoLampIntensity(17);
+        newTwoDeviceLamp.SetEcoLampIntensity(new Intensity(17));
 
-        Assert.Equal(17, newTwoDeviceLamp.EcoLamp.Intensity);
+        Assert.Equal(17, newTwoDeviceLamp.EcoLamp.Intensity.Value);
     }
     [Fact]
     public void ChangeEcoLampIntensity_WhenEcoLampBrightnessIsOver100_ThrowArgumentOutOfRangeException()
@@ -135,7 +136,7 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.ToggleEco();
         newTwoDeviceLamp.Toggle();
         //Assert
-        Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.EcoLamp.SetIntensity(102));
+        Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.EcoLamp.SetIntensity(new Intensity(102)));
     }
     [Fact]
     public void ChangeLampBrightness_WhenEcoLampIsOff_ThrowInvalidOperationException()
@@ -149,7 +150,7 @@ public class TwoDeviceLampTest // prova
         newTwoDeviceLamp.Toggle();
 
         //Assert
-        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.EcoLamp.SetIntensity(4));
+        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.EcoLamp.SetIntensity(new Intensity(4)));
     }
     [Fact]
     public void ChangeLampBrightness_WhenLampBrightnessIsOver100_ThrowArgumentOutOfRangeException()
@@ -160,9 +161,9 @@ public class TwoDeviceLampTest // prova
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
         //Act
         newTwoDeviceLamp.ToggleEco();
-        newTwoDeviceLamp.Toggle();
+        newTwoDeviceLamp.ToggleLamp();
         //Assert
-        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.SetLampIntensity(102));
+        Assert.Throws<ArgumentOutOfRangeException>(() => newTwoDeviceLamp.SetLampIntensity(new Intensity(102)));
     }
     [Fact]
     public void SetLampIntensity_WhenChangeTheLampBrightnessTo3_ThenTheLampBrightnessIs3()
@@ -171,9 +172,9 @@ public class TwoDeviceLampTest // prova
         EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
         TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
         newTwoDeviceLamp.ToggleLamp();
-        newTwoDeviceLamp.SetLampIntensity(3);
+        newTwoDeviceLamp.SetLampIntensity(new Intensity(3));
 
-        Assert.Equal(3, newTwoDeviceLamp.Lamp.Intensity);
+        Assert.Equal(3, newTwoDeviceLamp.Lamp.Intensity.Value);
     }
     [Fact]
     public void SetLampIntensity_WhenLampIsOff_ThrowInvalidOperationException()
@@ -185,7 +186,7 @@ public class TwoDeviceLampTest // prova
         //Act
         newTwoDeviceLamp.ToggleEco();
         //Assert
-        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.Lamp.SetIntensity(4));
+        Assert.Throws<InvalidOperationException>(() => newTwoDeviceLamp.Lamp.SetIntensity(new Intensity(4)));
     }
     [Fact]
     public void SetBothIntensity_WhenChangeEcoLamp_AndLampBrightnessTo20_EcoLampAndLampBrightnessIs20()
@@ -196,9 +197,9 @@ public class TwoDeviceLampTest // prova
 
         newTwoDeviceLamp.ToggleLamp();
         newTwoDeviceLamp.ToggleEco();
-        newTwoDeviceLamp.SetBothIntensity(20);
+        newTwoDeviceLamp.SetBothIntensity(new Intensity(20));
 
-        Assert.Equal(20, newTwoDeviceLamp.Lamp.Intensity);
-        Assert.Equal(20, newTwoDeviceLamp.EcoLamp.Intensity);
+        Assert.Equal(20, newTwoDeviceLamp.Lamp.Intensity.Value);
+        Assert.Equal(20, newTwoDeviceLamp.EcoLamp.Intensity.Value);
     }
 }

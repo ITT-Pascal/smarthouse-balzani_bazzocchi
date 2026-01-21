@@ -7,58 +7,40 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
 {
-    public class CCTV: AbstractDevice, ISecureSwitchable
+    public class CCTV: AbstractSecureDevice
     {
         public bool NightVision { get; private set; }
         public RecordingStatus RecordingStatus { get; private set; }
         public List<Recording> Recordings { get; private set; }
         public TimeOnly StartOfDay { get; private set; }
         public TimeOnly StartOfNight { get; private set; }
-        private int SecurityCode { get; set; }
-        public CCTV(string name, Guid id, List<Recording>recordings): base(name, id)
+        private DateTime _recordingStartTime;
+        public CCTV(string name, Guid id, int securityCode): base(name, id, securityCode)
         {
-            StartOfDay = new TimeOnly(21, 30);
-            StartOfNight = new TimeOnly(7, 30);
+            StartOfDay = new TimeOnly(7, 30);
+            StartOfNight = new TimeOnly(21, 30);
             TimeOnly Now = new TimeOnly(DateTime.UtcNow.Hour, DateTime.UtcNow.Minute);
             if (Now == StartOfDay)
                 NightVision = false;
             if (Now == StartOfNight)
                 NightVision = true;
-            Recordings = recordings;
+            List<Recording>? Recordings = new List<Recording>();
             RecordingStatus = RecordingStatus.NotRecording;
-            SecurityCode = 0000;
-        }
-        public void SecureSwitchOn(int code)
-        {
-            if (code == SecurityCode)
-                base.SwitchOn();
-        }
-        public void SecureSwitchOff(int code)
-        {
-            if (code == SecurityCode)
-                base.SwitchOff();
-        }
-        public void SecureToggle(int code)
-        {
-            if (code == SecurityCode)
-                base.Toggle();
-        }
-        public void SetNewSecurityCode(int newCode, int oldCode)
-        {
-            if (oldCode == SecurityCode)
-                SecurityCode = newCode;
+            
         }
         public void SwitchDayNightMode()
         {
-            TimeOnly Now = new TimeOnly(DateTime.UtcNow.Hour, DateTime.UtcNow.Minute);
-            if(Status == DeviceStatus.Off)
+            TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
+            if (Status == DeviceStatus.Off)
                 throw new InvalidOperationException("CCTV is off. Cannot switch day/night mode.");
-            if (Status == DeviceStatus.On)
+            bool isNightTime = now >= StartOfNight || now < StartOfDay;
+            if (isNightTime)
             {
-                if (Now == StartOfDay)
-                    NightVision = false;
-                if (Now == StartOfNight)
-                    NightVision = true;
+                NightVision = true;
+            }
+            else
+            {
+                NightVision = false;
             }
         }
         public void StartRecording()
@@ -68,7 +50,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
             if (Status == DeviceStatus.On)
             {
                 RecordingStatus = RecordingStatus.Recording;
-                LastModifiedAtUtc = DateTime.UtcNow;
+                _recordingStartTime = DateTime.UtcNow;
             }
         }
         public void StopRecording(string nameOfRecording)
@@ -78,21 +60,27 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
             if (Status == DeviceStatus.On && RecordingStatus == RecordingStatus.Recording)
             {
                 RecordingStatus = RecordingStatus.NotRecording;
-                Recordings.Add(new Recording(LastModifiedAtUtc, DateTime.UtcNow, nameOfRecording));
+                Recordings.Add(new Recording(_recordingStartTime, DateTime.UtcNow, nameOfRecording));
             }
         }
         public void DeleteRecording(string nameOfRecording)
         {
-            foreach(var recording in Recordings)
+            Recording? recordingToDelete = null;
+            foreach (var recording in Recordings)
             {
                 if (recording.Name == nameOfRecording)
                 {
-                    Recordings.Remove(recording);
+                    recordingToDelete = recording; 
+                    break;
                 }
-                else
-                {
-                    throw new InvalidOperationException("Recording not found.");
-                }
+            }
+            if (recordingToDelete != null)
+            {
+                Recordings.Remove(recordingToDelete);
+            }
+            else
+            {
+                throw new InvalidOperationException("Recording not found.");
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.Abstractions;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
 {
@@ -69,7 +70,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
             //Act
             newEcoLamp.Toggle();
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(-1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(new Intensity(-1)));
         }
 
         [Fact]
@@ -79,10 +80,10 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
 
             //Act
             newEcoLamp.Toggle();
-            newEcoLamp.SetIntensity(10);
+            newEcoLamp.SetIntensity(new Intensity(10));
 
             //Assert
-            Assert.Equal(10, newEcoLamp.Intensity);
+            Assert.Equal(10, newEcoLamp.Intensity.Value);
         }
 
         [Fact]
@@ -91,9 +92,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
             EcoLamp newEcoLamp = new EcoLamp(name, id);
             //Act
             newEcoLamp.Toggle();
-            newEcoLamp.SetIntensity(0);
+            newEcoLamp.SetIntensity(new Intensity(0));
             //Assert
-            Assert.Equal(0, newEcoLamp.Intensity);
+            Assert.Equal(0, newEcoLamp.Intensity.Value);
         }
 
         [Fact]
@@ -101,7 +102,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         {
             EcoLamp newEcoLamp = new EcoLamp(name, id);
             //Assert
-            Assert.Throws<InvalidOperationException>(() => newEcoLamp.SetIntensity(3)); 
+            Assert.Throws<InvalidOperationException>(() => newEcoLamp.SetIntensity(new Intensity(3))); 
         }
 
 
@@ -112,7 +113,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
             //Act
             newEcoLamp.Toggle();
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(102));
+            Assert.Throws<ArgumentOutOfRangeException>(() => newEcoLamp.SetIntensity(new Intensity(102)));
         }
 
         [Fact]
@@ -123,47 +124,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
             //Act
             Assert.Throws<InvalidOperationException>(() => newEcoLamp.AutoTurnOff());
         }
-
-        //[Fact]
-        //public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan60Minutes_ReduceBrightness()
-        //{
-        //    Random random = new Random();
-        //    Guid id = Guid.NewGuid();         
-        //    DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-61);
-        //    Guid guid = Guid.NewGuid();
-        //    EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);
-
-
-        //    //Act
-        //    newEcoLamp.TurnOnOff();
-        //    newEcoLamp.SetIntensity(30);
-        //    newEcoLamp.AutoTurnOff();
-
-        //    //Assert
-        //    Assert.Equal(15, newEcoLamp.Intensity);           
-        //}
-
-        //[Fact]
-        //public void EcoLamp_AutoTurnOff_WhenTheLampIsOnFromMoreThan120Minutes_TurnLampOff()
-        //{
-        //    //Arrange
-        //    Random random = new Random();
-        //    Guid id = Guid.NewGuid();
-        //    DateTime _timeLampOn = DateTime.UtcNow.AddMinutes(-121);
-        //    Guid guid = Guid.NewGuid();
-        //    EcoLamp newEcoLamp = new EcoLamp(_timeLampOn, random, id);
-
-
-        //    //Act
-        //    newEcoLamp.TurnOnOff();
-        //    newEcoLamp.SetIntensity(30);
-        //    newEcoLamp.AutoTurnOff();
-
-        //    //Assert
-        //    Assert.Equal(0, newEcoLamp.Intensity);
-        //    Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
-
-        //}
     }
 }
 
