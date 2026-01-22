@@ -22,6 +22,18 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => cctv.SwitchDayNightMode());
         }
+
+        [Fact]
+        public void StartRecording()
+        {
+            CCTV newCCTV = new CCTV(name, id, securityCode);
+            newCCTV.SecureSwitchOn(0000);
+            newCCTV.StartRecording();
+            Assert.Equal(RecordingStatus.Recording, newCCTV.RecordingStatus);
+            Assert.Equal(DateTime.UtcNow, newCCTV._recordingStartTime);
+        }
+
+
         
 
     }

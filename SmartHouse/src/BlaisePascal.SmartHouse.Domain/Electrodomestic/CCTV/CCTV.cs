@@ -14,7 +14,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
         public List<Recording> Recordings { get; private set; }
         public TimeOnly StartOfDay { get; private set; }
         public TimeOnly StartOfNight { get; private set; }
-        private DateTime _recordingStartTime;
+        public DateTime _recordingStartTime;
+
         public CCTV(string name, Guid id, int securityCode): base(name, id, securityCode)
         {
             StartOfDay = new TimeOnly(7, 30);
@@ -24,10 +25,11 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
                 NightVision = false;
             if (Now == StartOfNight)
                 NightVision = true;
-            List<Recording>? Recordings = new List<Recording>();
-            RecordingStatus = RecordingStatus.NotRecording;
-            
+            Recordings = new List<Recording>();
+            RecordingStatus = RecordingStatus.NotRecording;            
         }
+
+        
         public void SwitchDayNightMode()
         {
             TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
