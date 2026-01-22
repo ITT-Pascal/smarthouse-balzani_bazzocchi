@@ -15,6 +15,9 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
 
         public void AddChangeLamp(AbstractLamp type, int rowNumber, int columnNumber)
         {
+            if (rowNumber > Matrix.GetLength(0) || columnNumber > Matrix.GetLength(1)
+                || rowNumber < 1 || columnNumber < 1)
+                throw new Exception("Valori inseriti non validi.");
             Matrix[rowNumber - 1, columnNumber - 1] = type;
         }
         public override void SwitchOn()
@@ -37,22 +40,28 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
                 }
             }
         }
-        public void TurnOnRow(int RowNumber)
+        public void TurnOnRow(int rowNumber)
         {
+            if (rowNumber < 1 || rowNumber > Matrix.GetLength(0))
+                throw new Exception("Valore non valido.");
             for (int c=0; c<Matrix.GetLength(1); c++)
             {
-                Matrix[RowNumber - 1, c].SwitchOn();
+                Matrix[rowNumber - 1, c].SwitchOn();
             }
         }
-        public void TurnOffRow(int RowNumber)
+        public void TurnOffRow(int rowNumber)
         {
+            if (rowNumber < 1 || rowNumber > Matrix.GetLength(0))
+                throw new Exception("Valore non valido.");
             for (int c = 0; c < Matrix.GetLength(1); c++)
             {
-                Matrix[RowNumber - 1, c].SwitchOn();
+                Matrix[rowNumber - 1, c].SwitchOn();
             }
         }
         public void TurnOnColumn(int columnNumber)
         {
+            if (columnNumber < 1 || columnNumber > Matrix.GetLength(0))
+                throw new Exception("Valore non valido.");
             for (int r = 0; r < Matrix.GetLength(0); r++)
             {
                 Matrix[r, columnNumber - 1].SwitchOn();
@@ -60,6 +69,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
         }
         public void TurnOffColumn(int columnNumber)
         {
+            if (columnNumber < 1 || columnNumber > Matrix.GetLength(0))
+                throw new Exception("Valore non valido.");
             for (int r = 0; r < Matrix.GetLength(0); r++)
             {
                 Matrix[r, columnNumber - 1].SwitchOff();
@@ -87,6 +98,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
         }
         public void SetRowIntensity(int rowNumber, Intensity intensity)
         {
+            if (rowNumber < 1 || rowNumber > Matrix.GetLength(0))
+                throw new Exception("Valore non valido.");
             for (int c = 0; c < Matrix.GetLength(1); c++)
             {
                 Matrix[rowNumber - 1, c].SetIntensity(intensity);
@@ -94,6 +107,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
         }
         public void SetColumnIntensity(int columnNumber, int intensity)
         {
+            if (columnNumber < 1 || columnNumber > Matrix.GetLength(0))
+                throw new Exception("Valore non valido.");
             for (int r = 0; r < Matrix.GetLength(0); r++)
             {
                 Matrix[r, columnNumber - 1].SwitchOn();
