@@ -8,20 +8,23 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.MatrixTest
+namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLuminous
 {
-    public class MatrixTest
+    public class MatrixLedTest
     {
         readonly int rows = 10;
         readonly int columns = 10;
         readonly Guid id = Guid.NewGuid();
-        readonly string name = "Foca";
+        readonly Guid lampId = Guid.NewGuid();
+        readonly string lampName = "lamp name";
+        readonly string name = "matrix name";
+
 
         [Fact]
         public void AddChangeLamp_InsertLamp()
         {
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            AbstractLamp type = new Lamp(Guid.NewGuid(), "Sasso");
+            AbstractLamp type = new Lamp(lampId, lampName);
             newMatrixLed.AddChangeLamp(type, 3, 3);
             Assert.IsType<Lamp>(newMatrixLed.Matrix[2, 2]);
         }
@@ -30,7 +33,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.MatrixTest
         public void AddChangeLamp_InsertEcoLamp()
         {
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            AbstractLamp type = new EcoLamp("Sasso", Guid.NewGuid());
+            AbstractLamp type = new EcoLamp(lampName, lampId);
             newMatrixLed.AddChangeLamp(type, 3, 3);
             Assert.IsType<EcoLamp>(newMatrixLed.Matrix[2, 2]);
         }
@@ -39,7 +42,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.MatrixTest
         public void AddChangeLamp_InsertLampOutOfMatrix()
         {
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            AbstractLamp type = new EcoLamp("Sasso", Guid.NewGuid());
+            AbstractLamp type = new EcoLamp(lampName, lampId);
             Assert.Throws<IndexOutOfRangeException>(() => newMatrixLed.AddChangeLamp(type, 15, 3));
         }
 
@@ -150,7 +153,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.MatrixTest
         public void SetMatrixLedType_Lamp()
         {
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            Func<AbstractLamp> type = () => new Lamp(Guid.NewGuid(), "caffeina");
+            Func<AbstractLamp> type = () => new Lamp(lampId, lampName);
             newMatrixLed.SetMatrixLedType(type);
             for(int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
             {
@@ -165,7 +168,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.MatrixTest
         public void SetMatrixLedType_EcoLamp()
         {
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            Func<AbstractLamp> type = () => new EcoLamp("portafoglio",Guid.NewGuid());
+            Func<AbstractLamp> type = () => new EcoLamp(lampName, lampId);
             newMatrixLed.SetMatrixLedType(type);
             for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
             {
@@ -180,7 +183,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.MatrixTest
         public void SetIntensity()
         {
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            Func<AbstractLamp> type = () => new Lamp(Guid.NewGuid(), "caffeina");
+            Func<AbstractLamp> type = () => new Lamp(lampId, lampName);
             newMatrixLed.SetMatrixLedType(type);
             newMatrixLed.SwitchOn();
             newMatrixLed.SetIntensity(new Intensity(35));
