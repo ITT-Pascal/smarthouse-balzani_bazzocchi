@@ -30,11 +30,26 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
             newCCTV.SecureSwitchOn(0000);
             newCCTV.StartRecording();
             Assert.Equal(RecordingStatus.Recording, newCCTV.RecordingStatus);
-            Assert.Equal(DateTime.UtcNow, newCCTV._recordingStartTime);
+        }
+
+        [Fact]
+        public void StartRecording_IfCCTVIsOff()
+        {
+            CCTV newCCTV = new CCTV(name, id, securityCode);
+            Assert.Throws<InvalidOperationException>(() => newCCTV.StartRecording());
+        }
+
+        [Fact]
+        public void StopRecording()
+        {
+            CCTV newCCTV = new CCTV(name, id, securityCode);
+            newCCTV.SecureSwitchOn(0000);
+            newCCTV.StartRecording();
+            newCCTV.StopRecording("wiwi");
+            Assert.Equal(RecordingStatus.NotRecording, newCCTV.RecordingStatus); 
         }
 
 
-        
 
     }
 }

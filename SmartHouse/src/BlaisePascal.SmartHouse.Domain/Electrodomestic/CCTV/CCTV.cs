@@ -55,16 +55,39 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
                 _recordingStartTime = DateTime.UtcNow;
             }
         }
-        public void StopRecording(string nameOfRecording)
+        public bool StopRecording(string recordingName)
         {
             if (Status == DeviceStatus.Off)
                 throw new InvalidOperationException("CCTV is off. Cannot stop recording.");
             if (Status == DeviceStatus.On && RecordingStatus == RecordingStatus.Recording)
             {
+                for (int i = 0; i < Recordings.Count(); i++)
+                {
+                    if (Recordings[i].Name == recordingName)
+                        return false;
+                }
                 RecordingStatus = RecordingStatus.NotRecording;
-                Recordings.Add(new Recording(_recordingStartTime, DateTime.UtcNow, nameOfRecording));
+                Recordings.Add(new Recording(_recordingStartTime, DateTime.UtcNow, recordingName));
+                return true;
             }
+                return false;
         }
+
+        public bool RenameRecording(string nameToChange, string newName)
+        {
+            if (nameToChange == null || newName == null)
+                throw new ArgumentNullException("Non sono stati inseriti i nomi delle registrazioni richiesti.");
+            foreach(var recording in Recordings)
+            {
+                if (recording.Name == nameToChange)
+                {
+                    recording.Name = newName;
+                    return true;                   
+                }
+            }
+            return false;
+        }
+
         public void DeleteRecording(string nameOfRecording)
         {
             Recording? recordingToDelete = null;
@@ -84,6 +107,29 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
             {
                 throw new InvalidOperationException("Recording not found.");
             }
+        }
+
+        public bool SearchRecordingByName(string name)
+        {
+            for (int i = 0; i < Recordings.Count(); i++)
+            {
+                if (Recordings[i].Name == name)
+                    return true;
+            }
+            return false;
+        }
+
+        public List<Recording> SearchRecordingByDate(DateOnly date)
+        {
+            List<Recording> recordingsInDate = new List<Recording>();
+            for (int i = 0; i < Recordings.Count(); i++)
+            {
+                if (DateOnly.FromDateTime(Recordings[i].Date) == date)
+                {
+                    recordingsInDate.Add(Recordings[i]);
+                }
+            }
+            return recordingsInDate;
         }
     }
 }

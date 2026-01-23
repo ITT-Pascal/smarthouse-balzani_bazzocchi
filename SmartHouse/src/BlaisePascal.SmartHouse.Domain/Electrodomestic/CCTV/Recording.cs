@@ -8,14 +8,14 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
 {
     public class Recording
     {
-        public DateTime StartRecordingTime { get; private set; }
-        public DateTime EndRecordingTime { get; private set; }
-        public string Name { get; private set; }
+        public TimeSpan Duration { get; private set; }
+        public string Name { get; set; }
+        public DateTime Date { get; private set; }
         public Recording(DateTime startRecordingTime, DateTime endRecordingTime, string name)
         {
-            StartRecordingTime = startRecordingTime;
-            EndRecordingTime = endRecordingTime;
+            Duration = endRecordingTime - startRecordingTime;
             Name = name;
+            Date = endRecordingTime;
         }
     }
 }
