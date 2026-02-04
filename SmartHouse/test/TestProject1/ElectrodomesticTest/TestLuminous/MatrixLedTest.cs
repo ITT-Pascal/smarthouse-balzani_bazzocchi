@@ -51,9 +51,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         {
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
             newMatrixLed.SwitchOn();
-            for(int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
+            for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
             {
-                for(int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
+                for (int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
                 {
                     Assert.Equal(DeviceStatus.On, newMatrixLed.Matrix[r, c].Status);
                 }
@@ -80,7 +80,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         {
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
             newMatrixLed.SwitchOnRow(3);
-            for(int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
+            for (int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
             {
                 Assert.Equal(DeviceStatus.On, newMatrixLed.Matrix[2, c].Status);
             }
@@ -155,9 +155,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
             Func<AbstractLamp> type = () => new Lamp(lampId, lampName);
             newMatrixLed.SetMatrixLedType(type);
-            for(int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
+            for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
             {
-                for(int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
+                for (int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
                 {
                     Assert.IsType<Lamp>(newMatrixLed.Matrix[r, c]);
                 }
@@ -210,7 +210,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
             newMatrixLed.SwitchOn();
             newMatrixLed.SetRowIntensity(3, new Intensity(20));
-            for(int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
+            for (int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
             {
                 Assert.Equal(new Intensity(20), newMatrixLed.Matrix[2, c].Intensity);
             }
@@ -238,7 +238,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
             MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
             newMatrixLed.SwitchOn();
             newMatrixLed.SetColumnIntensity(3, new Intensity(20));
-            for(int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
+            for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
             {
                 Assert.Equal(new Intensity(20), newMatrixLed.Matrix[r, 2].Intensity);
             }

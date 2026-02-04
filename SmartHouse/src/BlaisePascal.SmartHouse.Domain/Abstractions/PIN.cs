@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
+namespace BlaisePascal.SmartHouse.Domain.Abstractions
 {
-    public class PIN
+    public record PIN
     {
         public string SecurityCode { get; init; }
 

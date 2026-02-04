@@ -49,6 +49,17 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
             Assert.Equal(RecordingStatus.NotRecording, newCCTV.RecordingStatus); 
         }
 
+        [Fact]
+        public void Renamerecording()
+        {
+            CCTV newCCTV = new CCTV(name, id, securityCode);
+            newCCTV.SecureSwitchOn(0000);
+            newCCTV.StartRecording();
+            newCCTV.StopRecording("Paolo e Francesca...");
+            newCCTV.RenameRecording("Paolo e Francesca...", "Piero e Francesca");
+            Assert.Equal("Piero e Francesca", newCCTV.Recordings[0].Name);
+        }
+
 
 
     }

@@ -10,18 +10,14 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions
     public abstract class AbstractDevice: ISwitchable
     {
         public Guid Id { get; protected set; }
-        public string Name { get; protected set; }
+        public Name Name { get; protected set; }
         public DeviceStatus Status { get; protected set; }
         public DateTime CreatedAtUtc { get; protected set; }
         public DateTime LastModifiedAtUtc { get; protected set; }
         public Random Random { get; protected set; }
 
-        protected AbstractDevice(string name, Guid id)
+        protected AbstractDevice(Name name, Guid id)
         {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException("Name cannot be null or empty", nameof(name));
-            }
             CreatedAtUtc = DateTime.UtcNow;
             LastModifiedAtUtc = DateTime.UtcNow;
             Random = new Random();

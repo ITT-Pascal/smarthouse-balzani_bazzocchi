@@ -8,9 +8,9 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions
 {
     public interface ISecureSwitchable
     {
-        void SecureSwitchOn(int code);
-        void SecureSwitchOff(int code);
-        void SecureToggle(int code);
-        void SetNewSecurityCode(int newCode, int oldCode);
+        void SecureSwitchOn(PIN code);
+        void SecureSwitchOff(PIN code);
+        void SecureToggle(PIN code);
+        void SetNewSecurityCode(PIN newCode, PIN oldCode);
     }
 }

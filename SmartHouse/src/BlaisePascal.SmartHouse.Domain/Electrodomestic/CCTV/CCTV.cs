@@ -16,7 +16,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
         public TimeOnly StartOfNight { get; private set; }
         public DateTime _recordingStartTime;
 
-        public CCTV(string name, Guid id, int securityCode): base(name, id, securityCode)
+        public CCTV(Name name, Guid id, PIN securityCode): base(name, id, securityCode)
         {
             StartOfDay = new TimeOnly(7, 30);
             StartOfNight = new TimeOnly(21, 30);

@@ -9,7 +9,7 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions
     public interface ILockable
     {
         void Lock();
-        void Unlock(int code);
-        void SetNewUnlockCode(int newUnlockCode);
+        void Unlock(PIN code);
+        void SetNewUnlockCode(PIN newUnlockCode);
     }
 }

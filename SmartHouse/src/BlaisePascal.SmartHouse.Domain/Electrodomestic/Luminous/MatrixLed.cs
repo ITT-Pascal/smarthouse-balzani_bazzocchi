@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
     public sealed class MatrixLed: AbstractLamp
     {
         public AbstractLamp[,] Matrix;
-        public MatrixLed(int rows, int columns, Guid id, string name): base(id, name) {
+        public MatrixLed(int rows, int columns, Guid id, Name name): base(id, name) {
             Matrix = new AbstractLamp[rows, columns];
             for(int r = 0; r < Matrix.GetLength(0); r++)
             {

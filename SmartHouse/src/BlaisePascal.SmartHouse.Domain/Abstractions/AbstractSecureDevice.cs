@@ -8,27 +8,27 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions
 {
     public abstract class AbstractSecureDevice:AbstractDevice, ISecureSwitchable
     {
-        private int SecurityCode { get; set; }
-        protected AbstractSecureDevice(string name, Guid id, int securityCode) : base(name, id)
+        private PIN SecurityCode { get; set; }
+        protected AbstractSecureDevice(Name name, Guid id, PIN securityCode) : base(name, id)
         {
             SecurityCode = securityCode;
         }
-        public virtual void SecureSwitchOn(int code)
+        public virtual void SecureSwitchOn(PIN code)
         {
             if (code == SecurityCode)
                 base.SwitchOn();
         }
-        public virtual void SecureSwitchOff(int code)
+        public virtual void SecureSwitchOff(PIN code)
         {
             if (code == SecurityCode)
                 base.SwitchOff();
         }
-        public virtual void SecureToggle(int code)
+        public virtual void SecureToggle(PIN code)
         {
             if (code == SecurityCode)
                 base.Toggle();
         }
-        public virtual void SetNewSecurityCode(int newCode, int oldCode)
+        public virtual void SetNewSecurityCode(PIN newCode, PIN oldCode)
         {
             if (oldCode == SecurityCode)
                 SecurityCode = newCode;
