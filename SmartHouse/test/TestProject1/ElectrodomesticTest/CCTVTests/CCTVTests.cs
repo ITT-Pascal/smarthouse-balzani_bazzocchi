@@ -1,4 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
 {
     public class CCTVTests
     {
-        string name = "cctv";
+        Name name = new Name("cctv");
         Guid id = Guid.NewGuid();
-        int securityCode = 0000;
+        PIN securityCode = new PIN("0000");
 
 
         [Fact]
@@ -27,7 +28,7 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
         public void StartRecording()
         {
             CCTV newCCTV = new CCTV(name, id, securityCode);
-            newCCTV.SecureSwitchOn(0000);
+            newCCTV.SecureSwitchOn(new PIN("0000"));
             newCCTV.StartRecording();
             Assert.Equal(RecordingStatus.Recording, newCCTV.RecordingStatus);
         }
@@ -43,7 +44,7 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
         public void StopRecording()
         {
             CCTV newCCTV = new CCTV(name, id, securityCode);
-            newCCTV.SecureSwitchOn(0000);
+            newCCTV.SecureSwitchOn(new PIN("0000"));
             newCCTV.StartRecording();
             newCCTV.StopRecording("wiwi");
             Assert.Equal(RecordingStatus.NotRecording, newCCTV.RecordingStatus); 
@@ -53,7 +54,7 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
         public void Renamerecording()
         {
             CCTV newCCTV = new CCTV(name, id, securityCode);
-            newCCTV.SecureSwitchOn(0000);
+            newCCTV.SecureSwitchOn(new PIN("0000"));
             newCCTV.StartRecording();
             newCCTV.StopRecording("Paolo e Francesca...");
             newCCTV.RenameRecording("Paolo e Francesca...", "Piero e Francesca");

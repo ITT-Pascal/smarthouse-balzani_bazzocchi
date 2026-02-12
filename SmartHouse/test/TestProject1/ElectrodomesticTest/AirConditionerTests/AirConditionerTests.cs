@@ -1,4 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace TestProject1.ElectrodomesticTest.AirConditionerTests
 {
     public class AirConditionerTests
     {
-        AirConditioner A = new AirConditioner(Guid.NewGuid(), "AC1", 22.0, 26.0, 2);
+        AirConditioner A = new AirConditioner(Guid.NewGuid(), new Name("AC1"), 22.0, 26.0, 2);
         [Fact]
         public void SetTargetTemperature_IfTheTemperatureIsInRange_SetTheTemperature()
         {

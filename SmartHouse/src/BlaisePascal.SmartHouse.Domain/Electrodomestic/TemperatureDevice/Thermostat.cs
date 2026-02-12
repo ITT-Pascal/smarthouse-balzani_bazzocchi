@@ -13,7 +13,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat
         public double TargetTemperature { get; private set; }
         public const int MinTemperature = 0;
         public const int MaxTemperature = 40;
-        public Thermostat(string name, double temp, Guid id): base(name, id)
+        public Thermostat(Name name, double temp, Guid id): base(name, id)
         {
             CurrentTemperature = temp;
             TargetTemperature = temp;

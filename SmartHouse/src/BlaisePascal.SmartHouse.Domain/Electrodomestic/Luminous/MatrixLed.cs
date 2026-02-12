@@ -16,7 +16,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             {
                 for(int c = 0; c < Matrix.GetLength(1); c++)
                 {
-                    Matrix[r, c] = new Lamp(Guid.NewGuid(), "Default Lamp");
+                    Matrix[r, c] = new Lamp(Guid.NewGuid(), new Name("Default Lamp"));
                 }
             }
         }

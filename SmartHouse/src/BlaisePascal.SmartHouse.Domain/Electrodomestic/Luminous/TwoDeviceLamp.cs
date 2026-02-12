@@ -14,7 +14,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
     {
         public Lamp Lamp { get; private set; }
         public EcoLamp EcoLamp { get; private set; }
-        public TwoDeviceLamp(string name, Lamp lamp, EcoLamp ecoLamp, Guid id):base(name, id)
+        public TwoDeviceLamp(Name name, Lamp lamp, EcoLamp ecoLamp, Guid id):base(name, id)
         {
             Lamp = lamp;
             EcoLamp = ecoLamp;

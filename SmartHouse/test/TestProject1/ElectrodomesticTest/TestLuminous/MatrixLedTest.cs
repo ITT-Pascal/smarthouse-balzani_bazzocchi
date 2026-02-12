@@ -16,8 +16,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         readonly int columns = 10;
         readonly Guid id = Guid.NewGuid();
         readonly Guid lampId = Guid.NewGuid();
-        readonly string lampName = "lamp name";
-        readonly string name = "matrix name";
+        readonly Name lampName = new Name("lamp name");
+        readonly Name name = new Name("matrix name");
 
 
         [Fact]

@@ -10,9 +10,9 @@ namespace TestProject1.DoorTest.DoorTest
 {
     public class DoorTest
     {
-        readonly string name = "door";
+        readonly Name name = new Name("door");
         readonly Guid id = Guid.NewGuid();
-        readonly int lockCode = 123;
+        readonly PIN lockCode = new PIN("1234");
         [Fact]
         public void Open_IfTheDoorIsUnlockedOpen()
         {
@@ -24,7 +24,7 @@ namespace TestProject1.DoorTest.DoorTest
         [Fact]
         public void Open_IfTheDoorIsLockedDoNotOpen()
         {
-            Door newDoor = new Door(123, name, id);
+            Door newDoor = new Door(new PIN("1234"), name, id);
             newDoor.Lock();
             Assert.Throws<InvalidOperationException>(() => newDoor.Open());
         }
@@ -32,7 +32,7 @@ namespace TestProject1.DoorTest.DoorTest
         [Fact]
         public void Lock_IfTheDoorIsCloseLock()
         {
-            Door newDoor = new Door(123, name, id);
+            Door newDoor = new Door(new PIN("1234"), name, id);
 
             newDoor.Close();
 
@@ -41,7 +41,7 @@ namespace TestProject1.DoorTest.DoorTest
         [Fact]
         public void Lock_IfTheDoorIsOpenDoNotLock()
         {
-            Door newDoor = new Door(123, name, id);
+            Door newDoor = new Door(new PIN("1234"), name, id);
             newDoor.Open();
             Assert.Throws<InvalidOperationException>(() => newDoor.Lock());
         }
@@ -49,40 +49,40 @@ namespace TestProject1.DoorTest.DoorTest
         [Fact]
         public void Unlock_IfTheCodeIsCorrectUnlock()
         {
-            Door newDoor = new Door(123, name, id);
+            Door newDoor = new Door(new PIN("1234"), name, id);
             newDoor.Lock();
-            newDoor.Unlock(123);
+            newDoor.Unlock(new PIN("1234"));
             Assert.True(newDoor.Status == DeviceStatus.Unlock);
         }
 
         [Fact]
         public void Unlock_IfTheCodeIsIncorrectDoNotUnlock()
         {
-            Door newDoor = new Door(123, name, id);
+            Door newDoor = new Door(new PIN("1234"), name, id);
             newDoor.Lock();
-            newDoor.Unlock(999);
+            newDoor.Unlock(new PIN("9994"));
             Assert.False(newDoor.Status == DeviceStatus.Unlock);
         }
 
         [Fact]
         public void SetNewUnlockCode_IfTheDoorIsOpenSetNewCode()
         {
-            Door newDoor = new Door(123, name, id);
+            Door newDoor = new Door(new PIN("1234"), name, id);
             newDoor.Open();
-            newDoor.SetNewUnlockCode(999);
+            newDoor.SetNewUnlockCode(new PIN("9994"));
             newDoor.Close();
             newDoor.Lock();
-            newDoor.Unlock(999);
+            newDoor.Unlock(new PIN("9994"));
             Assert.True(newDoor.Status == DeviceStatus.Unlock);
         }
         [Fact]
-        public void SetNewUnlockCode_IfTheDoorIsCloseDoNotSetNewCode()
+        public void SetNewUnlockCode_IfTheDoorIsClosedDoNotSetNewCode()
         {
-            Door newDoor = new Door(123, name, id);
+            Door newDoor = new Door(new PIN("1234"), name, id);
             newDoor.Close();
-            newDoor.SetNewUnlockCode(999);
             newDoor.Lock();
-            newDoor.Unlock(999);
+            newDoor.SetNewUnlockCode(new PIN("9994"));
+            newDoor.Unlock(new PIN("9994"));
             Assert.False(newDoor.Status == DeviceStatus.Unlock);
         }
     }

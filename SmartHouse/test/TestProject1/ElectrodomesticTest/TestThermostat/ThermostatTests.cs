@@ -11,7 +11,7 @@ namespace TestProject1.TestThermostat.ThermostatTests
     public class ThermostatTests
     {
         readonly Guid id = Guid.NewGuid();
-        readonly string name = "Thermostat name";
+        readonly Name name = new Name("Thermostat name");
         readonly int temp = 20;
         [Fact]
         public void Thermostat_WhenCreated_ThermostatIsOff()

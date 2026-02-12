@@ -8,9 +8,9 @@ public class TwoDeviceLampTest // prova
     readonly Guid idL = Guid.NewGuid();
     readonly Guid idE = Guid.NewGuid();
     readonly Guid idTwo = Guid.NewGuid();
-    readonly string lampName = "lamp";
-    readonly string ecoName = "ecolamp";
-    readonly string twoName = "twoName";
+    readonly Name lampName = new Name("lamp");
+    readonly Name ecoName = new Name("ecolamp");
+    readonly Name twoName = new Name("twoName");
     [Fact]
     public void ToggleLamp_WhenLampIsOffTurnOn()
     {

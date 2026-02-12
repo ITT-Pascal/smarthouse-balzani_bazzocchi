@@ -8,7 +8,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
         public List<AbstractLamp> lamps { get; private set; }
 
         // Constructor
-        public LampsRow(string name, Guid id):base(name, id)
+        public LampsRow(Name name, Guid id):base(name, id)
         {
             lamps = new List<AbstractLamp>();
         }
@@ -35,7 +35,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             }
         }
 
-        public void SwitchOn(string name)
+        public void SwitchOn(Name name)
         {
             base.SwitchOn();
             for (int i = 0; i < lamps.Count; i++)
@@ -67,7 +67,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             }
         }
 
-        public void SwitchOff(string name)
+        public void SwitchOff(Name name)
         {
             base.SwitchOff();
             for (int i = 0; i < lamps.Count; i++)
@@ -120,7 +120,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             }
         }
 
-        public void RemoveLampDevice(string name)
+        public void RemoveLampDevice(Name name)
         {
             for (int i = 0; i < lamps.Count; i++)
             {
@@ -201,7 +201,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
             }
         }
 
-        public void SetIntensityForLamp(string name, Intensity intensity)
+        public void SetIntensityForLamp(Name name, Intensity intensity)
         {
             for (int i = 0; i < lamps.Count; i++)
             {

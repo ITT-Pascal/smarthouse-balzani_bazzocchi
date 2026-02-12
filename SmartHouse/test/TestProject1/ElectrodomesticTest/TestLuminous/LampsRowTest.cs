@@ -6,14 +6,14 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp;
 
 public class LampsRowTest
 {
-    readonly string name = "pippo";
+    readonly Name name = new Name("pippo");
     readonly Guid id = Guid.NewGuid();
     readonly Guid idLamp = Guid.NewGuid();
-    readonly string nameLamp = "name";
-    readonly Lamp lamp1 = new Lamp(Guid.NewGuid(), "lamp1");
-    readonly Lamp lamp2 = new Lamp(Guid.NewGuid(), "lamp2");
-    readonly AbstractLamp ecoLamp1 = new EcoLamp("ecoLamp1", Guid.NewGuid());
-    readonly EcoLamp ecoLamp2 = new EcoLamp("ecoLamp2", Guid.NewGuid());
+    readonly Name nameLamp = new Name("name");
+    readonly Lamp lamp1 = new Lamp(Guid.NewGuid(), new Name("lamp1"));
+    readonly Lamp lamp2 = new Lamp(Guid.NewGuid(), new Name("lamp2"));
+    readonly AbstractLamp ecoLamp1 = new EcoLamp(new Name("ecolamp1"), Guid.NewGuid());
+    readonly EcoLamp ecoLamp2 = new EcoLamp(new Name("ecolamp2"), Guid.NewGuid());
     //Add/Remove Lamp Tests
     [Fact]
     public void AddLamp_WhenAddLampAddProperly()

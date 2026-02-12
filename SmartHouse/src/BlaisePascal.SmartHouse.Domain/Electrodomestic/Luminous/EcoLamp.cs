@@ -9,7 +9,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
 {
     public sealed class EcoLamp: AbstractLamp
     {
-        public EcoLamp(string name, Guid id) : base(id, name)
+        public EcoLamp(Name name, Guid id) : base(id, name)
         {
 
         }

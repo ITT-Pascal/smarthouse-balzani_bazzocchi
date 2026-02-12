@@ -12,7 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
     public class EcoLampTest
     {
         readonly Guid id = Guid.NewGuid();
-        readonly string name = "Pippo";
+        readonly Name name = new Name("Pippo");
         [Fact]
         public void EcoLamp_WhenCreatedTheEcoLampIsOff()
         {

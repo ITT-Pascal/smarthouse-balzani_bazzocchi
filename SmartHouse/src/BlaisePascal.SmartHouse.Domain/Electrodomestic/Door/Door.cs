@@ -9,8 +9,8 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
 {
     public class Door: AbstractDevice, IOpenable, ILockable
     {
-        private int _lockCode;
-        public Door(int lockCode, string name, Guid id):base( name, id)
+        private PIN _lockCode { get; set; }
+        public Door(PIN lockCode, Name name, Guid id):base( name, id)
         {
             _lockCode = lockCode;
             Status = DeviceStatus.Close;
@@ -34,12 +34,12 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
             if (Status == DeviceStatus.Close)
                 Status = DeviceStatus.Lock;
         }
-        public void Unlock(int code)
+        public void Unlock(PIN code)
         {
             if (code == _lockCode)
             Status = DeviceStatus.Unlock;
         }
-        public void SetNewUnlockCode(int newUnlockCode)
+        public void SetNewUnlockCode(PIN newUnlockCode)
         {
             if (Status == DeviceStatus.Open)
                 _lockCode = newUnlockCode;

@@ -20,7 +20,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice
         public TimeOnly? HourToTurnOn { get; set; } // nullable
         public TimeOnly? HourToTurnOff { get; set; } // nullable
 
-        public AirConditioner(Guid id, string name, double currentTemperture, double targetTemperature, int power): base(name, id)
+        public AirConditioner(Guid id, Name name, double currentTemperture, double targetTemperature, int power): base(name, id)
         {
             CurrentTemperature = currentTemperture;
             TargetTemperature = targetTemperature;
