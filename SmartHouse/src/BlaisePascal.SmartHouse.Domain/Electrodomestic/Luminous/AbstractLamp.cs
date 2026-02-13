@@ -12,7 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
         public Intensity Intensity { get; protected set; }
         public Intensity MaxIntensity { get; protected set; }
         public Intensity MinIntensity { get; protected set; }
-        public AbstractLamp(Guid id, Name name) : base(name, id)
+        public AbstractLamp( Name name) : base(name)
         {
             MinIntensity = new Intensity(0);
             MaxIntensity = new Intensity(100);

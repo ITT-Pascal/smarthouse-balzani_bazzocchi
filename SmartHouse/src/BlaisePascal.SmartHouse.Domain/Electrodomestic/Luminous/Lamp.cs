@@ -8,9 +8,9 @@ using BlaisePascal.SmartHouse.Domain.Abstractions;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
 {
-    public sealed class Lamp: AbstractLamp
+    public sealed class Lamp : AbstractLamp
     {
-        public Lamp(Guid id, Name name) : base(id, name)
+        public Lamp( Name name) : base(name)
         {
 
         }

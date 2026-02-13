@@ -16,13 +16,13 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions
         public DateTime LastModifiedAtUtc { get; protected set; }
         public Random Random { get; protected set; }
 
-        protected AbstractDevice(Name name, Guid id)
+        protected AbstractDevice(Name name)
         {
             CreatedAtUtc = DateTime.UtcNow;
             LastModifiedAtUtc = DateTime.UtcNow;
             Random = new Random();
-            Id = id;
             Name = name;
+            Id = Guid.NewGuid();
             Status = DeviceStatus.Off;
         }
         public virtual void Toggle()
