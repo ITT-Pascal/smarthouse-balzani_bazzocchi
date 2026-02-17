@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice.Entities
 {
     public class Thermostat: AbstractDevice
     {
@@ -13,7 +13,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat
         public double TargetTemperature { get; private set; }
         public const int MinTemperature = 0;
         public const int MaxTemperature = 40;
-        public Thermostat(Name name, double temp, Guid id): base(name, id)
+        public Thermostat(Name name, double temp): base(name)
         {
             CurrentTemperature = temp;
             TargetTemperature = temp;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Abstractions;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
 {
@@ -16,14 +17,14 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void EcoLamp_WhenCreatedTheEcoLampIsOff()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Assert
             Assert.Equal(DeviceStatus.Off, newEcoLamp.Status);
         }
         [Fact]
         public void EcoLamp_SwitchOn_WhenLampIsOn_ReturnTrue()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Act
             newEcoLamp.SwitchOn();
             //Assert
@@ -33,7 +34,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void EcoLamp_SwitchOff_WhenLampIsOff_ReturnFalse()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Act
             newEcoLamp.SwitchOn();
             newEcoLamp.SwitchOff();
@@ -45,7 +46,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void EcoLampTurnOnOff_WhenTheEcoLampIsOffTurnOn()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Act
             newEcoLamp.Toggle();
             //Assert
@@ -55,7 +56,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void EcoLampTurnOnOff_WhenTheEcoLampIsOnTurnOff()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Act
             newEcoLamp.Toggle();
             newEcoLamp.Toggle();
@@ -66,7 +67,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsNegative_ThrowArgumentOutOfRangeException()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Act
             newEcoLamp.Toggle();
             //Assert
@@ -76,7 +77,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsHigherThan0_BrightnessGetUpdated()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
 
             //Act
             newEcoLamp.Toggle();
@@ -89,7 +90,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIs0_BrightnessTurn0()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Act
             newEcoLamp.Toggle();
             newEcoLamp.SetIntensity(new Intensity(0));
@@ -100,7 +101,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenTheEcoLampIsOff_ThrowInvalidOperationException()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Assert
             Assert.Throws<InvalidOperationException>(() => newEcoLamp.SetIntensity(new Intensity(3))); 
         }
@@ -109,7 +110,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void EcoLamp_ChangeBrightness_WhenBrightnessIsHigherThan100_ThrowArgumentOutOfRangeException()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Act
             newEcoLamp.Toggle();
             //Assert
@@ -120,7 +121,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
 
         public void EcoLamp_AutoTurnOff_WhenTheLampIsOff_ThrowException()
         {
-            EcoLamp newEcoLamp = new EcoLamp(name, id);
+            EcoLamp newEcoLamp = new EcoLamp(name);
             //Act
             Assert.Throws<InvalidOperationException>(() => newEcoLamp.AutoTurnOff());
         }

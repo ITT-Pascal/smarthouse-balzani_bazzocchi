@@ -1,5 +1,5 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;

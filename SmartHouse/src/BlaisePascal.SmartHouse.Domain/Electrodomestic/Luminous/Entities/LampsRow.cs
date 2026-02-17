@@ -1,6 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities
 {
     public sealed class LampsRow: AbstractDevice
     {
@@ -8,7 +8,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
         public List<AbstractLamp> lamps { get; private set; }
 
         // Constructor
-        public LampsRow(Name name, Guid id):base(name, id)
+        public LampsRow(Name name):base(name)
         {
             lamps = new List<AbstractLamp>();
         }

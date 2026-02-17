@@ -9,7 +9,7 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions
     public abstract class AbstractSecureDevice:AbstractDevice, ISecureSwitchable
     {
         private PIN SecurityCode { get; set; }
-        protected AbstractSecureDevice(Name name, Guid id, PIN securityCode) : base(name, id)
+        protected AbstractSecureDevice(Name name, PIN securityCode) : base(name)
         {
             SecurityCode = securityCode;
         }

@@ -1,4 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.Smarthouse.Application
+namespace BlaisePascal.Smarthouse.Application.Use_Cases.Luminous_Use_Cases
 {
     public class SwitchOnLampCommand
     {
@@ -17,7 +17,6 @@ namespace BlaisePascal.Smarthouse.Application
         }
         public void Execute(Guid id)
         {
-
             Lamp lamp = _repository.GetById(id);
             if (lamp != null)
             {

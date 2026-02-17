@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Abstractions;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Thermostat;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice.Entities;
 
 namespace TestProject1.TestThermostat.ThermostatTests
 {

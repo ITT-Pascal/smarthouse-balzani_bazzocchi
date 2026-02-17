@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV.Entities
 {
     public class CCTV: AbstractSecureDevice
     {
@@ -16,7 +16,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV
         public TimeOnly StartOfNight { get; private set; }
         public DateTime _recordingStartTime;
 
-        public CCTV(Name name, Guid id, PIN securityCode): base(name, id, securityCode)
+        public CCTV(Name name, PIN securityCode): base(name, securityCode)
         {
             StartOfDay = new TimeOnly(7, 30);
             StartOfNight = new TimeOnly(21, 30);

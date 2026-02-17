@@ -1,6 +1,6 @@
 using BlaisePascal.SmartHouse.Domain.Electrodomestic;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
 using BlaisePascal.SmartHouse.Domain.Abstractions;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp;
 
@@ -18,21 +18,21 @@ public class LampsRowTest
     [Fact]
     public void AddLamp_WhenAddLampAddProperly()
     {
-        LampsRow lampsRow = new LampsRow(name, id);
+        LampsRow lampsRow = new LampsRow(name);
         lampsRow.AddLamp(lamp1);
         Assert.IsType<Lamp>(lampsRow.lamps[0]); // new nel costruttore nuovo.
     }
     [Fact]
     public void AddEcoLamp_WhenAddEcoLamp()
     {
-        LampsRow lampsRow = new LampsRow(name, id);
+        LampsRow lampsRow = new LampsRow(name);
         lampsRow.AddEcoLamp(ecoLamp1);
         Assert.IsType<EcoLamp>(lampsRow.lamps[0]);
     }
     [Fact]
     public void AddLampInPosition_WhenAddLampInPositionDoItProperly()
     {
-        LampsRow lampsRow = new LampsRow(name, id);
+        LampsRow lampsRow = new LampsRow(name);
         int position = 0;
         lampsRow.AddLampInPosition(lamp1, position);
         Assert.IsType<Lamp>(lampsRow.lamps[0]);
@@ -40,7 +40,7 @@ public class LampsRowTest
     [Fact]
     public void RemoveLamp_WhenRemoveLampById_RemoveProperly()
     {
-        LampsRow lampsRow = new LampsRow(name, id);
+        LampsRow lampsRow = new LampsRow(name);
         lampsRow.AddLamp(lamp1);
         lampsRow.RemoveLampDevice(lamp1.Id);
         Assert.Empty(lampsRow.lamps);
@@ -48,7 +48,7 @@ public class LampsRowTest
     [Fact]
     public void RemoveLamp_WhenRemoveLampByName()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.RemoveLampDevice(lamp1.Name);
         Assert.Empty(newLampsRow.lamps);
@@ -56,7 +56,7 @@ public class LampsRowTest
     [Fact]
     public void RemoveLampInPosition_WhenRemoveLampInPositionDoItProperly()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLampInPosition(lamp1, 0);
         newLampsRow.RemoveLampInPosition(0);
         Assert.Empty(newLampsRow.lamps);
@@ -65,7 +65,7 @@ public class LampsRowTest
     [Fact]
     public void ToggleAllLamps_WhenAllLampsAreOnTurnOff()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.ToggleAllLamps(); // on
@@ -80,7 +80,7 @@ public class LampsRowTest
     [Fact]
     public void ToggleAllLamps_WhenAllLampsAreOffTurnOn()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.ToggleAllLamps();
@@ -94,7 +94,7 @@ public class LampsRowTest
     [Fact]
     public void ToggleAllEcoLamps_WhenAllEcoLampsAreOnTurnOff()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddEcoLamp(ecoLamp1);
         newLampsRow.AddEcoLamp(ecoLamp2);
         newLampsRow.ToggleAllEcoLamps(); // on
@@ -110,7 +110,7 @@ public class LampsRowTest
     [Fact]
     public void ToggleAllEcoLamps_WhenAllEcoLampsAreOffTurnOn()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddEcoLamp(ecoLamp1);
         newLampsRow.AddEcoLamp(ecoLamp2);
         newLampsRow.ToggleAllEcoLamps();
@@ -124,7 +124,7 @@ public class LampsRowTest
     [Fact]
     public void ToggleAllDevices_WhenAllDevicesAreOnTurnOff()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddEcoLamp(ecoLamp1);
         newLampsRow.ToggleAll(); // on
@@ -138,7 +138,7 @@ public class LampsRowTest
     [Fact]
     public void ToggleAllDevices_WhenAllDevicesAreOffTurnOn()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddEcoLamp(ecoLamp1);
         newLampsRow.ToggleAll(); // on
@@ -152,7 +152,7 @@ public class LampsRowTest
     [Fact]
     public void SetIntensityForLamp_WhenSetLampIntensityByIdTo25_ThenBrightnessIs25()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.SetIntensityForLamp(id, new Intensity(25));
@@ -165,7 +165,7 @@ public class LampsRowTest
     [Fact]
     public void SetIntensityForLamp_WhenSetLampIntensityByNameTo50_ThenBrightnessIs50()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.SetIntensityForLamp(name, new Intensity(50));
@@ -178,7 +178,7 @@ public class LampsRowTest
     [Fact]
     public void SetIntensityForAllLamps_WhenChangeAllDevicesBrightnessTo17_ThenBrightnessIs17()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.ToggleAllLamps();
@@ -192,7 +192,7 @@ public class LampsRowTest
     [Fact]
     public void SwitchOn_WhenSwitchOnAllLamps_ThenAllLampsAreOn()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         for (int i = 0; i < newLampsRow.lamps.Count; i++)
@@ -205,7 +205,7 @@ public class LampsRowTest
     public void SwitchOn_WhenSwitchOnLampById_ThenLampIsOn()
     {
        
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.SwitchOn(id);

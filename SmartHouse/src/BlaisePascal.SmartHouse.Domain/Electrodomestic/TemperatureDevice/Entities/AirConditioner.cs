@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice.Entities
 {
     public class AirConditioner: AbstractDevice
     {
@@ -20,7 +20,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice
         public TimeOnly? HourToTurnOn { get; set; } // nullable
         public TimeOnly? HourToTurnOff { get; set; } // nullable
 
-        public AirConditioner(Guid id, Name name, double currentTemperture, double targetTemperature, int power): base(name, id)
+        public AirConditioner(Name name, double currentTemperture, double targetTemperature, int power): base(name)
         {
             CurrentTemperature = currentTemperture;
             TargetTemperature = targetTemperature;

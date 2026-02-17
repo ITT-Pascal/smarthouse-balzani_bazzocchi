@@ -1,5 +1,5 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.TemperatureDevice.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

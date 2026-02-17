@@ -1,6 +1,6 @@
 using BlaisePascal.SmartHouse.Domain.Electrodomestic;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
 using BlaisePascal.SmartHouse.Domain.Abstractions;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp;
 public class TwoDeviceLampTest // prova

@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities
 {
     public sealed class MatrixLed: AbstractLamp
     {
         public AbstractLamp[,] Matrix;
-        public MatrixLed(int rows, int columns, Guid id, Name name): base(id, name) {
+        public MatrixLed(int rows, int columns, Name name): base( name) {
             Matrix = new AbstractLamp[rows, columns];
             for(int r = 0; r < Matrix.GetLength(0); r++)
             {
                 for(int c = 0; c < Matrix.GetLength(1); c++)
                 {
-                    Matrix[r, c] = new Lamp(Guid.NewGuid(), new Name("Default Lamp"));
+                    Matrix[r, c] = new Lamp(new Name("Default Lamp"));
                 }
             }
         }

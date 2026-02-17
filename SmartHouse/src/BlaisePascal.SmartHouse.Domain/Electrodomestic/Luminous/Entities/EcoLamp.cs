@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities
 {
     public sealed class EcoLamp: AbstractLamp
     {
-        public EcoLamp(Name name, Guid id) : base(id, name)
+        public EcoLamp(Name name) : base(name)
         {
 
         }

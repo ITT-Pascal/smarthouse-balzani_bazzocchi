@@ -1,4 +1,5 @@
-﻿using ImageProcessor.Processors;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
+using ImageProcessor.Processors;
 using System;
 using System.Collections.Generic;
 using System.Linq;

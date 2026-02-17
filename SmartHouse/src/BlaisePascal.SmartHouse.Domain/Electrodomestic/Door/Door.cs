@@ -10,7 +10,7 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
     public class Door: AbstractDevice, IOpenable, ILockable
     {
         private PIN _lockCode { get; set; }
-        public Door(PIN lockCode, Name name, Guid id):base( name, id)
+        public Door(PIN lockCode, Name name):base(name)
         {
             _lockCode = lockCode;
             Status = DeviceStatus.Close;

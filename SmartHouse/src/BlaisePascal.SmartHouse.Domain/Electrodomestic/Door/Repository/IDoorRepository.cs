@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,10 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door.Repository
         void Add(Door door);
         void Update(Door door);
         void Remove(Guid id);
+        void Close(Guid id);
+        void Open(Guid id);
+        void Lock(Guid id);
+        void Unlock(Guid id);
         Door GetById(Guid id);
-        List<Door> GetAll();
     }
 }
