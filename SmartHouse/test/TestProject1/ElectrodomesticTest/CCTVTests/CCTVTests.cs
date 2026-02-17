@@ -19,7 +19,7 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
         public void SwitchDayNightMode_IfCCTVIsOff_ThrowInvalidOperationException()
         {
             // Arrange
-            var cctv = new CCTV(name, id, securityCode);
+            var cctv = new CCTV(name, securityCode);
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => cctv.SwitchDayNightMode());
         }
@@ -27,7 +27,7 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
         [Fact]
         public void StartRecording()
         {
-            CCTV newCCTV = new CCTV(name, id, securityCode);
+            CCTV newCCTV = new CCTV(name, securityCode);
             newCCTV.SecureSwitchOn(new PIN("0000"));
             newCCTV.StartRecording();
             Assert.Equal(RecordingStatus.Recording, newCCTV.RecordingStatus);
@@ -36,14 +36,14 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
         [Fact]
         public void StartRecording_IfCCTVIsOff()
         {
-            CCTV newCCTV = new CCTV(name, id, securityCode);
+            CCTV newCCTV = new CCTV(name, securityCode);
             Assert.Throws<InvalidOperationException>(() => newCCTV.StartRecording());
         }
 
         [Fact]
         public void StopRecording()
         {
-            CCTV newCCTV = new CCTV(name, id, securityCode);
+            CCTV newCCTV = new CCTV(name, securityCode);
             newCCTV.SecureSwitchOn(new PIN("0000"));
             newCCTV.StartRecording();
             newCCTV.StopRecording("wiwi");
@@ -53,7 +53,7 @@ namespace TestProject1.ElectrodomesticTest.CCTVTests
         [Fact]
         public void Renamerecording()
         {
-            CCTV newCCTV = new CCTV(name, id, securityCode);
+            CCTV newCCTV = new CCTV(name, securityCode);
             newCCTV.SecureSwitchOn(new PIN("0000"));
             newCCTV.StartRecording();
             newCCTV.StopRecording("Paolo e Francesca...");

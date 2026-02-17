@@ -14,7 +14,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void Lamp_WhenCreatedTheLampIsOff()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
             //Assert
             Assert.Equal(DeviceStatus.Off, newLamp.Status);
 
@@ -22,7 +22,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void Lamp_SwitchOn_WhenLampIsOn_ReturnTrue()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
             //Act
             newLamp.SwitchOn();
             //Assert
@@ -31,7 +31,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void Lamp_SwitchOff_WhenLampIsOff_ReturnFalse()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
 
             //Act
             newLamp.SwitchOn();
@@ -44,7 +44,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void Lamp_Toggle_WhenTheLampIsOffTurnOn()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
 
             //Act
             newLamp.Toggle();
@@ -56,7 +56,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void Lamp_Toggle_WhenTheLampIsOnTurnOff()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
 
             //Act
             newLamp.Toggle();
@@ -70,7 +70,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void Lamp_SetIntensity_WhenIntensityIsNegative_ThrowArgumentOutOfRangeException()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
             //Act
             newLamp.Toggle();
             //Assert
@@ -80,7 +80,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void Lamp_SetIntensity_WhenNewIntensityIsHigherThan0_IntensityGetUpdated()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
             //Act
             newLamp.Toggle();
             newLamp.SetIntensity(new Intensity(10));
@@ -90,7 +90,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void Lamp_SetIntensity_WhenNewIntensityIs0_IntensityTurn0()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
             //Act
             newLamp.Toggle();
             newLamp.SetIntensity(new Intensity(0));
@@ -100,14 +100,14 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp
         [Fact]
         public void Lamp_ChangeBrightness_WhenTheLampIsOff_ThrowInvalidOperationException()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
             //Assert
             Assert.Throws<InvalidOperationException>(() => newLamp.SetIntensity(new Intensity(3)));
         }
         [Fact]
         public void Lamp_SetIntensity_WhenIntensityIsHigherThan100_ThrowArgumentOutOfRangeException()
         {
-            Lamp newLamp = new Lamp(id, name);
+            Lamp newLamp = new Lamp( name);
             //Act
             newLamp.Toggle();
             //Assert

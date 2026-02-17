@@ -14,8 +14,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
     {
         readonly int rows = 10;
         readonly int columns = 10;
-        readonly Guid id = Guid.NewGuid();
-        readonly Guid lampId = Guid.NewGuid();
         readonly Name lampName = new Name("lamp name");
         readonly Name name = new Name("matrix name");
 
@@ -23,8 +21,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void AddChangeLamp_InsertLamp()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            AbstractLamp type = new Lamp(lampId, lampName);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
+            AbstractLamp type = new Lamp( lampName);
             newMatrixLed.AddChangeLamp(type, 3, 3);
             Assert.IsType<Lamp>(newMatrixLed.Matrix[2, 2]);
         }
@@ -32,8 +30,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void AddChangeLamp_InsertEcoLamp()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            AbstractLamp type = new EcoLamp(lampName, lampId);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
+            AbstractLamp type = new EcoLamp(lampName);
             newMatrixLed.AddChangeLamp(type, 3, 3);
             Assert.IsType<EcoLamp>(newMatrixLed.Matrix[2, 2]);
         }
@@ -41,15 +39,15 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void AddChangeLamp_InsertLampOutOfMatrix()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            AbstractLamp type = new EcoLamp(lampName, lampId);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
+            AbstractLamp type = new EcoLamp(lampName);
             Assert.Throws<IndexOutOfRangeException>(() => newMatrixLed.AddChangeLamp(type, 15, 3));
         }
 
         [Fact]
         public void SwitchOn()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
             {
@@ -63,7 +61,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SwitchOff()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             newMatrixLed.SwitchOff();
             for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
@@ -78,7 +76,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SwitchOnRow()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOnRow(3);
             for (int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
             {
@@ -89,14 +87,14 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SwitchOnRow_RowIndexOutOfMatrix()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             Assert.Throws<IndexOutOfRangeException>(() => newMatrixLed.SwitchOnRow(17));
         }
 
         [Fact]
         public void SwitchOffRow()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             newMatrixLed.SwitchOffRow(3);
             for (int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
@@ -108,14 +106,14 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SwitchOffRow_RowIndexOutOfMatrix()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             Assert.Throws<IndexOutOfRangeException>(() => newMatrixLed.SwitchOffRow(17));
         }
 
         [Fact]
         public void SwitchOnColumn()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOnColumn(3);
             for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
             {
@@ -126,14 +124,14 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SwitchOnColumn_ColumnIndexOutOfMatrix()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             Assert.Throws<IndexOutOfRangeException>(() => newMatrixLed.SwitchOnColumn(17));
         }
 
         [Fact]
         public void SwitchOffColumn()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             newMatrixLed.SwitchOffColumn(3);
             for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
@@ -145,15 +143,15 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SwitchOffColumn_ColumnIndexOutOfMatrix()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             Assert.Throws<IndexOutOfRangeException>(() => newMatrixLed.SwitchOffColumn(17));
         }
 
         [Fact]
         public void SetMatrixLedType_Lamp()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            Func<AbstractLamp> type = () => new Lamp(lampId, lampName);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
+            Func<AbstractLamp> type = () => new Lamp( lampName);
             newMatrixLed.SetMatrixLedType(type);
             for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
             {
@@ -167,8 +165,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SetMatrixLedType_EcoLamp()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            Func<AbstractLamp> type = () => new EcoLamp(lampName, lampId);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
+            Func<AbstractLamp> type = () => new EcoLamp(lampName);
             newMatrixLed.SetMatrixLedType(type);
             for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
             {
@@ -182,8 +180,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SetIntensity()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
-            Func<AbstractLamp> type = () => new Lamp(lampId, lampName);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
+            Func<AbstractLamp> type = () => new Lamp( lampName);
             newMatrixLed.SetMatrixLedType(type);
             newMatrixLed.SwitchOn();
             newMatrixLed.SetIntensity(new Intensity(35));
@@ -199,7 +197,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SetIntensity_IntensityOutOfRange()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             Assert.Throws<ArgumentOutOfRangeException>(() => newMatrixLed.SetIntensity(new Intensity(911)));
         }
@@ -207,7 +205,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SetRowIntensity()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             newMatrixLed.SetRowIntensity(3, new Intensity(20));
             for (int c = 0; c < newMatrixLed.Matrix.GetLength(1); c++)
@@ -219,7 +217,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SetRowIntensity_IndexOutOfMatrix()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             Assert.Throws<IndexOutOfRangeException>(() => newMatrixLed.SetRowIntensity(500, new Intensity(20)));
         }
@@ -227,7 +225,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SetRowIntensity_IntensityOutOfRange()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             Assert.Throws<ArgumentOutOfRangeException>(() => newMatrixLed.SetRowIntensity(3, new Intensity(200)));
         }
@@ -235,7 +233,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SetColumnIntensity()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             newMatrixLed.SetColumnIntensity(3, new Intensity(20));
             for (int r = 0; r < newMatrixLed.Matrix.GetLength(0); r++)
@@ -247,7 +245,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SetColumnIntensity_IndexOutOfMatrix()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             Assert.Throws<IndexOutOfRangeException>(() => newMatrixLed.SetColumnIntensity(500, new Intensity(20)));
         }
@@ -255,7 +253,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLumino
         [Fact]
         public void SetColumnIntensity_IntensityOutOfRange()
         {
-            MatrixLed newMatrixLed = new MatrixLed(rows, columns, id, name);
+            MatrixLed newMatrixLed = new MatrixLed(rows, columns, name);
             newMatrixLed.SwitchOn();
             Assert.Throws<ArgumentOutOfRangeException>(() => newMatrixLed.SetColumnIntensity(3, new Intensity(200)));
         }

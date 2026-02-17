@@ -10,10 +10,10 @@ public class LampsRowTest
     readonly Guid id = Guid.NewGuid();
     readonly Guid idLamp = Guid.NewGuid();
     readonly Name nameLamp = new Name("name");
-    readonly Lamp lamp1 = new Lamp(Guid.NewGuid(), new Name("lamp1"));
-    readonly Lamp lamp2 = new Lamp(Guid.NewGuid(), new Name("lamp2"));
-    readonly AbstractLamp ecoLamp1 = new EcoLamp(new Name("ecolamp1"), Guid.NewGuid());
-    readonly EcoLamp ecoLamp2 = new EcoLamp(new Name("ecolamp2"), Guid.NewGuid());
+    readonly Lamp lamp1 = new Lamp( new Name("lamp1"));
+    readonly Lamp lamp2 = new Lamp( new Name("lamp2"));
+    readonly AbstractLamp ecoLamp1 = new EcoLamp(new Name("ecolamp1"));
+    readonly EcoLamp ecoLamp2 = new EcoLamp(new Name("ecolamp2"));
     //Add/Remove Lamp Tests
     [Fact]
     public void AddLamp_WhenAddLampAddProperly()
@@ -218,7 +218,7 @@ public class LampsRowTest
     [Fact]
     public void SwitchOn_WhenSwitchOnByName_ThenLampIsOn()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.SwitchOn(name);
@@ -231,7 +231,7 @@ public class LampsRowTest
     [Fact]
     public void SwitchOff_WhenSwitchOffLampById_ThenLampIsOff()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.SwitchOn(id); // prima lo accendo
         newLampsRow.SwitchOff(id); // poi lo spengo
         for (int i = 0; i < newLampsRow.lamps.Count; i++)
@@ -243,7 +243,7 @@ public class LampsRowTest
     [Fact]
     public void SwitchOff_WhenSwitchOffByName_ThenLampIsOff()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.SwitchOn(name); // prima lo accendo
@@ -257,7 +257,7 @@ public class LampsRowTest
     [Fact]
     public void FindAllOn_FindAllOnLamps_ReturnOnlyOnLamps()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         newLampsRow.SwitchOn(id); // accendo la lampada
@@ -270,7 +270,7 @@ public class LampsRowTest
     [Fact]
     public void FindAllOff_FindAllOffLamps_ReturnOnlyOffLamps()
     {
-        LampsRow newLampsRow = new LampsRow(name, id);
+        LampsRow newLampsRow = new LampsRow(name);
         newLampsRow.AddLamp(lamp1);
         newLampsRow.AddLamp(lamp2);
         var offLamps = newLampsRow.FindAllOff();

@@ -5,9 +5,6 @@ using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ElectrodomesticTest.TestLamp;
 public class TwoDeviceLampTest // prova
 {
-    readonly Guid idL = Guid.NewGuid();
-    readonly Guid idE = Guid.NewGuid();
-    readonly Guid idTwo = Guid.NewGuid();
     readonly Name lampName = new Name("lamp");
     readonly Name ecoName = new Name("ecolamp");
     readonly Name twoName = new Name("twoName");
@@ -15,9 +12,9 @@ public class TwoDeviceLampTest // prova
     public void ToggleLamp_WhenLampIsOffTurnOn()
     {
         //Arrange
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
         //Act
         newTwoDeviceLamp.ToggleLamp();
         //Assert
@@ -26,9 +23,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void TurnOnOffLamp_WhenLampIsOnTurnOff()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp(lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.Toggle();
@@ -40,9 +37,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void TurnOnOffEcoLamp_WhenEcoLampIsOffTurnOn()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.ToggleEco();
@@ -53,9 +50,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void TurnOnOffEcoLamp_WhenEcoLampIsOnTurnOff()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp(lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
 
         //Act
         newTwoDeviceLamp.ToggleEco();
@@ -67,9 +64,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void TurnOnOffBoth_WhenEcoLampAndLampAreOffTurnItsOn()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
 
         newTwoDeviceLamp.ToggleBoth();
 
@@ -79,9 +76,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void TurnOffBoth_WhenEcoLampIsOnAndLampIsOffTurnEcoLampOffAndTurnLampOn()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp(lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
         newTwoDeviceLamp.ToggleEco();
         newTwoDeviceLamp.ToggleBoth();
 
@@ -91,9 +88,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void ToggleBoth_WhenEcoLampIsOffAndLampIsOnTurnEcoLampOnAndTurnLampOff()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
         newTwoDeviceLamp.ToggleLamp();
         newTwoDeviceLamp.ToggleBoth();
 
@@ -103,9 +100,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void ToggleBoth_WhenEcoLampAndLampAreOnTurnOff()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
         newTwoDeviceLamp.ToggleEco();
         newTwoDeviceLamp.ToggleLamp();
         newTwoDeviceLamp.ToggleBoth();
@@ -116,9 +113,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void ChangeEcoLampIntensity_WhenChangeTheEcoLampBrightnessTo17_ThenTheEcoLampBrightnessIs17()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
 
         newTwoDeviceLamp.ToggleEco();
         newTwoDeviceLamp.SetEcoLampIntensity(new Intensity(17));
@@ -129,9 +126,9 @@ public class TwoDeviceLampTest // prova
     public void ChangeEcoLampIntensity_WhenEcoLampBrightnessIsOver100_ThrowArgumentOutOfRangeException()
     {
         //Arrange
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
         //Act
         newTwoDeviceLamp.ToggleEco();
         newTwoDeviceLamp.Toggle();
@@ -143,9 +140,9 @@ public class TwoDeviceLampTest // prova
     {
         //Arrange
         DateTime createdAtUtc = DateTime.UtcNow;
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
         //Act
         newTwoDeviceLamp.Toggle();
 
@@ -156,9 +153,9 @@ public class TwoDeviceLampTest // prova
     public void ChangeLampBrightness_WhenLampBrightnessIsOver100_ThrowArgumentOutOfRangeException()
     {
         //Arrange
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
         //Act
         newTwoDeviceLamp.ToggleEco();
         newTwoDeviceLamp.ToggleLamp();
@@ -168,9 +165,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void SetLampIntensity_WhenChangeTheLampBrightnessTo3_ThenTheLampBrightnessIs3()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
         newTwoDeviceLamp.ToggleLamp();
         newTwoDeviceLamp.SetLampIntensity(new Intensity(3));
 
@@ -180,9 +177,9 @@ public class TwoDeviceLampTest // prova
     public void SetLampIntensity_WhenLampIsOff_ThrowInvalidOperationException()
     {
         //Arrange
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp(lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
         //Act
         newTwoDeviceLamp.ToggleEco();
         //Assert
@@ -191,9 +188,9 @@ public class TwoDeviceLampTest // prova
     [Fact]
     public void SetBothIntensity_WhenChangeEcoLamp_AndLampBrightnessTo20_EcoLampAndLampBrightnessIs20()
     {
-        Lamp newLamp = new Lamp(idL, lampName);
-        EcoLamp newEcoLamp = new EcoLamp(ecoName, idE);
-        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp, idTwo);
+        Lamp newLamp = new Lamp( lampName);
+        EcoLamp newEcoLamp = new EcoLamp(ecoName);
+        TwoDeviceLamp newTwoDeviceLamp = new TwoDeviceLamp(twoName, newLamp, newEcoLamp);
 
         newTwoDeviceLamp.ToggleLamp();
         newTwoDeviceLamp.ToggleEco();

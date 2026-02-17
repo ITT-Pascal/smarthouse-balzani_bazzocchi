@@ -10,7 +10,7 @@ namespace TestProject1.ElectrodomesticTest.AirConditionerTests
 {
     public class AirConditionerTests
     {
-        AirConditioner A = new AirConditioner(Guid.NewGuid(), new Name("AC1"), 22.0, 26.0, 2);
+        AirConditioner A = new AirConditioner(new Name("AC1"), 22.0, 26.0, 2);
         [Fact]
         public void SetTargetTemperature_IfTheTemperatureIsInRange_SetTheTemperature()
         {
