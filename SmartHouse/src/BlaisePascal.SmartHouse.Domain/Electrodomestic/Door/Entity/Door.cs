@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Door.Entities
 {
     public class Door: AbstractDevice, IOpenable, ILockable
     {

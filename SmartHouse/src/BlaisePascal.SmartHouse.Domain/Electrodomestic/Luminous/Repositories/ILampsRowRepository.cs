@@ -13,6 +13,6 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories
         void Update(LampsRow row);
         void Remove(Guid id);
         LampsRow GetById(Guid id);
-        List<LampsRow> GetAll();
+        
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV.Repository
+namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.CCTV.Entities
 {
     public interface ICCTVRepository
     {
