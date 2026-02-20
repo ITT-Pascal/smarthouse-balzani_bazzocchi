@@ -1,25 +1,27 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.Smarthouse.Application.Use_Cases.Luminous_Use_Cases
+namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.Lamp.Use_Cases.Commands
 {
-    public class RemoveLampCommand
+    public class AddLampCommand
     {
         private readonly ILampRepository _lampRepository;
-        public RemoveLampCommand(ILampRepository repo)
+        public AddLampCommand(ILampRepository repo)
         {
             _lampRepository = repo;
         }
 
-        public void Execute(Guid id)
+        public void Execute(Name lampName)
         {
-            _lampRepository.Remove(id);
+
+            _lampRepository.Add(new Lamp(lampName));
+
         }
     }
 }

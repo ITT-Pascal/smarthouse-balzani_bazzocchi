@@ -1,17 +1,17 @@
-﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories;
+﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.Smarthouse.Application.Use_Cases.Luminous_Use_Cases
+namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.Lamp.Use_Cases.Commands
 {
-    public class SwitchOnLampCommand
+    public class SwitchOffLampCommand
     {
         private readonly ILampRepository _repository;
-        public SwitchOnLampCommand(ILampRepository repo) 
+        public SwitchOffLampCommand(ILampRepository repo)
         {
             _repository = repo;
         }
@@ -20,7 +20,7 @@ namespace BlaisePascal.Smarthouse.Application.Use_Cases.Luminous_Use_Cases
             Lamp lamp = _repository.GetById(id);
             if (lamp != null)
             {
-                lamp.SwitchOn();
+                lamp.SwitchOff();
                 _repository.Update(lamp);
             }
         }

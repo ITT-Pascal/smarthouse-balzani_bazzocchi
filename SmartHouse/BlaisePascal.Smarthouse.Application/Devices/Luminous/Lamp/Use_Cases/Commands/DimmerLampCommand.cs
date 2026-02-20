@@ -6,21 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.Smarthouse.Application.Use_Cases.Luminous
+namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.Lamp.Use_Cases.Commands
 {
-    public class SetIntensityLampCommand
+    public class DimmerLampCommand
     {
         private readonly ILampRepository _repository;
-        public SetIntensityLampCommand(ILampRepository repo)
+        public DimmerLampCommand(ILampRepository repo)
         {
             _repository = repo;
         }
-        public void Execute(Guid id, Intensity amount)
+        public void Execute(Guid id, int amount)
         {
             Lamp lamp = _repository.GetById(id);
             if (lamp != null)
             {
-                lamp.SetIntensity(amount);
+                lamp.Dimmer(amount);
                 _repository.Update(lamp);
             }
         }
