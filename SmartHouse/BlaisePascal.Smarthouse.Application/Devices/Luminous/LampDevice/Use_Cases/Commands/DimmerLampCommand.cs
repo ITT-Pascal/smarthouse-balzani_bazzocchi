@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.Lamp.Use_Cases.Commands
+namespace BlaisePascal.Smarthouse.Application.Use_Cases.Luminous_Use_Cases
 {
     public class DimmerLampCommand
     {
