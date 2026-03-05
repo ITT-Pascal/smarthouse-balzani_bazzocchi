@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.Smarthouse.Application.Devices.DoorDevice.Use_Cases.Queries
 {
-    public class GetDoorByIdQuerie
+    public class GetDoorByIdQuery
     {
         private readonly IDoorRepository _doorRepository;
-        public GetDoorByIdQuerie(IDoorRepository repo)
+        public GetDoorByIdQuery(IDoorRepository repo)
         {
             _doorRepository = repo;
         }
