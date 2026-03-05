@@ -1,5 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
+using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

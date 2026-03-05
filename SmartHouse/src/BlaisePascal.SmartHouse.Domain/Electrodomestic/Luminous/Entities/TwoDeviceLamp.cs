@@ -1,4 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions.AbstractClasses;
+using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 using ImageProcessor.Processors;
 using System;
 using System.Collections.Generic;

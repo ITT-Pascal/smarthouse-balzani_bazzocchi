@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 
 namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.Use_Cases.Commands;
 

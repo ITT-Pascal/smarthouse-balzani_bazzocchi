@@ -1,6 +1,6 @@
 ﻿using BlaisePascal.Smarthouse.Application.Abstractions.Mappers;
-using BlaisePascal.Smarthouse.Application.Devices.Luminous.Lamp.DTO;
-using BlaisePascal.SmartHouse.Domain.Abstractions;
+using BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.DTO;
+using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories;
 using System;
@@ -18,9 +18,9 @@ public class AddLampCommand
     {
         _lampRepository = repo;
     }
-    public void Execute(LampDTO dto)
+    public void Execute(Name lampName)
     {
-        Lamp newLamp = LampMapper.toEntity(dto);
-        _lampRepository.Add(newLamp);
+        Lamp lamp = new Lamp(lampName);
+        _lampRepository.Add(lamp);
     }
 }

@@ -1,4 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

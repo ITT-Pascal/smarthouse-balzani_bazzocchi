@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Abstractions;
+using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities
 {

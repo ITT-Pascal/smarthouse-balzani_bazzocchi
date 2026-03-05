@@ -15,7 +15,6 @@ public class RemoveLampCommand
     {
         _lampRepository = repo;
     }
-
     public void Execute(Guid id)
     {
         _lampRepository.Remove(id);

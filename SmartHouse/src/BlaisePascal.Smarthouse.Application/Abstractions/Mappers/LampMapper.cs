@@ -1,5 +1,5 @@
-﻿using BlaisePascal.Smarthouse.Application.Devices.Luminous.Lamp.DTO;
-using BlaisePascal.SmartHouse.Domain.Abstractions;
+﻿using BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.DTO;
+using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,5 @@
 ﻿using BlaisePascal.Smarthouse.Application.Abstractions.Mappers;
-using BlaisePascal.Smarthouse.Application.Devices.Luminous.Lamp.DTO;
+using BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.DTO;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories;
 using System;
@@ -10,22 +10,36 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.Use_Cases.Queries
 {
-    public class GetAllLampQuery
+    //public class GetAllLampQuery
+    //{
+    //    private readonly ILampRepository _lampRepository;
+    //    public GetAllLampQuery(ILampRepository repository)
+    //    {
+    //        _lampRepository = repository;
+    //    }
+    //    public List<LampDTO> Execute()
+    //    {
+    //        List<LampDTO> result = new List<LampDTO>();
+    //        foreach (Lamp l in _lampRepository.GetAll())
+    //        {
+    //            result.Add(LampMapper.toDTO(l));
+    //        }
+
+    //        return result;
+    //    }
+    //}
+    public class GetAllLampsQuery
     {
         private readonly ILampRepository _lampRepository;
-        public GetAllLampQuery(ILampRepository repository)
+
+        public GetAllLampsQuery(ILampRepository repository)
         {
             _lampRepository = repository;
         }
-        public List<LampDTO> Execute()
-        {
-            List<LampDTO> result = new List<LampDTO>();
-            foreach (Lamp l in _lampRepository.GetAll())
-            {
-                result.Add(LampMapper.toDTO(l));
-            }
 
-            return result;
+        public List<Lamp> Execute()
+        {
+            return _lampRepository.GetAll();
         }
     }
 }
