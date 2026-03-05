@@ -96,12 +96,12 @@ namespace BlaisePascal.Smarthouse.Presentation.Controllers.Luminous
                 }
                 else
                 {
-                    Console.WriteLine("Errore: L'intensità deve essere un numero intero.");
+                    Console.WriteLine("L'intensità deve essere nel range.");
                 }
             }
             else
             {
-                Console.WriteLine("Errore: Formato ID non valido.");
+                Console.WriteLine("ID non valido.");
             }
         }
         public void DimmerLamp()
