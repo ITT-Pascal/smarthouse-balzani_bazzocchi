@@ -1,5 +1,5 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
-using BlaisePascal.SmartHouse.Domain.Electrodomestic.Door.Repository;
+using BlaisePascal.SmartHouse.Domain.Electrodomestic.Door;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Door;
 using System;
 using System.Collections.Generic;

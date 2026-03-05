@@ -26,9 +26,7 @@ namespace BlaisePascal.Smarthouse.Application.Abstractions.Mappers
         public static Lamp toEntity(LampDTO lampDTO)
         {
             return new Lamp(
-                lampDTO.Id,
-                new Name(lampDTO.Name),
-                lampDTO.LastModifiedAtUTC
+                new Name(lampDTO.Name)
                 );
         }
     }

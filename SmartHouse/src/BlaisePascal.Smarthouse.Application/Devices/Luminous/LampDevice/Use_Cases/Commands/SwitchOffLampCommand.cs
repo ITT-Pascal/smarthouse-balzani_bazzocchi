@@ -6,21 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.Smarthouse.Application.Devices.Luminous
+namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.Use_Cases.Commands
 {
-    public class SetIntensityLampCommand
+    public class SwitchOffLampCommand
     {
         private readonly ILampRepository _repository;
-        public SetIntensityLampCommand(ILampRepository repo)
+        public SwitchOffLampCommand(ILampRepository repo)
         {
             _repository = repo;
         }
-        public void Execute(Guid id, Intensity amount)
+        public void Execute(Guid id)
         {
             Lamp lamp = _repository.GetById(id);
             if (lamp != null)
             {
-                lamp.SetIntensity(amount);
+                lamp.SwitchOff();
                 _repository.Update(lamp);
             }
         }
