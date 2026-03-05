@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BlaisePascal.Smarthouse.Application\BlaisePascal.Smarthouse.Application.csproj" />
     <ProjectReference Include="..\BlaisePascal.SmartHouse.Domain\BlaisePascal.SmartHouse.Domain.csproj" />
+    <ProjectReference Include="..\BlaisePascal.Smarthouse.Infrastructure\BlaisePascal.Smarthouse.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

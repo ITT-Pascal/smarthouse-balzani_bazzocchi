@@ -37,8 +37,6 @@ namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities
                 }
                 LastModifiedAtUtc = DateTime.Now;
             }
-
-
         }
     }
 }

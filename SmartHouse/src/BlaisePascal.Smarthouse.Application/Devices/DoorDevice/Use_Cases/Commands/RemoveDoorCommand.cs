@@ -15,7 +15,6 @@ namespace BlaisePascal.Smarthouse.Application.Devices.DoorDevice.Use_Cases.Comma
         {
             _doorRepository = repo;
         }
-
         public void Execute(Guid id)
         {
             _doorRepository.Remove(id);

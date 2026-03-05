@@ -9,11 +9,9 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects
     public record Intensity
     {
         public int Value { get; init; }
-        public int MaxIntensity = 100;
-        public int MinIntensity = 0;
         public Intensity(int value)
         {
-            if (value < MinIntensity || value > MaxIntensity)
+            if (value < 0 || value > 100)
                 throw new ArgumentOutOfRangeException(nameof(value), "Intensity must be between 0 and 100.");
             Value = value;
         }

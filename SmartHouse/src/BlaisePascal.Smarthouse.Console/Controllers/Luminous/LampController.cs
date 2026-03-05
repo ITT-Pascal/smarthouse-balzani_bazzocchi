@@ -26,10 +26,18 @@ namespace BlaisePascal.Smarthouse.Presentation.Controllers.Luminous
                 Console.WriteLine("Errore: Il nome non può essere vuoto.");
                 return;
             }
-            Name lampName = new Name(name);
-            AddLampCommand command = new AddLampCommand(_lampRepository);
-            command.Execute(lampName);
-            Console.WriteLine("Lampada aggiunta");
+            try
+            {
+                Name lampName = new Name(name);
+                AddLampCommand command = new AddLampCommand(_lampRepository);
+                command.Execute(lampName);
+                Console.WriteLine("Lampada aggiunta");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+            }
+            
         }
         public void ShowLamps()
         {
@@ -46,99 +54,149 @@ namespace BlaisePascal.Smarthouse.Presentation.Controllers.Luminous
             {
                 Console.WriteLine($"- ID: {lamp.Id}");
                 Console.WriteLine($"  Nome: {lamp.Name.name} | Stato: {lamp.Status} | Intensità: {lamp.Intensity.Value}%");
+                Console.WriteLine($"Creazione: {lamp.CreatedAtUtc} | Ultima Modifica: {lamp.LastModifiedAtUtc}");
                 Console.WriteLine("-----------------------");
             }
         }
         public void SwitchOnLamp()
         {
-            Console.Write("Inserisci l'ID della lampada da accendere: ");
-            string inputId = Console.ReadLine();
-
-            if (Guid.TryParse(inputId, out Guid id))
+            try
             {
-                SwitchOnLampCommand command = new SwitchOnLampCommand(_lampRepository);
-                command.Execute(id);
-                Console.WriteLine("Lampada accesa.");
+                Console.Write("Inserisci l'ID della lampada da accendere: ");
+                string inputId = Console.ReadLine();
+                if (Guid.TryParse(inputId, out Guid id))
+                {
+                    SwitchOnLampCommand command = new SwitchOnLampCommand(_lampRepository);
+                    command.Execute(id);
+                    Console.WriteLine("Lampada accesa.");
+                }
+                else
+                {
+                    Console.WriteLine("ID non valido.");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                Console.WriteLine("ID non valido.");
+                Console.WriteLine($"{ex.Message}");
             }
+           
         }
         public void SwitchOffLamp()
         {
-            Console.Write("Inserisci l'ID della lampada da spegnere: ");
-            string inputId = Console.ReadLine();
+            try
+            {
+                Console.Write("Inserisci l'ID della lampada da spegnere: ");
+                string inputId = Console.ReadLine();
+                if (Guid.TryParse(inputId, out Guid id))
+                {
+                    SwitchOffLampCommand command = new SwitchOffLampCommand(_lampRepository);
+                    command.Execute(id);
+                    Console.WriteLine("Lampada spenta.");
+                }
+                else
+                {
+                    Console.WriteLine("ID non valido.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+            }
 
-            if (Guid.TryParse(inputId, out Guid id))
-            {
-                SwitchOffLampCommand command = new SwitchOffLampCommand(_lampRepository);
-                command.Execute(id);
-                Console.WriteLine("Lampada spenta.");
-            }
-            else
-            {
-                Console.WriteLine("ID non valido.");
-            }
         }
         public void SetIntensityLamp()
         {
-            Console.Write("Inserisci l'ID della lampada: ");
-            if (Guid.TryParse(Console.ReadLine(), out Guid id))
+            try
             {
-                Console.Write("Inserisci la nuova intensità (0-100): ");
-                if (int.TryParse(Console.ReadLine(), out int intensity))
+                Console.Write("Inserisci l'ID della lampada: ");
+                if (Guid.TryParse(Console.ReadLine(), out Guid id))
                 {
-                    Intensity newIntensity = new Intensity(intensity);
-                    SetIntensityLampCommand command = new SetIntensityLampCommand(_lampRepository);
-                    command.Execute(id, newIntensity);
-                    Console.WriteLine($"Comando eseguito: Intensità impostata a {intensity}%.");
+                    Console.Write("Inserisci la nuova intensità (0-100): ");
+                    if (int.TryParse(Console.ReadLine(), out int intensity))
+                    {
+                        Intensity newIntensity = new Intensity(intensity);
+                        SetIntensityLampCommand command = new SetIntensityLampCommand(_lampRepository);
+                        command.Execute(id, newIntensity);
+                        Console.WriteLine($"Comando eseguito: Intensità impostata a {intensity}%.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("L'intensità deve essere nel range.");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("L'intensità deve essere nel range.");
+                    Console.WriteLine("ID non valido.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("ID non valido.");
+                Console.WriteLine($"{ex.Message}");
             }
+
         }
         public void DimmerLamp()
         {
-            Console.Write("Inserisci l'ID della lampada: ");
-            if (Guid.TryParse(Console.ReadLine(), out Guid id))
+            try
             {
-                Console.Write("Inserisci di quanto variare l'intensità");
-                if (int.TryParse(Console.ReadLine(), out int amount))
+                Console.Write("Inserisci l'ID della lampada: ");
+                if (Guid.TryParse(Console.ReadLine(), out Guid id))
                 {
-                    DimmerLampCommand command = new DimmerLampCommand(_lampRepository);
-                    command.Execute(id, amount);
-                    Console.WriteLine($"Dimmer applicato ({amount}).");
+                    Console.Write("Inserisci di quanto variare l'intensità: ");
+                    if (int.TryParse(Console.ReadLine(), out int amount))
+                    {
+                        DimmerLampCommand command = new DimmerLampCommand(_lampRepository);
+                        command.Execute(id, amount);
+                        Console.WriteLine($"Dimmer applicato ({amount}).");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Errore: Il valore deve essere un numero intero.");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Errore: Il valore deve essere un numero intero.");
+                    Console.WriteLine("ID non valido.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("ID non valido.");
+                Console.WriteLine($"{ex.Message}");
             }
         }
         public void RemoveLamp()
         {
-            Console.Write("Inserisci l'ID della lampada da rimuovere: ");
-            if (Guid.TryParse(Console.ReadLine(), out Guid id))
+            try
             {
-                RemoveLampCommand command = new RemoveLampCommand(_lampRepository);
-                command.Execute(id);
-                Console.WriteLine("Lampada rimossa.");
+                Console.Write("Inserisci l'ID della lampada da rimuovere: ");
+                if (Guid.TryParse(Console.ReadLine(), out Guid id))
+                {
+                    RemoveLampCommand command = new RemoveLampCommand(_lampRepository);
+                    command.Execute(id);
+                    Console.WriteLine("Lampada rimossa.");
+                }
+                else
+                {
+                    Console.WriteLine("ID non valido.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("ID non valido.");
+                Console.WriteLine($"{ex.Message}");
             }
+        }
+
+        public void ShowMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine("1 - Add lamp");
+            Console.WriteLine("2 - Remove lamp");
+            Console.WriteLine("3 - Switch ON");
+            Console.WriteLine("4 - Switch OFF");
+            Console.WriteLine("5 - Set Intensity");
+            Console.WriteLine("6 - Dimmer");
+            Console.WriteLine("0 - Exit");
+            Console.WriteLine();
         }
     }
 }

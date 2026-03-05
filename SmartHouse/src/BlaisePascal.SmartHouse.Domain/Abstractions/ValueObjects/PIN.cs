@@ -9,7 +9,6 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects
     public record PIN
     {
         public string SecurityCode { get; init; }
-
         public PIN(string securityCode)
         {
             if (string.IsNullOrWhiteSpace(securityCode) || securityCode.Length != 4 || !securityCode.All(char.IsDigit))
@@ -17,5 +16,4 @@ namespace BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects
             SecurityCode = securityCode;
         }
     }
-
 }
