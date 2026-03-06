@@ -3,52 +3,74 @@ using BlaisePascal.SmartHouse.Domain.Abstractions.AbstractClasses;
 using BlaisePascal.SmartHouse.Domain.Abstractions.Interfaces;
 using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Electrodomestic.DoorFolder.Entities
 {
-    public class Door: AbstractDevice, IOpenable, ILockable
+    public class Door : AbstractDevice, IOpenable, ILockable
     {
-        public PIN _lockCode { get; set; }
-        public Door(PIN lockCode, Name name):base(name)
+        public PIN _lockCode { get; private set; }
+        public AccesibilityStatus Accessibility { get; private set; }
+        public LockingStatus LockingStatus { get; private set; }
+
+        public Door(PIN lockCode, Name name) : base(name)
         {
             _lockCode = lockCode;
-            Status = DeviceStatus.Close;
+            Accessibility = AccesibilityStatus.Close;
+            LockingStatus = LockingStatus.Unlock;
         }
+
         public void Open()
         {
-            if (Status == DeviceStatus.Lock)
+            if (LockingStatus == LockingStatus.Lock)
                 throw new InvalidOperationException("Cannot open a locked door.");
-            Status = DeviceStatus.Open;
 
+            if (Accessibility == AccesibilityStatus.Open)
+                return; 
+
+            Accessibility = AccesibilityStatus.Open;
         }
+
         public void Close()
         {
-            Status = DeviceStatus.Close;
+            if (Accessibility == AccesibilityStatus.Close)
+                return;
+
+            Accessibility = AccesibilityStatus.Close;
         }
 
         public void Lock()
         {
-            if (Status == DeviceStatus.Open)
+            if (Accessibility == AccesibilityStatus.Open)
                 throw new InvalidOperationException("Cannot lock an open door.");
-            if (Status == DeviceStatus.Close)
-                Status = DeviceStatus.Lock;
+
+            if (LockingStatus == LockingStatus.Lock)
+                return;
+
+            LockingStatus = LockingStatus.Lock;
         }
+
         public void Unlock(PIN code)
         {
             if (code == _lockCode)
-                Status = DeviceStatus.Unlock;
+            {
+                if (LockingStatus == LockingStatus.Unlock)
+                    return;
+                LockingStatus = LockingStatus.Unlock;
+            }
         }
+
         public void SetNewUnlockCode(PIN oldCode, PIN newUnlockCode)
         {
             if (this._lockCode == oldCode)
+            {
                 _lockCode = newUnlockCode;
-            Close();
-            Lock();
+                Close();
+                Lock();  
+            }
+            else
+            {
+                throw new InvalidOperationException("Il vecchio PIN inserito non è corretto.");
+            }
         }
     }
-
 }

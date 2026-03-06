@@ -49,7 +49,7 @@ namespace BlaisePascal.Smarthouse.Presentation.Controllers.Luminous
                 return;
             }
 
-            Console.WriteLine("\n--- LISTA LAMPADE ---");
+            Console.WriteLine("\n LISTA LAMPADE");
             foreach (Lamp lamp in lamps)
             {
                 Console.WriteLine($"- ID: {lamp.Id}");
