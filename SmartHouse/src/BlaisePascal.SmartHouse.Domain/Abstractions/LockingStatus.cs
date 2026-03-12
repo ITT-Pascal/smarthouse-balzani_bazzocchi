@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Abstractions
 {
-    public enum DeviceStatus
+    public enum LockingStatus
     {
-       Unknown = 0,
-       Off = 1,
-       On = 2,
-       Standby = 3,
-       Error = 4,
+        Lock = 1,
+        Unlock = 2
     }
 }
