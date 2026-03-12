@@ -1,4 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions.Status;
 using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.DoorFolder.Entities;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.DoorFolder.Repository;
@@ -21,8 +21,7 @@ namespace BlaisePascal.Smarthouse.Application.Devices.DoorDevice.Use_Cases.Comma
         public void Execute(Guid id, PIN pin)
         {
             Door door = _doorRepository.GetById(id);
-            if (door.Status == DeviceStatus.Lock)
-                door.Unlock(pin);
+            door.Unlock(pin);
             _doorRepository.Update(door);
         }
     }

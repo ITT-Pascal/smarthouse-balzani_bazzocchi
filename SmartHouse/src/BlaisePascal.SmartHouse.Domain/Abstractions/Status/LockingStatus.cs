@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Abstractions
+namespace BlaisePascal.SmartHouse.Domain.Abstractions.Status
 {
-    public enum AccesibilityStatus
+    public enum LockingStatus
     {
-        Open = 1,
-        Close = 2,
+        Lock = 1,
+        Unlock = 2
     }
 }

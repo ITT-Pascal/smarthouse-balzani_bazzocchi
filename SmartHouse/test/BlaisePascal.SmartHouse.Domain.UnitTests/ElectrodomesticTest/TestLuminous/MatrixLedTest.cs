@@ -1,4 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions.Status;
 using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using System;

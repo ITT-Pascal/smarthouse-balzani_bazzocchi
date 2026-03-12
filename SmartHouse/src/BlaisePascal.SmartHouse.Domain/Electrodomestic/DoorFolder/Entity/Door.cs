@@ -1,6 +1,6 @@
-﻿using BlaisePascal.SmartHouse.Domain.Abstractions;
-using BlaisePascal.SmartHouse.Domain.Abstractions.AbstractClasses;
+﻿using BlaisePascal.SmartHouse.Domain.Abstractions.AbstractClasses;
 using BlaisePascal.SmartHouse.Domain.Abstractions.Interfaces;
+using BlaisePascal.SmartHouse.Domain.Abstractions.Status;
 using BlaisePascal.SmartHouse.Domain.Abstractions.ValueObjects;
 using System;
 
