@@ -1,5 +1,6 @@
 ﻿
 using BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.DTO;
+using BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.Mappers;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories;
 using System;
@@ -37,9 +38,12 @@ namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.Use_Ca
             _lampRepository = repository;
         }
 
-        public List<Lamp> Execute()
+        public List<LampDTO>? Execute()
         {
-            return _lampRepository.GetAll();
+            var result = new List<LampDTO>();
+            foreach (var l in _lampRepository.GetAll())
+                result.Add(LampMapper.toDTO(l));
+            return result;
         }
     }
 }

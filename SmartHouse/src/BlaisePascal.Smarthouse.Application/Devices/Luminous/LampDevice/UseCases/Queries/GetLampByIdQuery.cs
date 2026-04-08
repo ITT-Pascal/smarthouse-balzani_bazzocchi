@@ -1,10 +1,12 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Entities;
 using BlaisePascal.SmartHouse.Domain.Electrodomestic.Luminous.Repositories;
+using BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.Mappers;
 
 namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.Use_Cases.Queries
 {
@@ -15,10 +17,12 @@ namespace BlaisePascal.Smarthouse.Application.Devices.Luminous.LampDevice.Use_Ca
         {
             _lampRepository = repository;
         }
-        public Lamp Execute(Guid id)
+        public LampDTO? Execute(Guid id)
         {
             var l = _lampRepository.GetById(id);
-            return l;
+            if(l != null )
+                return LampMapper.toDTO(l);
+            return null;
         }
     }
 }
